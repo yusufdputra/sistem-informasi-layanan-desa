@@ -5,47 +5,33 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>SIPLP | FAKULTAS KEGURUAN DAN ILMU PENDIDIKAN UMRI</title>
+  <title>SISTEM INFORMASI LAYANAN DESA MAKMUR</title>
+  <link rel="shortcut icon" href="{{asset('adminto/images/favicon.ico')}}">
 
-  <link rel="shortcut icon" href="{{asset('adminto/images/brand/logo.png')}}">
+  <script src="{{asset('js/jquery.min.js')}}"></script>
+  <!-- third party css -->
+  <link href="{{asset('adminto/libs/datatables.net-bs5/css/dataTables.bootstrap5.min.css')}}" rel="stylesheet" type="text/css" />
+  <link href="{{asset('adminto/libs/datatables.net-responsive-bs5/css/responsive.bootstrap5.min.css')}}" rel="stylesheet" type="text/css" />
+  <link href="{{asset('adminto/libs/datatables.net-buttons-bs5/css/buttons.bootstrap5.min.css')}}" rel="stylesheet" type="text/css" />
+  <link href="{{asset('adminto/libs/datatables.net-select-bs5/css//select.bootstrap5.min.css')}}" rel="stylesheet" type="text/css" />
+  <!-- third party css end -->
+
+  <!-- Plugins css -->
+  <link href="{{asset('adminto/libs/dropzone/min/dropzone.min.css')}}" rel="stylesheet" type="text/css" />
+  <link href="{{asset('adminto/libs/dropify/css/dropify.min.css')}}" rel="stylesheet" type="text/css" />
+
 
   <!-- App css -->
-  <link href="{{asset('adminto/css/bootstrap.min.css')}}" rel="stylesheet" type="text/css" />
-  <link href="{{asset('adminto/css/icons.css')}}" rel="stylesheet" type="text/css" />
-  <link href="{{asset('adminto/css/style.css')}}" rel="stylesheet" type="text/css" />
+  <link href="{{asset('adminto/css/config/default/bootstrap.min.css')}}" rel="stylesheet" type="text/css" id="bs-default-stylesheet" />
+  <link href="{{asset('adminto/css/config/default/app.min.css')}}" rel="stylesheet" type="text/css" id="app-default-stylesheet" />
 
-  <link href="{{asset('adminto/plugins/switchery/switchery.min.css')}}" rel="stylesheet" />
+  <link href="{{asset('adminto/css/config/default/bootstrap-dark.min.css')}}" rel="stylesheet" type="text/css" id="bs-dark-stylesheet" disabled="disabled" />
+  <link href="{{asset('adminto/css/config/default/app-dark.min.css')}}" rel="stylesheet" type="text/css" id="app-dark-stylesheet" disabled="disabled" />
 
-  <!-- DataTables -->
-  <link href="{{asset('adminto/plugins/datatables/dataTables.bootstrap4.min.css')}}" rel="stylesheet" type="text/css" />
-  <link href="{{asset('adminto/plugins/datatables/buttons.bootstrap4.min.css')}}" rel="stylesheet" type="text/css" />
+  <!-- icons -->
+  <link href="{{asset('adminto/css/icons.min.css')}}" rel="stylesheet" type="text/css" />
+  <script src="https://cdn.ckeditor.com/ckeditor5/30.0.0/classic/ckeditor.js"></script>
 
-
-  <link href="{{asset('adminto/plugins/bootstrap-datepicker/dist/css/bootstrap-datepicker.min.css')}}" rel="stylesheet">
-  <link href="{{asset('adminto/plugins/bootstrap-daterangepicker/daterangepicker.css')}}" rel="stylesheet">
-  <!-- Notification css (Toastr) -->
-  <link href="{{asset('adminto/plugins/toastr/toastr.min.css')}}" rel="stylesheet" type="text/css" />
-
-  <script src="{{asset('adminto/js/jquery.min.js')}}"></script>
-  <!-- Custom box css -->
-  <link href="{{asset('adminto/plugins/custombox/dist/custombox.min.css')}}" rel="stylesheet">
-
-  <!-- time picker -->
-  <link href="{{asset('adminto/plugins/timepicker/bootstrap-timepicker.min.css')}}" rel="stylesheet">
-  <!-- form Uploads -->
-  <link href="{{asset('adminto/plugins/fileuploads/css/dropify.min.css')}}" rel="stylesheet" type="text/css" />
-
-  <!-- select2 -->
-  <link href="{{asset('adminto/plugins/select2/css/select2.min.css')}}" rel="stylesheet" type="text/css" />
-
-  <link href="{{asset('adminto/plugins/bootstrap-tagsinput/dist/bootstrap-tagsinput.css')}}" rel="stylesheet" />
-  <!-- @toastr_css -->
-
-  <script src="{{asset('adminto/js/modernizr.min.js')}}"></script>
 </head>
 
-<body class="fixed-left">
-
-
-  <!-- Begin page -->
-  <div id="wrapper">
+<body class="loading " data-layout='{"mode": "light", "width": "fluid", "menuPosition": "fixed", "sidebar": { "color": "light", "size": "default", "showuser": true}, "topbar": {"color": "light"}, "showRightSidebarOnPageLoad": false}'>

@@ -14,49 +14,21 @@ use Illuminate\Support\Facades\Auth;
 
 class HomeController extends Controller
 {
-    /**
-     * Create a new controller instance.
-     *
-     * @return void
-     */
 
-    public function __construct()
+    public function index()
     {
-        $this->middleware('auth');
+        $title = "Dashboard";
+        if (Auth::check()) {
+            
+            return view('home', compact('title'));
+        }
+        return view('landing.index');
     }
-
-    /**
-     * Show the application dashboard.
-     *
-     * @return \Illuminate\Contracts\Support\Renderable
-     */
 
 
     public function auth()
     {
 
-        $title = "Dashboard";
-        if (Auth::check()) {
-            // get status daftar periode saat ini
-            $status_daftar =  PeriodeController::cekPeriode();
-
-            // get status magang periode saat ini
-            $status_magang = Periode::where('mulai_magang', '<=', Carbon::now())
-                ->where('akhir_magang', '>=', Carbon::now())
-                ->first();
-
-            if ($status_daftar != null) {
-                $jml_daftar = Magang::where('id_periode', $status_daftar['id'])->count();
-                $jml_selesai = Magang::where('id_periode', $status_daftar['id'])->where('status_pengajuan', 'selesai')->count();
-
-            }else{
-                $jml_daftar = 0;
-                $jml_selesai = 0;
-            }
-
-
-            return view('home', compact('title', 'status_daftar', 'status_magang', 'jml_daftar','jml_selesai'));
-        }
-        return view('auth.login', compact('title'));
+        return view('landing.index');
     }
 }

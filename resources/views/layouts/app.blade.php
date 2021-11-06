@@ -1,16 +1,34 @@
 @include('layouts.header')
-<!-- Begin page -->
+<div id="wrapper">
+    <!-- Begin page -->
 
-@include('layouts.topbar')
+    @include('layouts.topbar')
 
-@include('layouts.sidebar')
+    @include('layouts.sidebar')
 
 
+    <div class="content-page">
+        <div class="content">
 
-<div class="content-page">
-    <!-- Start content -->
-    <div class="container-fluid">
-        @yield('content')
+            <!-- Start content -->
+            <div class="container-fluid">
+                @yield('content')
+            </div>
+        </div>
     </div>
+
+    <!-- Footer Start -->
+    <footer class="footer"> 
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-6">
+                    <script>
+                        document.write(new Date().getFullYear())
+                    </script> &copy; Desa Makmur
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!-- end Footer -->
 </div>
 @include('layouts.footer')

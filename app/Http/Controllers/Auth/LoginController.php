@@ -39,6 +39,11 @@ class LoginController extends Controller
     }
     public function username()
     {
-        return 'nomor_induk';
+        return 'username';
+    }
+
+    public function nik()
+    {
+        return 'nik';
     }
 }

@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Auth\RegisterController;
+use App\Http\Controllers\BeritaController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\KuisionerController;
 use App\Http\Controllers\LookBookController;
@@ -10,6 +11,7 @@ use App\Http\Controllers\PeriodeController;
 use App\Http\Controllers\ProdiController;
 use App\Http\Controllers\RiwayatController;
 use App\Http\Controllers\SekolahController;
+use App\Http\Controllers\StaffController;
 use App\Http\Controllers\UserManagementController;
 use App\Models\Lookbook;
 use Illuminate\Support\Facades\Auth;
@@ -27,16 +29,34 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', [HomeController::class, 'auth'])->name('/');
+Route::get('/home', [HomeController::class, 'index'])->name('home.index');
 
 Auth::routes();
 
 Route::post('/register/mahasiswa', [RegisterController::class, 'mahasiswa'])->name('register.mahasiswa');
 Route::post('/register/dosen', [RegisterController::class, 'dosen'])->name('register.dosen');
-Route::get('/home', [HomeController::class, 'index'])->name('home');
 
 // admin
 
 Route::group(['middleware' => ['role:admin']], function () {
+    // kelola berita
+    Route::get('/berita', [BeritaController::class, 'index'])->name('berita.index');
+    Route::get('/berita/add', [BeritaController::class, 'add'])->name('berita.add');
+    Route::post('/berita/store', [BeritaController::class, 'store'])->name('berita.store');
+    Route::post('/berita/hapus', [BeritaController::class, 'hapus'])->name('berita.hapus');
+    // kelola staff
+    Route::get('/staff', [StaffController::class, 'index'])->name('staff.index');
+    Route::post('/staff/store', [StaffController::class, 'store'])->name('staff.store');
+    Route::post('/staff/hapus', [StaffController::class, 'hapus'])->name('staff.hapus');
+
+
+    // kelola layanan
+    Route::get('/layanan', [PeriodeController::class, 'index'])->name('layanan.index');
+    // kelola arsip
+    Route::get('/arsip', [PeriodeController::class, 'index'])->name('arsip.index');
+    // kelola warga
+    Route::get('/warga', [PeriodeController::class, 'index'])->name('warga.index');
+
     // user management
     Route::get('/user/{jenis}', [UserManagementController::class, 'index'])->name('user.index');
     Route::post('/user/hapus', [UserManagementController::class, 'hapus'])->name('user.hapus');

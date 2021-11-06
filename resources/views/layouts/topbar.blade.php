@@ -1,37 +1,77 @@
-<!-- Top Bar Start -->
-<div class="topbar">
+<div class="navbar-custom">
+    <ul class="list-unstyled topnav-menu float-end mb-0">
+
+
+        <li class="dropdown notification-list topbar-dropdown">
+            <a class="nav-link dropdown-toggle nav-user me-0 waves-effect waves-light" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="false" aria-expanded="false">
+                <img src="{{asset('adminto/images/users/user-1.jpg')}}" alt="user-image" class="rounded-circle">
+                <span class="pro-user-name ms-1">
+                    {{strtoupper(Auth::user()->username)}} <i class="mdi mdi-chevron-down"></i>
+                </span>
+            </a>
+            <div class="dropdown-menu dropdown-menu-end profile-dropdown ">
+                <!-- item-->
+                <div class="dropdown-header noti-title">
+                    <h6 class="text-overflow m-0">Selamat Datang !</h6>
+                </div>
+
+                <!-- item-->
+                <a href="{{('profil')}}" class="dropdown-item notify-item">
+                    <i class="fe-user"></i>
+                    <span>Akun Saya</span>
+                </a>
+
+                <div class="dropdown-divider"></div>
+
+                <!-- item-->
+                <a href="{{('logout')}}" class="dropdown-item notify-item" onclick="event.preventDefault();
+                                                     document.getElementById('logout-form').submit();">
+                  
+                    <i class="fe-log-out"></i>
+                    <span>Logout</span>
+                </a>
+                <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                    @csrf
+                </form>
+
+            </div>
+        </li>
+
+    </ul>
 
     <!-- LOGO -->
-    <!-- LOGO -->
-    <div class="topbar-left">
-        <a href="index.html" class="logo"><span>SI<span>PLP</span></span><i class="mdi mdi-layers"></i></a>
+    <div class="logo-box">
+        <a href="{{('/')}}" class="logo logo-light text-center">
+            <span class="logo-sm">
+                <img src="{{asset('adminto/images/logo-sm.png')}}" alt="" height="22">
+            </span>
+            <span class="logo-lg">
+                <img src="{{asset('adminto/images/logo-light.png')}}" alt="" height="16">
+            </span>
+        </a>
+        <a href="{{('/')}}" class="logo logo-dark text-center">
+            <span class="logo-sm">
+                <img src="{{asset('adminto/images/logo-sm.png')}}" alt="" height="22">
+            </span>
+            <span class="logo-lg">
+                <img src="{{asset('adminto/images/logo-dark.png')}}" alt="" height="16">
+            </span>
+        </a>
     </div>
 
-    <!-- Button mobile view to collapse sidebar menu -->
-    <div class="navbar navbar-default" role="navigation">
-        <div class="container-fluid">
+    <ul class="list-unstyled topnav-menu topnav-menu-left mb-0">
+        <li>
+            <button class="button-menu-mobile disable-btn waves-effect">
+                <i class="fe-menu"></i>
+            </button>
+        </li>
 
-            <!-- Page title -->
-            <ul class="nav navbar-nav list-inline navbar-left">
-                <li class="list-inline-item">
-                    <button class="button-menu-mobile open-left">
-                        <i class="mdi mdi-menu"></i>
-                    </button>
-                </li>
-                <li class="list-inline-item">
-                    <h4 class="page-title">{{$title}}</h4>
-                </li>
-            </ul>
+        <li>
+            <h4 class="page-title-main">{{$title}}</h4>
+        </li>
 
-            <nav class="navbar-custom">
+    </ul>
 
-                <ul class="list-unstyled topbar-right-menu float-right mb-0">
+    <div class="clearfix"></div>
 
-
-
-                </ul>
-            </nav>
-        </div><!-- end container -->
-    </div><!-- end navbar -->
 </div>
-<!-- Top Bar End -->
