@@ -6,6 +6,23 @@ use Illuminate\Http\Request;
 
 class FileController
 {
+    static function cekFile(Request $request, $target)
+    {
+        if (($request->file('file_foto') != null)) {
+            //jika ada upload foto
+            //cek apakah ada file lama atau tidak
+            if ($request->has('file_lama')) {
+                $file_lama = $request->file_lama;
+            } else {
+                $file_lama = null;
+            }
+            $upload = FileController::uploadFile($target, $request->file('file_foto'), $file_lama);
+        } else {
+            // jika tidak ada ubah foto
+            $upload = $request->file_lama;
+        }
+        return $upload;
+    }
     static function uploadFile($target, $file, $file_lama)
     {
         try {

@@ -30,19 +30,9 @@ class BeritaController extends Controller
 
     public function store(Request $request)
     {
-        if (($request->file('file_foto') != null)) {
-            //jika ada upload foto
-            //cek apakah ada file lama atau tidak
-            if ($request->has('file_lama')) {
-                $file_lama = $request->file_lama;
-            } else {
-                $file_lama = null;
-            }
-            $upload = FileController::uploadFile($this->target, $request->file('file_foto'), $file_lama);
-        } else {
-            // jika tidak ada ubah foto
-            $upload = $request->file_lama;
-        }
+        // upload file
+        $upload = FileController::cekFile($request, $this->target);
+
         if ($upload != false) {
             $where = [
                 'id' => $request->id
