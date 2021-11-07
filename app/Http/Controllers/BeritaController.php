@@ -22,7 +22,7 @@ class BeritaController extends Controller
     }
 
     public function add()
-    { 
+    {
         $title = "Tambah Berita Desa";
         $berita = null;
         return view('admin.berita.form', compact('title', 'berita'));
@@ -34,12 +34,12 @@ class BeritaController extends Controller
             //jika ada upload foto
             //cek apakah ada file lama atau tidak
             if ($request->has('file_lama')) {
-               $file_lama = $request->file_lama;
-            }else{
+                $file_lama = $request->file_lama;
+            } else {
                 $file_lama = null;
             }
             $upload = FileController::uploadFile($this->target, $request->file('file_foto'), $file_lama);
-        }else{
+        } else {
             // jika tidak ada ubah foto
             $upload = $request->file_lama;
         }
@@ -47,7 +47,7 @@ class BeritaController extends Controller
             $where = [
                 'id' => $request->id
             ];
-    
+
             $values = [
                 'judul' => ($request->judul),
                 'isi' => $request->deskripsi,
@@ -55,17 +55,34 @@ class BeritaController extends Controller
                 'created_at'   => Carbon::now(),
                 'updated_at'   => Carbon::now(),
             ];
-    
+
             $query = Berita::updateOrInsert($where, $values);
-    
+
             if ($query) {
                 return redirect()->back()->with('success', 'Berhasil disimpan');
             } else {
                 return redirect()->back()->with('alert', 'Gagal disimpan');
             }
-        }else{
+        } else {
             return redirect()->back()->with('alert', 'Gagal disimpan');
         }
-        
+    }
+
+    public function edit($id)
+    {
+        $title = "Ubah Berita Desa";
+        $berita = Berita::find($id);
+        return view('admin.berita.form', compact('title', 'berita'));
+    }
+
+    public function hapus(Request $request)
+    {
+        $query = Berita::where('id', $request->id)->delete();
+
+        if ($query) {
+            return redirect()->back()->with('success', 'Berhasil dihapus');
+        } else {
+            return redirect()->back()->with('alert', 'Gagal dihapus');
+        }
     }
 }

@@ -42,6 +42,7 @@ Route::group(['middleware' => ['role:admin']], function () {
     // kelola berita
     Route::get('/berita', [BeritaController::class, 'index'])->name('berita.index');
     Route::get('/berita/add', [BeritaController::class, 'add'])->name('berita.add');
+    Route::get('/berita/edit/{id}', [BeritaController::class, 'edit'])->name('berita/edit/');
     Route::post('/berita/store', [BeritaController::class, 'store'])->name('berita.store');
     Route::post('/berita/hapus', [BeritaController::class, 'hapus'])->name('berita.hapus');
     // kelola staff

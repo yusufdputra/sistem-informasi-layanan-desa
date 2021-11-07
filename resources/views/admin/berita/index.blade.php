@@ -43,13 +43,29 @@
                 <td>{{$key+1}}</td>
                 <td>{{$value->judul}}</td>
                 <td> <img src="storage/{{$value->foto_path}}" alt="image" class="img-fluid avatar-xl img-thumbnail " /></td>
-                <td>{!! $value->isi !!}</td>
+                <td>
+                  <div class="card-header" id="heading{{$key}}">
+                    <h5 class="m-0">
+                      <a class="text-dark" data-bs-toggle="collapse" href="#collapse{{$key}}" aria-expanded="false">
+                        <i class="mdi mdi-help-circle me-1 text-primary"></i>
+                        Lihat disini!!
+                      </a>
+                    </h5>
+                  </div>
+
+                  <div id="collapse{{$key}}" class="collapse" aria-labelledby="heading{{$key}}" data-bs-parent="#accordion">
+                    <div class="card-body">
+
+                      {!! $value->isi !!}
+                    </div>
+                  </div>
+                </td>
 
 
                 <td>
-                  <button type="button" data-bs-toggle="modal" data-bs-target="#edit-modal" data-id='{{$value->id}}' data-nama="{{$value->nama}}" data-jabatan="{{$value->id_jabatan}}" data-foto="{{$value->foto_path}}" class="btn btn-success btn-sm modal_edit"><i class="fa fa-edit"></i></button>
+                  <a href="{{route('berita/edit/', $value->id)}}" class="btn btn-success btn-sm modal_edit"><i class="fa fa-edit"></i></a>
 
-                  <button type="button" data-bs-toggle="modal" data-bs-target="#hapus-modal" data-id='{{$value->id}}' data-nama="{{$value->nama}}" class="btn btn-danger btn-sm hapus"><i class="fa fa-trash"></i></button>
+                  <button type="button" data-bs-toggle="modal" data-bs-target="#hapus-modal" data-id='{{$value->id}}' data-nama="{{$value->judul}}" class="btn btn-danger btn-sm hapus"><i class="fa fa-trash"></i></button>
 
 
 
@@ -63,97 +79,17 @@
     </div>
   </div>
 </div>
-<!-- end row -->
-<div id="tambah-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="standard-modalLabel" aria-hidden="true">
-  <div class="modal-dialog ">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h4 class="modal-title" id="standard-modalLabel">Tambah Staff Desa</h4>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-        <div class="text-left">
-          <form class="form-horizontal m-t-20" enctype="multipart/form-data" action="{{route('staff.store')}}" method="POST">
-            @csrf
 
-            <div class="row mb-3">
-              <label for="nama" class="col-4 col-xl-3 col-form-label">Nama Lengkap</label>
-              <div class="col-8 col-xl-9">
-                <input class="form-control" type="text" autocomplete="off" name="nama" required="" placeholder="Nama Lengkap">
-              </div>
-            </div>
-            <div class="row mb-3">
-              <label for="nama" class="col-4 col-xl-3 col-form-label">Foto</label>
-              <div class="col-8 col-xl-9">
-                <input type="file" accept="image/*" required data-plugins="dropify" name="file_foto" data-max-file-size="1M" />
-              </div>
-            </div>
-
-            <div class="modal-footer">
-              <button type="button" class="btn btn-light" data-bs-dismiss="modal">Close</button>
-              <button type="submit" class="btn btn-primary waves-effect waves-light">Save changes</button>
-            </div>
-
-
-          </form>
-
-        </div>
-      </div>
-    </div>
-  </div>
-
-</div>
-
-<div id="edit-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="fullWidthModalLabel" aria-hidden="true">
-  <div class="modal-dialog ">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h4 class="modal-title" id="fullWidthModalLabel">Edit Staff Desa</h4>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <form class="form-horizontal m-t-20" enctype="multipart/form-data" action="{{route('staff.store')}}" method="POST">
-        @csrf
-        <div class="modal-body">
-          <div class="text-left">
-
-            <input type="hidden" name="id" id="edit_id">
-
-            <div class="row mb-3">
-              <label for="nama" class="col-4 col-xl-3 col-form-label">Nama Lengkap</label>
-              <div class="col-8 col-xl-9">
-                <input class="form-control" type="text" autocomplete="off" id="edit_nama" name="nama" required="" placeholder="Nama Lengkap">
-              </div>
-            </div>
-            <div class="row mb-3">
-              <label for="nama" class="col-4 col-xl-3  col-form-label">Foto
-                <img src="" id="edit_foto" alt="image" class="img-fluid avatar-xl rounded " />
-              </label>
-              <div class="col-8 col-xl-9">
-                <input type="hidden" name="file_lama" id="file_lama">
-                <input type="file" accept="image/*" id="" data-plugins="dropify" name="file_foto" data-max-file-size="1M" />
-              </div>
-            </div>
-
-          </div>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-light" data-bs-dismiss="modal">Close</button>
-          <button type="submit" class="btn btn-primary waves-effect waves-light">Save changes</button>
-        </div>
-      </form>
-    </div>
-  </div>
-</div>
 
 <div id="hapus-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="fullWidthModalLabel" aria-hidden="true">
   <div class="modal-dialog ">
     <div class="modal-content">
       <div class="modal-header">
-        <h4 class="modal-title" id="fullWidthModalLabel">Hapus Staff Desa</h4>
+        <h4 class="modal-title" id="fullWidthModalLabel">Hapus Berita</h4>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
 
-      <form class="form-horizontal m-t-20" enctype="multipart/form-data" action="{{route('staff.hapus')}}" method="POST">
+      <form class="form-horizontal m-t-20" enctype="multipart/form-data" action="{{route('berita.hapus')}}" method="POST">
         @csrf
         <div class="modal-body">
           <input type="hidden" id='id_hapus' name='id'>
