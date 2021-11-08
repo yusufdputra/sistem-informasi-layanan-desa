@@ -19,7 +19,7 @@ class HomeController extends Controller
     {
         $title = "Dashboard";
         if (Auth::check()) {
-            
+
             return view('home', compact('title'));
         }
         return view('landing.index');

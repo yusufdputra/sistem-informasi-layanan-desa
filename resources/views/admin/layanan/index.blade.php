@@ -30,23 +30,17 @@
             <thead>
               <tr>
                 <th>No.</th>
-                <th>Nama Lengkap</th>
-                <th>Jabatan</th>
-                <th>Foto</th>
+                <th>Jenis Surat</th>
                 <th>Aksi</th>
               </tr>
             </thead>
             <tbody>
-              @foreach ($staff AS $key=>$value)
+              @foreach ($layanan AS $key=>$value)
               <tr>
                 <td>{{$key+1}}</td>
                 <td>{{$value->nama}}</td>
-                <td>{{$value->jabatan->nama}}</td>
-                <td> <img src="storage/{{$value->foto_path}}" alt="image" class="img-fluid avatar-xl img-thumbnail rounded-circle" /></td>
-
-
                 <td>
-                  <button type="button" data-bs-toggle="modal" data-bs-target="#edit-modal" data-id='{{$value->id}}' data-nama="{{$value->nama}}" data-jabatan="{{$value->id_jabatan}}" data-foto="{{$value->foto_path}}" class="btn btn-success btn-sm modal_edit"><i class="fa fa-edit"></i></button>
+                  <button type="button" data-bs-toggle="modal" data-bs-target="#edit-modal" data-id='{{$value->id}}' data-nama="{{$value->nama}}"  class="btn btn-success btn-sm modal_edit"><i class="fa fa-edit"></i></button>
 
                   <button type="button" data-bs-toggle="modal" data-bs-target="#hapus-modal" data-id='{{$value->id}}' data-nama="{{$value->nama}}"  class="btn btn-danger btn-sm hapus"><i class="fa fa-trash"></i></button>
 
@@ -67,35 +61,18 @@
   <div class="modal-dialog ">
     <div class="modal-content">
       <div class="modal-header">
-        <h4 class="modal-title" id="standard-modalLabel">Tambah Staff Desa</h4>
+        <h4 class="modal-title" id="standard-modalLabel">Tambah Jenis Surat Layanan Desa</h4>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
         <div class="text-left">
-          <form class="form-horizontal m-t-20" enctype="multipart/form-data" action="{{route('staff.store')}}" method="POST">
+          <form class="form-horizontal m-t-20" enctype="multipart/form-data" action="{{route('layanan.store')}}" method="POST">
             @csrf
 
             <div class="row mb-3">
-              <label for="nama" class="col-4 col-xl-3 col-form-label">Nama Lengkap</label>
+              <label for="nama" class="col-4 col-xl-3 col-form-label">Jenis Surat</label>
               <div class="col-8 col-xl-9">
-                <input class="form-control" type="text" autocomplete="off" name="nama" required="" placeholder="Nama Lengkap">
-              </div>
-            </div>
-            <div class="row mb-3">
-              <label for="jabatan" class="col-4 col-xl-3 col-form-label">Jabatan</label>
-              <div class="col-8 col-xl-9">
-                <select class="form-select" required name="id_jabatan" id="example-select">
-                  @foreach ($jabatan AS $key=>$value)
-                  <option value="{{$value->id}}">{{$value->nama}}</option>
-
-                  @endforeach
-                </select>
-              </div>
-            </div>
-            <div class="row mb-3">
-              <label for="nama" class="col-4 col-xl-3 col-form-label">Foto</label>
-              <div class="col-8 col-xl-9">
-                <input type="file" accept="image/*" required data-plugins="dropify" name="file_foto" data-max-file-size="1M" />
+                <input class="form-control" type="text" autocomplete="off" name="nama" required="" placeholder="Ketikkan Sesuatu...">
               </div>
             </div>
 
@@ -118,10 +95,10 @@
   <div class="modal-dialog ">
     <div class="modal-content">
       <div class="modal-header">
-        <h4 class="modal-title" id="fullWidthModalLabel">Edit Staff Desa</h4>
+        <h4 class="modal-title" id="fullWidthModalLabel">Edit Jenis Surat Layanan Desa</h4>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
-      <form class="form-horizontal m-t-20" enctype="multipart/form-data" action="{{route('staff.store')}}" method="POST">
+      <form class="form-horizontal m-t-20" enctype="multipart/form-data" action="{{route('layanan.store')}}" method="POST">
         @csrf
         <div class="modal-body">
           <div class="text-left">
@@ -129,28 +106,9 @@
             <input type="hidden" name="id" id="edit_id">
 
             <div class="row mb-3">
-              <label for="nama" class="col-4 col-xl-3 col-form-label">Nama Lengkap</label>
+              <label for="nama" class="col-4 col-xl-3 col-form-label">Jenis Surat</label>
               <div class="col-8 col-xl-9">
-                <input class="form-control" type="text" autocomplete="off" id="edit_nama" name="nama" required="" placeholder="Nama Lengkap">
-              </div>
-            </div>
-            <div class="row mb-3">
-              <label for="jabatan" class="col-4 col-xl-3 col-form-label">Jabatan</label>
-              <div class="col-8 col-xl-9">
-                <select class="form-select" required name="id_jabatan" id="edit_jabatan" id="example-select">
-                  @foreach ($jabatan AS $key=>$value)
-                  <option value="{{$value->id}}">{{$value->nama}}</option>
-                  @endforeach
-                </select>
-              </div>
-            </div>
-            <div class="row mb-3">
-                <label for="nama" class="col-4 col-xl-3  col-form-label">Foto
-                  <img src="" id="edit_foto" alt="image" class="img-fluid avatar-xl rounded " />
-                </label>
-              <div class="col-8 col-xl-9">
-                <input type="hidden" name="file_lama" id="file_lama">
-                <input type="file" accept="image/*" id="" data-plugins="dropify" name="file_foto" data-max-file-size="1M" />
+                <input class="form-control" type="text" autocomplete="off" id="edit_nama" name="nama" required="" placeholder="Ketikkan Sesuatu...">
               </div>
             </div>
 
@@ -169,11 +127,11 @@
   <div class="modal-dialog ">
     <div class="modal-content">
       <div class="modal-header">
-        <h4 class="modal-title" id="fullWidthModalLabel">Hapus Staff Desa</h4>
+        <h4 class="modal-title" id="fullWidthModalLabel">Hapus Jenis Surat Layanan Desa</h4>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
 
-      <form class="form-horizontal m-t-20" enctype="multipart/form-data" action="{{route('staff.hapus')}}" method="POST">
+      <form class="form-horizontal m-t-20" enctype="multipart/form-data" action="{{route('layanan.hapus')}}" method="POST">
         @csrf
         <div class="modal-body">
           <input type="hidden" id='id_hapus' name='id'>
@@ -196,13 +154,8 @@
   $('.modal_edit').click(function() {
     var id = $(this).data('id');
     var nama = $(this).data('nama');
-    var jabatan = $(this).data('jabatan');
-    var foto = $(this).data('foto');
     $('#edit_id').val(id)
     $('#edit_nama').val(nama)
-    $('#edit_jabatan').val(jabatan)
-    $('#file_lama').val(foto)
-    $('#edit_foto').attr('src', 'storage/' + foto)
 
   });
 

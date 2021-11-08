@@ -4,15 +4,21 @@ use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\BeritaController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\KuisionerController;
+use App\Http\Controllers\LayananController;
 use App\Http\Controllers\LookBookController;
 use App\Http\Controllers\MahasiswaBimbingan;
+use App\Http\Controllers\Warga\PengajuanController;
 use App\Http\Controllers\PengajuanMagangController;
 use App\Http\Controllers\PeriodeController;
 use App\Http\Controllers\ProdiController;
+use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RiwayatController;
+use App\Http\Controllers\SaveSignatureController;
 use App\Http\Controllers\SekolahController;
 use App\Http\Controllers\StaffController;
 use App\Http\Controllers\UserManagementController;
+use App\Http\Controllers\WargaController;
+use App\Models\Layanan;
 use App\Models\Lookbook;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -33,8 +39,7 @@ Route::get('/home', [HomeController::class, 'index'])->name('home.index');
 
 Auth::routes();
 
-Route::post('/register/mahasiswa', [RegisterController::class, 'mahasiswa'])->name('register.mahasiswa');
-Route::post('/register/dosen', [RegisterController::class, 'dosen'])->name('register.dosen');
+Route::post('/register/', [RegisterController::class, 'create'])->name('register.create');
 
 // admin
 
@@ -52,7 +57,12 @@ Route::group(['middleware' => ['role:admin']], function () {
 
 
     // kelola layanan
-    Route::get('/layanan', [PeriodeController::class, 'index'])->name('layanan.index');
+    Route::get('/layanan', [LayananController::class, 'index'])->name('layanan.index');
+    Route::post('/layanan/store', [LayananController::class, 'store'])->name('layanan.store');
+    Route::post('/layanan/hapus', [LayananController::class, 'hapus'])->name('layanan.hapus');
+
+    
+
     // kelola arsip
     Route::get('/arsip', [PeriodeController::class, 'index'])->name('arsip.index');
     // kelola warga
@@ -107,13 +117,22 @@ Route::group(['middleware' => ['role:mahasiswa']], function () {
 
 });
 
-Route::group(['middleware' => ['role:admin|mahasiswa']], function () {
+Route::group(['middleware' => ['role:warga']], function () {
 
-    // kelola pengajuan magang
-    Route::get('pengajuan-magang/', [PengajuanMagangController::class, 'index'])->name('pengajuanMagang.index');
-    
-    // kuisioner
-    Route::get('isi-kuisioner/{id}', [KuisionerController::class, 'index'])->name('kuisioner');
+   // kelola pengajuan
+   Route::get('/pengajuan', [PengajuanController::class, 'index'])->name('pengajuan.index');
+   Route::post('/pengajuan/add', [PengajuanController::class, 'add'])->name('pengajuan.add');
+   Route::post('/pengajuan/store', [PengajuanController::class, 'store'])->name('pengajuan.store');
+   Route::post('/pengajuan/hapus', [PengajuanController::class, 'hapus'])->name('pengajuan.hapus');
+   
+   // fetch daerah
+   Route::get('/daerah/getKabupaten/{id}', [LookBookController::class, 'getKabupaten'])->name('daerah/getKabupaten');
+
+   // kelola profil
+   Route::post('/profile/store', [ProfileController::class, 'store'])->name('profile.store');
+   Route::post('/profile/upFotoProfil', [ProfileController::class, 'updateFotoProfil'])->name('profile.upFotoProfil');
+
+   Route::post('/simpanTTD', [SaveSignatureController::class, 'store'])->name('simpanTTD');
 });
 
 Route::group(['middleware' => ['role:dosen|admin']], function () {

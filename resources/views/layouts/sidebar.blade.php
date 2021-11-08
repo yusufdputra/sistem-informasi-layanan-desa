@@ -4,9 +4,12 @@
 
     <!-- User box -->
     <div class="user-box text-center">
-
-      <img src="{{asset('adminto/images/users/user-1.jpg')}}" alt="user-img" title="Mat Helme" class="rounded-circle img-thumbnail avatar-md">
+      <!-- <img src="{{asset('adminto/images/users/user-1.jpg')}}" alt="user-img" title="Mat Helme" class="rounded-circle img-thumbnail avatar-md"> -->
+  
       <div class="dropdown">
+        <p class="text-muted mb-0 user-msg">
+            <small>Selamat Datang</small>
+        </p>
         <a href="#" class="user-name dropdown-toggle h5 mt-2 mb-1 d-block" data-bs-toggle="dropdown" aria-expanded="false">{{strtoupper(Auth::user()->username)}}</a>
 
       </div>
@@ -44,9 +47,9 @@
               <li>
                 <a href="{{route('berita.index')}}">Berita</a>
               </li>
-              <li>
+              <!-- <li>
                 <a href="{{route('layanan.index')}}">Layanan</a>
-              </li>
+              </li> -->
             </ul>
           </div>
         </li>
@@ -60,22 +63,33 @@
             <ul class="nav-second-level">
 
               <li>
-                <a href="{{('pengajuan')}}">Pengajuan</a>
+                <a href="{{route('pengajuan.index')}}">Pengajuan</a>
               </li>
               <li>
-                <a href="{{('arsip')}}">Arsip</a>
+                <a href="{{route('arsip.index')}}">Arsip</a>
               </li>
             </ul>
           </div>
         </li>
 
         <li>
-          <a href="{{('warga')}}">
+          <a href="{{route('warga.index')}}">
             <i class="mdi mdi-human-male-female"></i>
             <span> Data Warga </span>
           </a>
         </li>
 
+
+        @endrole
+
+        @role('warga')
+
+        <li>
+          <a href="{{route('pengajuan.index')}}">
+            <i class="mdi mdi-book-arrow-left"></i>
+            <span> Pengajuan </span>
+          </a>
+        </li>
 
         @endrole
 

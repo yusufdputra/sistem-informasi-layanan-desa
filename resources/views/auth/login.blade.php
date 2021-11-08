@@ -22,9 +22,9 @@
                         <form method="POST" action="{{route('login')}}">
                             @csrf
                             <div class="mb-3">
-                                <label for="username" class="form-label">NIK/Username</label>
-                                <input class="form-control @error('username') is-invalid @enderror" name="username" type="text" id="username" value="{{ old('username') }}" required autocomplete="off" placeholder="Masukkan NIK atau Username Anda">
-                                @error('username')
+                                <label for="nik" class="form-label">Nomor Induk Keluarga</label>
+                                <input class="form-control @error('nik') is-invalid @enderror" name="nik" type="text" id="nik" value="{{ old('nik') }}" required autocomplete="off" placeholder="Masukkan Nomor Induk Keluarga">
+                                @error('nik')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
                                 </span>
@@ -33,7 +33,7 @@
 
                             <div class="mb-3">
                                 <label for="password" class="form-label">Kata Sandi</label>
-                                <input placeholder="Masukkan Kata Sandi Anda" type="password" class="form-control @error('password') is-invalid @enderror" name="password" data-toggle="password" required autocomplete="current-password">
+                                <input placeholder="Masukkan Kata Sandi Anda" type="password" class="form-control @error('password') is-invalid @enderror" value="{{ old('password') }}" name="password" data-toggle="password" required autocomplete="current-password">
 
                                 @error('password')
                                 <span class="invalid-feedback" role="alert">
@@ -41,13 +41,6 @@
                                 </span>
                                 @enderror
                             </div>
-
-                            <!-- <div class="mb-3">
-                                <div class="form-check">
-                                    <input type="checkbox" class="form-check-input" id="checkbox-signin" checked>
-                                    <label class="form-check-label" for="checkbox-signin">Remember me</label>
-                                </div>
-                            </div> -->
 
                             <div class="mb-3 d-grid text-center">
                                 <button class="btn btn-primary" type="submit"> Masuk </button>

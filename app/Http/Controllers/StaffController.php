@@ -26,7 +26,7 @@ class StaffController extends Controller
     public function store(Request $request)
     {
         // upload file
-        $upload = FileController::cekFile($request, $this->target);
+        $upload = FileController::cekFile($request->file('file_foto'),$request->file_lama,$request->has('file_lama'), $this->target);
 
         if ($upload != false) {
             $where = [

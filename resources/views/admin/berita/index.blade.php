@@ -9,7 +9,7 @@
 
           <div class="align-items-center">
 
-            <a href="{{route('berita.add')}}" class="btn btn-primary m-l-10 waves-light  mb-2">Tambah</a>
+            <a href="{{route('berita.add')}}" class="btn btn-primary m-l-10 waves-light  mb-2"> <i class="mdi mdi-plus-circle me-1"></i> Tambah</a>
 
 
           </div>
