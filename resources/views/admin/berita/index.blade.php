@@ -63,7 +63,7 @@
 
 
                 <td>
-                  <a href="{{route('berita/edit/', $value->id)}}" class="btn btn-success btn-sm modal_edit"><i class="fa fa-edit"></i></a>
+                  <a href="{{route('berita/edit/', $value->id)}}" class="btn btn-success btn-sm"><i class="fa fa-edit"></i></a>
 
                   <button type="button" data-bs-toggle="modal" data-bs-target="#hapus-modal" data-id='{{$value->id}}' data-nama="{{$value->judul}}" class="btn btn-danger btn-sm hapus"><i class="fa fa-trash"></i></button>
 
@@ -110,18 +110,7 @@
 </div>
 
 <script type="text/javascript">
-  $('.modal_edit').click(function() {
-    var id = $(this).data('id');
-    var nama = $(this).data('nama');
-    var jabatan = $(this).data('jabatan');
-    var foto = $(this).data('foto');
-    $('#edit_id').val(id)
-    $('#edit_nama').val(nama)
-    $('#edit_jabatan').val(jabatan)
-    $('#file_lama').val(foto)
-    $('#edit_foto').attr('src', 'storage/' + foto)
 
-  });
 
   $('.hapus').click(function() {
     var id = $(this).data('id');

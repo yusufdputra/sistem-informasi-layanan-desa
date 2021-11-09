@@ -40,6 +40,7 @@ class ProfileController extends Controller
         return Warga::where('id_user', Auth::user()->id)->first();
     }
 
+
     public function updateFotoProfil(Request $request)
     {
         $upload = FileController::cekFile($request->file('file_foto'), $request->file_lama, $request->has('file_lama'), $this->profile);

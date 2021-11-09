@@ -56,13 +56,21 @@ Route::group(['middleware' => ['role:admin']], function () {
     Route::post('/staff/store', [StaffController::class, 'store'])->name('staff.store');
     Route::post('/staff/hapus', [StaffController::class, 'hapus'])->name('staff.hapus');
 
-
+    
     // kelola layanan
     Route::get('/layanan', [LayananController::class, 'index'])->name('layanan.index');
     Route::post('/layanan/store', [LayananController::class, 'store'])->name('layanan.store');
     Route::post('/layanan/hapus', [LayananController::class, 'hapus'])->name('layanan.hapus');
-
     
+    
+    // kelola pengajuan
+    Route::get('pengajuan/detail/{id}', [PengajuanController::class, 'detail'])->name('pengajuan/detail/');
+
+    // surat beda nama
+    Route::post('/beda_nama.update', [BedaNamaController::class, 'store'])->name('beda_nama.update');
+    // kurang mampu
+    Route::post('/kurang_mampu.update', [BedaNamaController::class, 'store'])->name('kurang_mampu.update');
+
 
     // kelola arsip
     Route::get('/arsip', [PeriodeController::class, 'index'])->name('arsip.index');
@@ -80,13 +88,13 @@ Route::group(['middleware' => ['role:admin']], function () {
     Route::post('/periode/store', [PeriodeController::class, 'store'])->name('periode.store');
     Route::POST('/periode/hapus/', [PeriodeController::class, 'hapus'])->name('periode.hapus');
     Route::get('/getPeriodeById/{id}', [PeriodeController::class, 'getPeriodeById'])->name('getPeriodeById');
-    
-    
+
+
     // kelola prodi
     Route::get('/prodi', [ProdiController::class, 'index'])->name('prodi.index');
     Route::post('/prodi/store', [ProdiController::class, 'store'])->name('prodi.store');
     Route::POST('/prodi/hapus/', [ProdiController::class, 'hapus'])->name('prodi.hapus');
-    
+
     //kelola pengajuan magang
     Route::get('pengajuan-magang/detail/{id}', [PengajuanMagangController::class, 'detail'])->name('pengajuanMagang.detail');
     Route::post('pengajuan-magang/proses', [PengajuanMagangController::class, 'proses'])->name('pengajuanMagang.proses');
@@ -115,24 +123,24 @@ Route::group(['middleware' => ['role:mahasiswa']], function () {
     Route::get('/lookbook/{id}', [LookBookController::class, 'index'])->name('lookbook');
     Route::post('lookbook/store', [LookBookController::class, 'store'])->name('lookbook.store');
     Route::POST('/lookbook/hapus/', [LookBookController::class, 'hapus'])->name('lookbook.hapus');
-
 });
 
 Route::group(['middleware' => ['role:warga']], function () {
 
-   // kelola pengajuan
-   Route::get('/pengajuan', [PengajuanController::class, 'index'])->name('pengajuan.index');
-   Route::post('/pengajuan/add', [PengajuanController::class, 'add'])->name('pengajuan.add');
-   Route::post('/pengajuan/store', [PengajuanController::class, 'store'])->name('pengajuan.store');
-   Route::post('/pengajuan/hapus', [PengajuanController::class, 'hapus'])->name('pengajuan.hapus');
-   
-   // pengajuan surat
-   // surat beda nama
-   Route::post('/bedaNama', [BedaNamaController::class, 'store'])->name('bedaNama.store');
+    // kelola pengajuan
+    Route::post('/pengajuan/add', [PengajuanController::class, 'add'])->name('pengajuan.add');
+    Route::post('/pengajuan/store', [PengajuanController::class, 'store'])->name('pengajuan.store');
+    Route::post('/pengajuan/hapus', [PengajuanController::class, 'hapus'])->name('pengajuan.hapus');
+
+    // pengajuan surat
+    // surat beda nama
+    Route::post('/beda_nama', [BedaNamaController::class, 'store'])->name('beda_nama.store');
+    // kurang mampu
+    Route::post('/kurang_mampu', [BedaNamaController::class, 'store'])->name('kurang_mampu.store');
 
 
-   // upload signature
-   Route::post('/upSignature', [SaveSignatureController::class, 'store'])->name('profile.upSignature');
+    // upload signature
+    Route::post('/upSignature', [SaveSignatureController::class, 'store'])->name('profile.upSignature');
 });
 
 Route::group(['middleware' => ['role:dosen|admin']], function () {
@@ -141,11 +149,11 @@ Route::group(['middleware' => ['role:dosen|admin']], function () {
 });
 
 Route::group(['middleware' => ['role:warga|admin|kades']], function () {
-    //
-    
-   // kelola profil
-   Route::get('/profile', [ProfileController::class, 'index'])->name('profile.index');
-   Route::post('/profile/store', [ProfileController::class, 'store'])->name('profile.store');
-   Route::post('/profile/upFotoProfil', [ProfileController::class, 'updateFotoProfil'])->name('profile.upFotoProfil');
-});
+    // kelola pengajuan
+    Route::get('/pengajuan', [PengajuanController::class, 'index'])->name('pengajuan.index');
 
+    // kelola profil
+    Route::get('/profile', [ProfileController::class, 'index'])->name('profile.index');
+    Route::post('/profile/store', [ProfileController::class, 'store'])->name('profile.store');
+    Route::post('/profile/upFotoProfil', [ProfileController::class, 'updateFotoProfil'])->name('profile.upFotoProfil');
+});

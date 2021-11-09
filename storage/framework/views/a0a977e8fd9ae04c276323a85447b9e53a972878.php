@@ -42,7 +42,6 @@
                 <div class="">
                   <input type="hidden" name="id" value="<?php echo e($berita->id); ?>" id="">
                   <input type="hidden" name="file_lama" value="<?php echo e($berita->foto_path); ?>" id="">
-                  
                 </div>
 
                 <?php endif; ?>
