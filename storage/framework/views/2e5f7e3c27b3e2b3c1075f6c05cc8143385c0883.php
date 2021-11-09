@@ -31,6 +31,8 @@
               <tr>
                 <th>No.</th>
                 <th>Jenis Surat</th>
+                <th>Tanggal Pengajuan</th>
+                <th>Status</th>
                 <th>Aksi</th>
               </tr>
             </thead>
@@ -38,7 +40,9 @@
               <?php $__currentLoopData = $pengajuan; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $key=>$value): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
               <tr>
                 <td><?php echo e($key+1); ?></td>
-                <td><?php echo e($value->nama); ?></td>
+                <td><?php echo e($value->jenis_surat->nama); ?></td>
+                <td><?php echo e(date('d-F-Y', strtotime($value->created_at))); ?></td>
+                <td><span class="badge badge-outline-info rounded-pill p-2"><?php echo e(strtoupper($value->status)); ?></span></td>
                 <td>
                   <button type="button" data-bs-toggle="modal" data-bs-target="#edit-modal" data-id='<?php echo e($value->id); ?>' data-nama="<?php echo e($value->nama); ?>" class="btn btn-success btn-sm modal_edit"><i class="fa fa-edit"></i></button>
 

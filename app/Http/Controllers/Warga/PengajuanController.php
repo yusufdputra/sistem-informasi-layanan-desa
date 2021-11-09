@@ -24,10 +24,11 @@ class PengajuanController extends Controller
     public function index()
     {
         // cek apakah profil sudah dilengkapi
+        
+        $profil = ProfileController::getProfil();
         if (!WargaController::cekProfil()) {
             //jika belum terisi arahkan ke edit profil
             $title = "Edit Profil ";
-            $profil = ProfileController::getProfil();
 
             $provinsi = DaerahIndonesiaController::getProvinsi();
 
@@ -35,7 +36,7 @@ class PengajuanController extends Controller
         }
 
         $title = "Pengajuan Layanan Desa";
-        $pengajuan = Pengajuan::all();
+        $pengajuan = Pengajuan::with('jenis_surat')->where('id_warga', $profil->id)->get();
         $layanan = Layanan::all();
 
 
