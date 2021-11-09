@@ -45,15 +45,27 @@ class PengajuanController extends Controller
 
     public function add(Request $request)
     {
-        $layanan = Layanan::find($request->id_layanan);
+        $id_layanan = $request->id_layanan;
+        $layanan = Layanan::find($id_layanan);
         $title = "Pengajuan Layanan Desa " . $layanan->nama;
         $pengajuan = Pengajuan::with('jenis_surat', 'warga')->find(null);
+        $profil = ProfileController::getProfil();
+        $provinsi = DaerahIndonesiaController::getProvinsi();
+        $daerah = DaerahIndonesiaController::getDaerahUser(
+            $profil->provinsi,
+            $profil->kabupaten,
+            $profil->kecamatan
+        );
 
         // kurang mampu
-        $jenis = ['KURANG MAMPU', 'USAHA', 'BELUM MENIKAH', 'KELAHIRAN', 'KEMATIAN', 'PENGHASILAN', 'BEDA NAMA', 'DOMISILI'];
+        $jenis = ['KURANG MAMPU', 'USAHA', 'BELUM MENIKAH', 'PENGHASILAN', 'BEDA NAMA', 'DOMISILI'];
         if (Str::contains($layanan->nama, $jenis[0])) {
             $form = 'kurang_mampu';
         }
-        return view('warga.form.' . $form, compact('title', 'layanan', 'pengajuan'));
+
+        if (Str::contains($layanan->nama, $jenis[4])) {
+            $form = 'beda_nama';
+        }
+        return view('warga.form.' . $form, compact('title', 'layanan', 'pengajuan','profil', 'provinsi','daerah'));
     }
 }

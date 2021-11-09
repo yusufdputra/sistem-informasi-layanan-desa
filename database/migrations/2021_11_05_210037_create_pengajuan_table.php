@@ -15,9 +15,9 @@ class CreatePengajuanTable extends Migration
     {
         Schema::create('pengajuan', function (Blueprint $table) {
             $table->id();
-            $table->string('no_dokumen');
-            $table->integer('id_jenis_surat');
-            $table->integer('id_warga');
+            $table->string('no_dokumen')->nullable();
+            $table->bigInteger('id_jenis_surat');
+            $table->bigInteger('id_warga');
             $table->string('status');
             $table->timestamps();
             $table->timestamp('deleted_at')->nullable();

@@ -66,8 +66,7 @@ class ProfileController extends Controller
 
     public function store(Request $request)
     {
-        try {
-
+        try {   
             // upload kk
             $uploadKK = FileController::cekFile($request->file('file_foto_kk'), $request->file_lama_kk, $request->has('file_lama_kk'), $this->kk);
             // upload ktp

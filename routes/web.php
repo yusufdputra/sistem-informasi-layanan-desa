@@ -16,6 +16,7 @@ use App\Http\Controllers\RiwayatController;
 use App\Http\Controllers\SaveSignatureController;
 use App\Http\Controllers\SekolahController;
 use App\Http\Controllers\StaffController;
+use App\Http\Controllers\Surat\BedaNamaController;
 use App\Http\Controllers\UserManagementController;
 use App\Http\Controllers\WargaController;
 use App\Models\Layanan;
@@ -125,8 +126,12 @@ Route::group(['middleware' => ['role:warga']], function () {
    Route::post('/pengajuan/store', [PengajuanController::class, 'store'])->name('pengajuan.store');
    Route::post('/pengajuan/hapus', [PengajuanController::class, 'hapus'])->name('pengajuan.hapus');
    
+   // pengajuan surat
+   // surat beda nama
+   Route::post('/bedaNama', [BedaNamaController::class, 'store'])->name('bedaNama.store');
 
 
+   // upload signature
    Route::post('/upSignature', [SaveSignatureController::class, 'store'])->name('profile.upSignature');
 });
 

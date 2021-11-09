@@ -141,53 +141,7 @@
 
                   </div>
 
-                  <div class="form-group mb-2">
-                    <label class=" col-form-label">Provinsi & Kabupaten</label>
-
-                    <div class="input-group">
-                      <select required class="form-control" id="provinsi" name="provinsi">
-                        <option value="" selected disabled hidden>Silahkan Pilih Provinsi</option>
-                        <?php $__currentLoopData = $provinsi; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $key=>$value): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                        <option value="<?php echo e(($value->id)); ?>" <?php if(str_contains( $profil["provinsi"], $value->id)): ?> selected <?php endif; ?>><?php echo e($value->name); ?></option>
-                        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
-                      </select>
-                      <input type="hidden" id="val_kabupaten" value="<?php echo e($profil->kabupaten); ?>">
-                      <select required class="form-control" id="kabupaten" name="kabupaten">
-                        <option value="" selected disabled hidden>Silahkan Pilih Kabupaten</option>
-                        <?php if(isset($daerah)): ?>
-                        <?php $__currentLoopData = $daerah['kabupaten']; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $key=>$value): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                        <option value="<?php echo e($value->id); ?>" <?= $profil['kabupaten'] == $value->id ? 'selected' : ''; ?>><?php echo e($value->name); ?></option>
-                        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
-                        <?php endif; ?>
-                      </select>
-                    </div>
-
-                  </div>
-
-                  <div class="form-group mb-2">
-                    <label class=" col-form-label">Kecamatan & Kelurahan</label>
-                    <div class="input-group">
-                      <input type="hidden" id="val_kecamatan" value="<?php echo e($profil->kecamatan); ?>">
-                      <select required class="form-control" id="kecamatan" name="kecamatan">
-                        <option value="" selected disabled hidden>Silahkan Pilih Kecamatan</option>
-                        <?php if(isset($daerah)): ?>
-                        <?php $__currentLoopData = $daerah['kecamatan']; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $key=>$value): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                        <option value="<?php echo e($value->id); ?>" <?= $profil['kecamatan'] == $value->id ? 'selected' : ''; ?>><?php echo e($value->name); ?></option>
-                        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
-                        <?php endif; ?>
-                      </select>
-                      <input type="hidden" id="val_kelurahan" value="<?php echo e($profil->kelurahan); ?>">
-                      <select required class="form-control" id="kelurahan" name="kelurahan">
-                        <option value="" selected disabled hidden>Silahkan Pilih Kelurahan</option>
-                        <?php if(isset($daerah)): ?>
-                        <?php $__currentLoopData = $daerah['kelurahan']; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $key=>$value): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                        <option value="<?php echo e($value->id); ?>" <?= $profil['kelurahan'] == $value->id ? 'selected' : ''; ?>><?php echo e($value->name); ?></option>
-                        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
-                        <?php endif; ?>
-                      </select>
-                    </div>
-
-                  </div>
+                  <?php echo $__env->make('helper.getDataDaerah', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
 
                 </div>
               </div>
@@ -305,7 +259,7 @@
 </div>
 
 
-<?php echo $__env->make('helper.getDataDaerah', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
+
 
 
 <script>
@@ -326,11 +280,6 @@
     } catch (error) {
       sig.signature('disable');
     }
-
-    // $('#clear').click(function() {
-    //   sig.signature('enable');
-    //   sig.signature('clear');
-    // });
 
   });
 

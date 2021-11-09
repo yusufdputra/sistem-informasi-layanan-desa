@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateSuratUsahaTable extends Migration
+class CreateSuratBedaNamaTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,10 @@ class CreateSuratUsahaTable extends Migration
      */
     public function up()
     {
-        Schema::create('surat_usaha', function (Blueprint $table) {
+        Schema::create('surat_beda_nama', function (Blueprint $table) {
             $table->id();
             $table->bigInteger('id_pengajuan');
-            $table->string('nama_usaha');
-            $table->string('alamat_usaha');
-            $table->string('surat_pengantar_path');
+            $table->string('tujuan');
             $table->timestamps();
             $table->timestamp('deleted_at')->nullable();
         });
@@ -31,6 +29,6 @@ class CreateSuratUsahaTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('surat_usaha');
+        Schema::dropIfExists('surat_beda_nama');
     }
 }

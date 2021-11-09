@@ -15,7 +15,7 @@ class CreateWargaTable extends Migration
     {
         Schema::create('warga', function (Blueprint $table) {
             $table->id();
-            $table->integer('id_user');
+            $table->bigInteger('id_user');
             $table->string('nama');
             $table->string('tempat_lhr')->nullable();
             $table->date('tanggal_lhr')->nullable();

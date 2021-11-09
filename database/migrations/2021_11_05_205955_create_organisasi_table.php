@@ -16,7 +16,7 @@ class CreateOrganisasiTable extends Migration
         Schema::create('organisasi', function (Blueprint $table) {
             $table->id();
             $table->string('nama');
-            $table->integer('id_jabatan');
+            $table->bigInteger('id_jabatan');
             $table->string('foto_path');
             $table->timestamps();
             $table->timestamp('deleted_at')->nullable();
