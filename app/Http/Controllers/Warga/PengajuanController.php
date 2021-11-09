@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Warga;
 
 use App\Http\Controllers\Controller;
+use App\Http\Controllers\DaerahIndonesiaController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\WargaController;
 use App\Models\Layanan;
@@ -28,8 +29,7 @@ class PengajuanController extends Controller
             $title = "Edit Profil ";
             $profil = ProfileController::getProfil();
 
-            $json = file_get_contents('https://emsifa.github.io/api-wilayah-indonesia/api/provinces.json');
-            $provinsi = json_decode($json);
+            $provinsi = DaerahIndonesiaController::getProvinsi();
 
             return view('profil.warga', compact('title', 'profil', 'provinsi'), ['alert', 'Silahkan lengkapi profil terlebih dahulu']);
         }

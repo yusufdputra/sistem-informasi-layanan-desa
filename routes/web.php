@@ -125,14 +125,9 @@ Route::group(['middleware' => ['role:warga']], function () {
    Route::post('/pengajuan/store', [PengajuanController::class, 'store'])->name('pengajuan.store');
    Route::post('/pengajuan/hapus', [PengajuanController::class, 'hapus'])->name('pengajuan.hapus');
    
-   // fetch daerah
-   Route::get('/daerah/getKabupaten/{id}', [LookBookController::class, 'getKabupaten'])->name('daerah/getKabupaten');
 
-   // kelola profil
-   Route::post('/profile/store', [ProfileController::class, 'store'])->name('profile.store');
-   Route::post('/profile/upFotoProfil', [ProfileController::class, 'updateFotoProfil'])->name('profile.upFotoProfil');
 
-   Route::post('/simpanTTD', [SaveSignatureController::class, 'store'])->name('simpanTTD');
+   Route::post('/upSignature', [SaveSignatureController::class, 'store'])->name('profile.upSignature');
 });
 
 Route::group(['middleware' => ['role:dosen|admin']], function () {
@@ -140,14 +135,12 @@ Route::group(['middleware' => ['role:dosen|admin']], function () {
     Route::get('/riwayat', [RiwayatController::class, 'index'])->name('riwayat.index');
 });
 
-Route::group(['middleware' => ['role:dosen']], function () {
-
-    // kelola mhs magang
-    Route::get('mahasiswa-bimbingan/', [MahasiswaBimbingan::class, 'index'])->name('mahasiswa.index');
-
-    Route::post('pengajuan-magang/nilai', [MahasiswaBimbingan::class, 'inputNilai'])->name('pengajuanMagang.nilai');
-
-    //kelola lookbook
-    Route::get('/lookbookMhs/{id}', [LookBookController::class, 'index'])->name('lookbookMhs');
+Route::group(['middleware' => ['role:warga|admin|kades']], function () {
+    //
+    
+   // kelola profil
+   Route::get('/profile', [ProfileController::class, 'index'])->name('profile.index');
+   Route::post('/profile/store', [ProfileController::class, 'store'])->name('profile.store');
+   Route::post('/profile/upFotoProfil', [ProfileController::class, 'updateFotoProfil'])->name('profile.upFotoProfil');
 });
 

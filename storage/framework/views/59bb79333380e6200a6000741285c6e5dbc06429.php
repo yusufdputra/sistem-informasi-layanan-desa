@@ -1,39 +1,39 @@
-@extends('layouts.app')
 
-@section('content')
+
+<?php $__env->startSection('content'); ?>
 <div class="row">
   <div class="col-12">
     <div class="card">
       <div class="card-body">
         <div class="card-box ">
 
-          @if(!$provinsi)
+          <?php if(!$provinsi): ?>
           <div class="alert alert-danger">
             <div>Terjadi kesalahan saat memanggil data wilayah. Silahkan cek internet anda!!!</div>
           </div>
-          @endif
+          <?php endif; ?>
 
-          @if(\Session::has('alert'))
+          <?php if(\Session::has('alert')): ?>
           <div class="alert alert-danger">
-            <div>{{Session::get('alert')}}</div>
+            <div><?php echo e(Session::get('alert')); ?></div>
           </div>
-          @endif
+          <?php endif; ?>
 
-          @if(\Session::has('success'))
+          <?php if(\Session::has('success')): ?>
           <div class="alert alert-success">
-            <div>{{Session::get('success')}}</div>
+            <div><?php echo e(Session::get('success')); ?></div>
           </div>
-          @endif
-          <form class="row" enctype="multipart/form-data" data-parsley-validate="" action="{{route('profile.store')}}" method="POST">
+          <?php endif; ?>
+          <form class="row" enctype="multipart/form-data" data-parsley-validate="" action="<?php echo e(route('profile.store')); ?>" method="POST">
             <div class="row align-items-top">
               <div class="col-lg-2 text-center">
 
-                @if($profil['profil_path'] == null)
-                <img src="{{asset('adminto/images/users/user-1.jpg')}} " width="200" height="200" class="flex-shrink-0  rounded-circle img-thumbnail float-start me-3 " alt="profile-image">
-                @else
-                <img src="storage/{{$profil['profil_path']}}" width="200" height="200" class="flex-shrink-0  rounded-circle img-thumbnail float-start me-3 " alt="profile-image">
+                <?php if($profil['profil_path'] == null): ?>
+                <img src="<?php echo e(asset('adminto/images/users/user-1.jpg')); ?> " width="200" height="200" class="flex-shrink-0  rounded-circle img-thumbnail float-start me-3 " alt="profile-image">
+                <?php else: ?>
+                <img src="storage/<?php echo e($profil['profil_path']); ?>" width="200" height="200" class="flex-shrink-0  rounded-circle img-thumbnail float-start me-3 " alt="profile-image">
 
-                @endif
+                <?php endif; ?>
 
                 <button type="button" class="btn btn-outline-success btn-sm mt-2 rounded-pill waves-effect waves-light" data-bs-toggle="modal" data-bs-target="#foto-modal">Ubah</button>
               </div>
@@ -43,11 +43,11 @@
                 <div class="flex-grow-1 overflow-hidden">
                   <div class="form-group mb-2">
                     <label class=" col-form-label">Nomor Induk Keluarga (NIK)</label>
-                    <input type="text" class="form-control" value="{{Auth::user()->nik}}" name="nik" required placeholder="Ketikkan sesuatu..." />
+                    <input type="text" class="form-control" value="<?php echo e(Auth::user()->nik); ?>" name="nik" required placeholder="Ketikkan sesuatu..." />
                   </div>
                   <div class="form-group mb-2">
                     <label class=" col-form-label">Nama Lengkap</label>
-                    <input type="text" value="{{Auth::user()->username}}" class="form-control" name="nama" required placeholder="Sesuai KTP" />
+                    <input type="text" value="<?php echo e(Auth::user()->username); ?>" class="form-control" name="nama" required placeholder="Sesuai KTP" />
                   </div>
                   <div class="form-group mb-2">
                     <label class=" col-form-label">Agama</label>
@@ -71,8 +71,8 @@
                   <div class="form-group mb-2">
                     <label class=" col-form-label">Tempat & Tanggal Lahir</label>
                     <div class="input-group">
-                      <input type="text" class="form-control" value="{{$profil->tempat_lhr}}" name="tempat_lhr" required placeholder="Ketikkan sesuatu..." />
-                      <input type="text" class="form-control" id="basic-datepicker" value="{{$profil->tanggal_lhr}}" name="tanggal_lhr" required placeholder="yyyy-mm-dd" />
+                      <input type="text" class="form-control" value="<?php echo e($profil->tempat_lhr); ?>" name="tempat_lhr" required placeholder="Ketikkan sesuatu..." />
+                      <input type="text" class="form-control" id="basic-datepicker" value="<?php echo e($profil->tanggal_lhr); ?>" name="tanggal_lhr" required placeholder="yyyy-mm-dd" />
                     </div>
                   </div>
 
@@ -98,7 +98,7 @@
 
                   <div class="form-group mb-2">
                     <label class=" col-form-label">Pekerjaan</label>
-                    <input type="text" value="{{$profil['pekerjaan']}}" class="form-control" name="pekerjaan" required placeholder="Sesuai KTP" />
+                    <input type="text" value="<?php echo e($profil['pekerjaan']); ?>" class="form-control" name="pekerjaan" required placeholder="Sesuai KTP" />
                   </div>
 
                   <div class="form-group mb-2">
@@ -130,13 +130,13 @@
 
                   <div class="form-group mb-2">
                     <label class=" col-form-label">Alamat</label>
-                    <input type="text" value="{{$profil['alamat']}}" class="form-control" name="alamat" required placeholder="Sesuai KTP" />
+                    <input type="text" value="<?php echo e($profil['alamat']); ?>" class="form-control" name="alamat" required placeholder="Sesuai KTP" />
                   </div>
                   <div class="form-group mb-2">
                     <label class=" col-form-label">RT / RW</label>
                     <div class="input-group">
-                      <input type="text" value="{{$profil['rt']}}" class="form-control" name="rt" required placeholder="RT" />
-                      <input type="text" value="{{$profil['rw']}}" class="form-control" name="rw" required placeholder="RW" />
+                      <input type="text" value="<?php echo e($profil['rt']); ?>" class="form-control" name="rt" required placeholder="RT" />
+                      <input type="text" value="<?php echo e($profil['rw']); ?>" class="form-control" name="rw" required placeholder="RW" />
                     </div>
 
                   </div>
@@ -147,18 +147,18 @@
                     <div class="input-group">
                       <select required class="form-control" id="provinsi" name="provinsi">
                         <option value="" selected disabled hidden>Silahkan Pilih Provinsi</option>
-                        @foreach($provinsi AS $key=>$value)
-                        <option value="{{($value->id)}}" @if(str_contains( $profil["provinsi"], $value->id)) selected @endif>{{$value->name}}</option>
-                        @endforeach
+                        <?php $__currentLoopData = $provinsi; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $key=>$value): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                        <option value="<?php echo e(($value->id)); ?>" <?php if(str_contains( $profil["provinsi"], $value->id)): ?> selected <?php endif; ?>><?php echo e($value->name); ?></option>
+                        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                       </select>
-                      <input type="hidden" id="val_kabupaten" value="{{$profil->kabupaten}}">
+                      <input type="hidden" id="val_kabupaten" value="<?php echo e($profil->kabupaten); ?>">
                       <select required class="form-control" id="kabupaten" name="kabupaten">
                         <option value="" selected disabled hidden>Silahkan Pilih Kabupaten</option>
-                        @if(isset($daerah))
-                        @foreach ($daerah['kabupaten'] AS $key=>$value)
-                        <option value="{{$value->id}}" <?= $profil['kabupaten'] == $value->id ? 'selected' : ''; ?>>{{$value->name}}</option>
-                        @endforeach
-                        @endif
+                        <?php if(isset($daerah)): ?>
+                        <?php $__currentLoopData = $daerah['kabupaten']; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $key=>$value): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                        <option value="<?php echo e($value->id); ?>" <?= $profil['kabupaten'] == $value->id ? 'selected' : ''; ?>><?php echo e($value->name); ?></option>
+                        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                        <?php endif; ?>
                       </select>
                     </div>
 
@@ -167,23 +167,23 @@
                   <div class="form-group mb-2">
                     <label class=" col-form-label">Kecamatan & Kelurahan</label>
                     <div class="input-group">
-                      <input type="hidden" id="val_kecamatan" value="{{$profil->kecamatan}}">
+                      <input type="hidden" id="val_kecamatan" value="<?php echo e($profil->kecamatan); ?>">
                       <select required class="form-control" id="kecamatan" name="kecamatan">
                         <option value="" selected disabled hidden>Silahkan Pilih Kecamatan</option>
-                        @if(isset($daerah))
-                        @foreach ($daerah['kecamatan'] AS $key=>$value)
-                        <option value="{{$value->id}}" <?= $profil['kecamatan'] == $value->id ? 'selected' : ''; ?>>{{$value->name}}</option>
-                        @endforeach
-                        @endif
+                        <?php if(isset($daerah)): ?>
+                        <?php $__currentLoopData = $daerah['kecamatan']; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $key=>$value): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                        <option value="<?php echo e($value->id); ?>" <?= $profil['kecamatan'] == $value->id ? 'selected' : ''; ?>><?php echo e($value->name); ?></option>
+                        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                        <?php endif; ?>
                       </select>
-                      <input type="hidden" id="val_kelurahan" value="{{$profil->kelurahan}}">
+                      <input type="hidden" id="val_kelurahan" value="<?php echo e($profil->kelurahan); ?>">
                       <select required class="form-control" id="kelurahan" name="kelurahan">
                         <option value="" selected disabled hidden>Silahkan Pilih Kelurahan</option>
-                        @if(isset($daerah))
-                        @foreach ($daerah['kelurahan'] AS $key=>$value)
-                        <option value="{{$value->id}}" <?= $profil['kelurahan'] == $value->id ? 'selected' : ''; ?>>{{$value->name}}</option>
-                        @endforeach
-                        @endif
+                        <?php if(isset($daerah)): ?>
+                        <?php $__currentLoopData = $daerah['kelurahan']; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $key=>$value): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                        <option value="<?php echo e($value->id); ?>" <?= $profil['kelurahan'] == $value->id ? 'selected' : ''; ?>><?php echo e($value->name); ?></option>
+                        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                        <?php endif; ?>
                       </select>
                     </div>
 
@@ -196,18 +196,18 @@
                 <div class="col-lg-6">
                   <div class="form-group mb-2">
                     <label class=" col-form-label">Foto KTP</label>
-                    <input type="hidden" value="{{$profil['ktp_path']}}" name="file_lama_ktp" id="">
-                    <input type="file" accept="image/*" data-plugins="dropify" @if($profil['ktp_path']!=null) data-default-file="storage/{{$profil['ktp_path']}}" @else required @endif name="file_foto_ktp" data-max-file-size="1M" />
+                    <input type="hidden" value="<?php echo e($profil['ktp_path']); ?>" name="file_lama_ktp" id="">
+                    <input type="file" accept="image/*" data-plugins="dropify" <?php if($profil['ktp_path']!=null): ?> data-default-file="storage/<?php echo e($profil['ktp_path']); ?>" <?php else: ?> required <?php endif; ?> name="file_foto_ktp" data-max-file-size="1M" />
                   </div>
 
                   <div class="form-group mb-2">
                     <label class=" col-form-label">Foto Kartu Keluarga</label>
-                    <input type="hidden" value="{{$profil['kk_path']}}" name="file_lama_kk" id="">
-                    <input type="file" accept="image/*" @if($profil['kk_path']!=null) data-default-file="storage/{{$profil['kk_path']}}" @else required @endif data-plugins="dropify" name="file_foto_kk" data-max-file-size="1M" />
+                    <input type="hidden" value="<?php echo e($profil['kk_path']); ?>" name="file_lama_kk" id="">
+                    <input type="file" accept="image/*" <?php if($profil['kk_path']!=null): ?> data-default-file="storage/<?php echo e($profil['kk_path']); ?>" <?php else: ?> required <?php endif; ?> data-plugins="dropify" name="file_foto_kk" data-max-file-size="1M" />
                   </div>
                 </div>
 
-                @csrf
+                <?php echo csrf_field(); ?>
                 <div class="col-lg-6">
                   <div class="form-group row mb-2">
                     <label class=" col-form-label">Foto Tanda Tangan</label>
@@ -217,7 +217,7 @@
                     </div>
                     <p style="clear: both;">
                       <button type="button" class="btn btn-outline-success btn-sm mt-2 rounded-pill waves-effect waves-light" data-bs-toggle="modal" data-bs-target="#ttd-modal">Ubah</button>
-                      <textarea id="signature64_lama" cols="30" style="display: none;" rows="10">{{$profil['signature_json']}}</textarea>
+                      <textarea id="signature64_lama" cols="30" style="display: none;" rows="10"><?php echo e($profil['signature_json']); ?></textarea>
                     </p>
                   </div>
                 </div>
@@ -245,14 +245,14 @@
       </div>
       <div class="modal-body">
         <div class="text-left">
-          <form class="form-horizontal m-t-20" enctype="multipart/form-data" action="{{route('profile.upSignature')}}" method="POST">
-            @csrf
+          <form class="form-horizontal m-t-20" enctype="multipart/form-data" action="<?php echo e(route('profile.upSignature')); ?>" method="POST">
+            <?php echo csrf_field(); ?>
 
             <div class="form-group mb-2">
 
               <div id="sig"></div>
-              <input type="hidden" name="ttd_path_lama" value="{{$profil['ttd_path']}}" id="">
-              <textarea name="ttd_json" id="signature64" style="display: none;">{{$profil['signature_json']}}</textarea>
+              <input type="hidden" name="ttd_path_lama" value="<?php echo e($profil['ttd_path']); ?>" id="">
+              <textarea name="ttd_json" id="signature64" style="display: none;"><?php echo e($profil['signature_json']); ?></textarea>
               <button type="button" id="clear" class="btn btn-outline-danger btn-sm mt-2 rounded-pill waves-effect waves-light">Ulangi</button>
             </div>
 
@@ -280,12 +280,12 @@
       </div>
       <div class="modal-body">
         <div class="text-left">
-          <form class="form-horizontal m-t-20" enctype="multipart/form-data" action="{{route('profile.upFotoProfil')}}" method="POST">
-            @csrf
+          <form class="form-horizontal m-t-20" enctype="multipart/form-data" action="<?php echo e(route('profile.upFotoProfil')); ?>" method="POST">
+            <?php echo csrf_field(); ?>
 
             <div class="form-group mb-2">
 
-              <input type="hidden" value="{{$profil['profil_path']}}" name="file_lama" id="file_lama">
+              <input type="hidden" value="<?php echo e($profil['profil_path']); ?>" name="file_lama" id="file_lama">
               <input type="file" accept="image/*" required data-plugins="dropify" name="file_foto" data-max-file-size="1M" />
             </div>
 
@@ -305,7 +305,7 @@
 </div>
 
 
-@include('helper.getDataDaerah')
+<?php echo $__env->make('helper.getDataDaerah', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
 
 
 <script>
@@ -326,6 +326,11 @@
     } catch (error) {
       sig.signature('disable');
     }
+
+    // $('#clear').click(function() {
+    //   sig.signature('enable');
+    //   sig.signature('clear');
+    // });
 
   });
 
@@ -349,4 +354,5 @@
 </script>
 
 
-@endsection
+<?php $__env->stopSection(); ?>
+<?php echo $__env->make('layouts.app', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\xampp\htdocs\SILADES\resources\views/profil/warga.blade.php ENDPATH**/ ?>

@@ -1,6 +1,6 @@
-@extends('layouts.app')
 
-@section('content')
+
+<?php $__env->startSection('content'); ?>
 <div class="row">
   <div class="col-12">
     <div class="card">
@@ -8,51 +8,52 @@
         <div class="card-box">
 
           <div class="align-items-center ">
-            <a href="{{route('berita.index')}}" class="btn btn-danger m-l-10 waves-light  mb-2">Kembali</a>
+            <a href="<?php echo e(route('berita.index')); ?>" class="btn btn-danger m-l-10 waves-light  mb-2">Kembali</a>
 
           </div>
 
-          @if(\Session::has('alert'))
+          <?php if(\Session::has('alert')): ?>
           <div class="alert alert-danger">
-            <div>{{Session::get('alert')}}</div>
+            <div><?php echo e(Session::get('alert')); ?></div>
           </div>
-          @endif
+          <?php endif; ?>
 
-          @if(\Session::has('success'))
+          <?php if(\Session::has('success')): ?>
           <div class="alert alert-success">
-            <div>{{Session::get('success')}}</div>
+            <div><?php echo e(Session::get('success')); ?></div>
           </div>
-          @endif
+          <?php endif; ?>
 
 
-          <form enctype="multipart/form-data" action="{{route('berita.store')}}" method="POST">
-            @csrf
-            <input type="hidden" name="id_berita" @if($berita !=null) value="{{$berita->id}}" @endif>
+          <form enctype="multipart/form-data" action="<?php echo e(route('berita.store')); ?>" method="POST">
+            <?php echo csrf_field(); ?>
+            <input type="hidden" name="id_berita" <?php if($berita !=null): ?> value="<?php echo e($berita->id); ?>" <?php endif; ?>>
             <div class="row">
               <div class="form-group row">
                 <label class="col-sm-3 col-form-label">Judul</label>
                 <div class="col-sm-12">
-                  <textarea type="text" class="form-control" name="judul" required placeholder="Ketikkan sesuatu...">@if($berita !=null) {{$berita->judul}} @endif</textarea>
+                  <textarea type="text" class="form-control" name="judul" required placeholder="Ketikkan sesuatu..."><?php if($berita !=null): ?> <?php echo e($berita->judul); ?> <?php endif; ?></textarea>
                 </div>
               </div>
 
               <div class="row mb-3 mt-3">
                 <label for="nama" class="col-sm-2 col-form-label">Foto</label>
-                @if(isset($berita) && $berita->foto_path != null)
+                <?php if(isset($berita) && $berita->foto_path != null): ?>
                 <div class="">
-                  <input type="hidden" name="id" value="{{$berita->id}}" id="">
-                  <input type="hidden" name="file_lama" value="{{$berita->foto_path}}" id="">
+                  <input type="hidden" name="id" value="<?php echo e($berita->id); ?>" id="">
+                  <input type="hidden" name="file_lama" value="<?php echo e($berita->foto_path); ?>" id="">
+                  
                 </div>
 
-                @endif
+                <?php endif; ?>
                 <div class="col-sm-5">
-                  <input type="file" accept="image/*"  @if(isset($berita)) data-default-file="../../storage/{{$berita->foto_path}}" @else required @endif data-plugins="dropify" name="file_foto" data-max-file-size="1M" />
+                  <input type="file" accept="image/*"  <?php if(isset($berita)): ?> data-default-file="../../storage/<?php echo e($berita->foto_path); ?>" <?php else: ?> required <?php endif; ?> data-plugins="dropify" name="file_foto" data-max-file-size="1M" />
                 </div>
               </div>
               <div class="form-group row">
                 <label class="col-sm-3 col-form-label">Deskripsi</label>
                 <div class="col-sm-12">
-                  <textarea type="text" id="editor" class="form-control" rows="10" cols="80" name="deskripsi" placeholder="Ketikkan sesuati">@if($berita !=null) {!! $berita->isi !!} @endif</textarea>
+                  <textarea type="text" id="editor" class="form-control" rows="10" cols="80" name="deskripsi" placeholder="Ketikkan sesuati"><?php if($berita !=null): ?> <?php echo $berita->isi; ?> <?php endif; ?></textarea>
                 </div>
               </div>
 
@@ -108,8 +109,8 @@
   //     // integration to choose the right communication channel. This example uses
   //     // a POST request with JSON as a data structure but your configuration
   //     // could be different.
-  //     xhr.open('POST', '{{route("berita.store")}}', true);
-  //     xhr.setRequestHeader('x-csrf-token', '{{csrf_token()}}');
+  //     xhr.open('POST', '<?php echo e(route("berita.store")); ?>', true);
+  //     xhr.setRequestHeader('x-csrf-token', '<?php echo e(csrf_token()); ?>');
   //     xhr.responseType = 'json';
   //   }
 
@@ -198,4 +199,5 @@
 
 
 
-@endsection
+<?php $__env->stopSection(); ?>
+<?php echo $__env->make('layouts.app', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\xampp\htdocs\SILADES\resources\views/admin/berita/form.blade.php ENDPATH**/ ?>

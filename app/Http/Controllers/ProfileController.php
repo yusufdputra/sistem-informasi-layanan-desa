@@ -13,6 +13,28 @@ class ProfileController extends Controller
     public $kk = 'profile/kk';
     public $ktp = 'profile/ktp';
 
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
+    public function index()
+    {
+        $title = "Kelola Data Profil";
+        $role = Auth::user()->roles[0]['name'];
+        if ($role == 'warga') {
+            $profil = ProfileController::getProfil();
+            $daerah = DaerahIndonesiaController::getDaerahUser(
+                $profil->provinsi,
+                $profil->kabupaten,
+                $profil->kecamatan
+            );
+            $provinsi = DaerahIndonesiaController::getProvinsi();
+            
+            return view('profil.warga', compact('title', 'profil', 'provinsi', 'daerah'));
+        }
+    }
+
     static function getProfil()
     {
         return Warga::where('id_user', Auth::user()->id)->first();
@@ -20,7 +42,7 @@ class ProfileController extends Controller
 
     public function updateFotoProfil(Request $request)
     {
-        $upload = FileController::cekFile($request->file('file_foto'),$request->file_lama,$request->has('file_lama'), $this->profile);
+        $upload = FileController::cekFile($request->file('file_foto'), $request->file_lama, $request->has('file_lama'), $this->profile);
         if ($upload != false) {
             $where = [
                 'id_user' => Auth::user()->id
@@ -47,14 +69,13 @@ class ProfileController extends Controller
         try {
 
             // upload kk
-            $uploadKK = FileController::cekFile($request->file('file_foto_kk'),$request->file_lama_kk,$request->has('file_lama_kk'), $this->kk);
+            $uploadKK = FileController::cekFile($request->file('file_foto_kk'), $request->file_lama_kk, $request->has('file_lama_kk'), $this->kk);
             // upload ktp
-            $uploadKTP = FileController::cekFile($request->file('file_foto_ktp'),$request->file_lama_ktp,$request->has('file_lama_ktp'), $this->ktp);
-            // upload ttd
-            $uploadTTD = SaveSignatureController::store($request);
+            $uploadKTP = FileController::cekFile($request->file('file_foto_ktp'), $request->file_lama_ktp, $request->has('file_lama_ktp'), $this->ktp);
+            
 
 
-            if ($uploadKK != false && $uploadKTP != false && $uploadTTD != false) {
+            if ($uploadKK != false && $uploadKTP != false) {
                 $where = [
                     'id_user' => Auth::user()->id
                 ];
@@ -78,7 +99,6 @@ class ProfileController extends Controller
                     'goldar' => $request->goldar,
                     'ktp_path' => $uploadKK,
                     'kk_path' => $uploadKTP,
-                    'ttd_path' => $uploadTTD,
                     'updated_at'   => Carbon::now(),
                 ];
 
@@ -93,7 +113,7 @@ class ProfileController extends Controller
             return redirect()->back()->with('alert', 'Gagal disimpan');
             //code...
         } catch (\Throwable $th) {
-            return redirect()->back()->with('alert', 'Gagal disimpan '. $th);
+            return redirect()->back()->with('alert', 'Gagal disimpan ' . $th);
         }
     }
 }

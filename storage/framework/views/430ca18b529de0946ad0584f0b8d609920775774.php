@@ -1,6 +1,6 @@
-@extends('layouts.app')
 
-@section('content')
+
+<?php $__env->startSection('content'); ?>
 <div class="row">
   <div class="col-12">
     <div class="card">
@@ -13,17 +13,17 @@
 
           </div>
 
-          @if(\Session::has('alert'))
+          <?php if(\Session::has('alert')): ?>
           <div class="alert alert-danger">
-            <div>{{Session::get('alert')}}</div>
+            <div><?php echo e(Session::get('alert')); ?></div>
           </div>
-          @endif
+          <?php endif; ?>
 
-          @if(\Session::has('success'))
+          <?php if(\Session::has('success')): ?>
           <div class="alert alert-success">
-            <div>{{Session::get('success')}}</div>
+            <div><?php echo e(Session::get('success')); ?></div>
           </div>
-          @endif
+          <?php endif; ?>
 
           <table id="datatable" class="table table-striped table-bordered" cellspacing="0" width="100%">
 
@@ -37,24 +37,24 @@
               </tr>
             </thead>
             <tbody>
-              @foreach ($staff AS $key=>$value)
+              <?php $__currentLoopData = $staff; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $key=>$value): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
               <tr>
-                <td>{{$key+1}}</td>
-                <td>{{$value->nama}}</td>
-                <td>{{$value->jabatan->nama}}</td>
-                <td> <img src="storage/{{$value->foto_path}}" alt="image" class="img-fluid avatar-xl img-thumbnail rounded-circle" /></td>
+                <td><?php echo e($key+1); ?></td>
+                <td><?php echo e($value->nama); ?></td>
+                <td><?php echo e($value->jabatan->nama); ?></td>
+                <td> <img src="storage/<?php echo e($value->foto_path); ?>" alt="image" class="img-fluid avatar-xl img-thumbnail rounded-circle" /></td>
 
 
                 <td>
-                  <button type="button" data-bs-toggle="modal" data-bs-target="#edit-modal" data-id='{{$value->id}}' data-nama="{{$value->nama}}" data-jabatan="{{$value->id_jabatan}}" data-foto="{{$value->foto_path}}" class="btn btn-success btn-sm modal_edit"><i class="fa fa-edit"></i></button>
+                  <button type="button" data-bs-toggle="modal" data-bs-target="#edit-modal" data-id='<?php echo e($value->id); ?>' data-nama="<?php echo e($value->nama); ?>" data-jabatan="<?php echo e($value->id_jabatan); ?>" data-foto="<?php echo e($value->foto_path); ?>" class="btn btn-success btn-sm modal_edit"><i class="fa fa-edit"></i></button>
 
-                  <button type="button" data-bs-toggle="modal" data-bs-target="#hapus-modal" data-id='{{$value->id}}' data-nama="{{$value->nama}}"  class="btn btn-danger btn-sm hapus"><i class="fa fa-trash"></i></button>
+                  <button type="button" data-bs-toggle="modal" data-bs-target="#hapus-modal" data-id='<?php echo e($value->id); ?>' data-nama="<?php echo e($value->nama); ?>"  class="btn btn-danger btn-sm hapus"><i class="fa fa-trash"></i></button>
 
 
 
                 </td>
               </tr>
-              @endforeach
+              <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
             </tbody>
           </table>
         </div>
@@ -72,8 +72,8 @@
       </div>
       <div class="modal-body">
         <div class="text-left">
-          <form class="form-horizontal m-t-20" enctype="multipart/form-data" action="{{route('staff.store')}}" method="POST">
-            @csrf
+          <form class="form-horizontal m-t-20" enctype="multipart/form-data" action="<?php echo e(route('staff.store')); ?>" method="POST">
+            <?php echo csrf_field(); ?>
 
             <div class="row mb-3">
               <label for="nama" class="col-4 col-xl-3 col-form-label">Nama Lengkap</label>
@@ -85,10 +85,10 @@
               <label for="jabatan" class="col-4 col-xl-3 col-form-label">Jabatan</label>
               <div class="col-8 col-xl-9">
                 <select class="form-select" required name="id_jabatan" id="example-select">
-                  @foreach ($jabatan AS $key=>$value)
-                  <option value="{{$value->id}}">{{$value->nama}}</option>
+                  <?php $__currentLoopData = $jabatan; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $key=>$value): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                  <option value="<?php echo e($value->id); ?>"><?php echo e($value->nama); ?></option>
 
-                  @endforeach
+                  <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                 </select>
               </div>
             </div>
@@ -121,8 +121,8 @@
         <h4 class="modal-title" id="fullWidthModalLabel">Edit Staff Desa</h4>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
-      <form class="form-horizontal m-t-20" enctype="multipart/form-data" action="{{route('staff.store')}}" method="POST">
-        @csrf
+      <form class="form-horizontal m-t-20" enctype="multipart/form-data" action="<?php echo e(route('staff.store')); ?>" method="POST">
+        <?php echo csrf_field(); ?>
         <div class="modal-body">
           <div class="text-left">
 
@@ -138,9 +138,9 @@
               <label for="jabatan" class="col-4 col-xl-3 col-form-label">Jabatan</label>
               <div class="col-8 col-xl-9">
                 <select class="form-select" required name="id_jabatan" id="edit_jabatan" id="example-select">
-                  @foreach ($jabatan AS $key=>$value)
-                  <option value="{{$value->id}}">{{$value->nama}}</option>
-                  @endforeach
+                  <?php $__currentLoopData = $jabatan; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $key=>$value): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                  <option value="<?php echo e($value->id); ?>"><?php echo e($value->nama); ?></option>
+                  <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                 </select>
               </div>
             </div>
@@ -173,8 +173,8 @@
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
 
-      <form class="form-horizontal m-t-20" enctype="multipart/form-data" action="{{route('staff.hapus')}}" method="POST">
-        @csrf
+      <form class="form-horizontal m-t-20" enctype="multipart/form-data" action="<?php echo e(route('staff.hapus')); ?>" method="POST">
+        <?php echo csrf_field(); ?>
         <div class="modal-body">
           <input type="hidden" id='id_hapus' name='id'>
           <h5 id="exampleModalLabel">Apakah anda yakin ingin mengapus <span class="badge badge-soft-danger" id="nama_hapus"></span>?</h5>
@@ -213,4 +213,5 @@
     $('#nama_hapus').html(nama);
   });
 </script>
-@endsection
+<?php $__env->stopSection(); ?>
+<?php echo $__env->make('layouts.app', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\xampp\htdocs\SILADES\resources\views/admin/staff/index.blade.php ENDPATH**/ ?>
