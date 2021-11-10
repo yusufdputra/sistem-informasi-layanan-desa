@@ -139,8 +139,7 @@ Route::group(['middleware' => ['role:warga']], function () {
     Route::post('/kurang_mampu', [BedaNamaController::class, 'store'])->name('kurang_mampu.store');
 
 
-    // upload signature
-    Route::post('/upSignature', [SaveSignatureController::class, 'store'])->name('profile.upSignature');
+   
 });
 
 Route::group(['middleware' => ['role:warga|admin']], function () {
@@ -156,6 +155,8 @@ Route::group(['middleware' => ['role:warga|admin|kades']], function () {
     Route::get('/profile', [ProfileController::class, 'index'])->name('profile.index');
     Route::post('/profile/store', [ProfileController::class, 'store'])->name('profile.store');
     Route::post('/profile/upFotoProfil', [ProfileController::class, 'updateFotoProfil'])->name('profile.upFotoProfil');
+     // upload signature
+     Route::post('/upSignature', [SaveSignatureController::class, 'store'])->name('profile.upSignature');
     
     //kelola kata sandi
     Route::post('/katasandi.reset', [ResetPasswordController::class, 'reset'])->name('katasandi.reset');

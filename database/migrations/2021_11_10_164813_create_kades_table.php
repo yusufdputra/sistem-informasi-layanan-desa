@@ -16,8 +16,10 @@ class CreateKadesTable extends Migration
         Schema::create('kades', function (Blueprint $table) {
             $table->id();
             $table->bigInteger('id_user');
-            $table->bigInteger('ttd_json');
+            $table->text('signature_json')->nullable();
+            $table->string('profil_path')->nullable();
             $table->timestamps();
+            $table->timestamp('deleted_at')->nullable();
         });
     }
 

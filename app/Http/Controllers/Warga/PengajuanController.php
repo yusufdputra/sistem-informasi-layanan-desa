@@ -36,7 +36,7 @@ class PengajuanController extends Controller
         $layanan = Layanan::all();
         if (Auth::user()->roles[0]['name'] == 'warga') {
             // cek apakah profil sudah dilengkapi
-            $profil = ProfileController::getProfil();
+            $profil = ProfileController::getProfilWarga();
             if (!WargaController::cekProfil()) {
                 //jika belum terisi arahkan ke edit profil
                 $title = "Edit Profil ";
@@ -69,7 +69,7 @@ class PengajuanController extends Controller
         $layanan = Layanan::find($id_layanan);
         $title = "Pengajuan Layanan Desa " . $layanan->nama;
         $pengajuan = Pengajuan::with('jenis_surat', 'warga')->find(null);
-        $profil = ProfileController::getProfil();
+        $profil = ProfileController::getProfilWarga();
         $provinsi = DaerahIndonesiaController::getProvinsi();
         $daerah = DaerahIndonesiaController::getDaerahUser(
             $profil->provinsi,

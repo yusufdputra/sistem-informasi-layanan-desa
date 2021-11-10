@@ -12,4 +12,9 @@ class Kades extends Model
     
     protected $table = 'kades';
     protected $dates = ['deleted_at'];
+
+    public function user()
+    {
+        return $this->hasOne(User::class, 'id', 'id_user')->withTrashed();
+    }
 }
