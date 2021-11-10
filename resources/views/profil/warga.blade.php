@@ -35,7 +35,10 @@
 
                 @endif
 
-                <button type="button" class="btn btn-outline-success btn-sm mt-2 rounded-pill waves-effect waves-light" data-bs-toggle="modal" data-bs-target="#foto-modal">Ubah</button>
+                <div class="input-group ">
+                  <button type="button" class="btn btn-outline-success btn-sm mt-2 rounded-pill waves-effect waves-light" data-bs-toggle="modal" data-bs-target="#foto-modal">Foto Profil</button>
+                  <button type="button" class="btn btn-outline-primary btn-sm mt-2 rounded-pill waves-effect waves-light" data-bs-toggle="modal" data-bs-target="#pass-modal">Kata Sandi</button>
+                </div>
               </div>
 
               <div class="col-lg-9">
@@ -150,13 +153,13 @@
                 <div class="col-lg-6">
                   <div class="form-group mb-2">
                     <label class=" col-form-label">Foto KTP</label>
-                    <input type="hidden" value="{{$profil['ktp_path']}}" name="file_lama_ktp" id="">
+                    <input type="hidden" value="{{$profil['ktp_path']}}" name="file_lama_ktp">
                     <input type="file" accept="image/*" data-plugins="dropify" @if($profil['ktp_path']!=null) data-default-file="storage/{{$profil['ktp_path']}}" @else required @endif name="file_foto_ktp" data-max-file-size="1M" />
                   </div>
 
                   <div class="form-group mb-2">
                     <label class=" col-form-label">Foto Kartu Keluarga</label>
-                    <input type="hidden" value="{{$profil['kk_path']}}" name="file_lama_kk" id="">
+                    <input type="hidden" value="{{$profil['kk_path']}}" name="file_lama_kk">
                     <input type="file" accept="image/*" @if($profil['kk_path']!=null) data-default-file="storage/{{$profil['kk_path']}}" @else required @endif data-plugins="dropify" name="file_foto_kk" data-max-file-size="1M" />
                   </div>
                 </div>
@@ -241,6 +244,65 @@
 
               <input type="hidden" value="{{$profil['profil_path']}}" name="file_lama" id="file_lama">
               <input type="file" accept="image/*" required data-plugins="dropify" name="file_foto" data-max-file-size="1M" />
+            </div>
+
+            <div class="modal-footer">
+              <button type="button" class="btn btn-light" data-bs-dismiss="modal">Close</button>
+              <button type="submit" class="btn btn-primary waves-effect waves-light">update</button>
+            </div>
+
+
+          </form>
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<div id="pass-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="standard-modalLabel" aria-hidden="true">
+  <div class="modal-dialog ">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title" id="standard-modalLabel">Atur Ulang Kata Sandi</h4>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <div class="text-left">
+          <form class="form-horizontal m-t-20 parsley-examples" enctype="multipart/form-data" action="{{route('katasandi.reset')}}" method="POST">
+            @csrf
+
+            <div class="form-group mb-2">
+              <label class=" col-form-label">Kata Sandi Lama</label>
+              <div class="input-group input-group-merge">
+                <div class="input-group-text" data-password="false">
+                  <span class="password-eye"></span>
+                </div>
+                <input type="text" name="pass_lama" autocomplete="off" class="form-control" data-parsley-minlength="5" name="pass_old" required placeholder="Masukkan kata sandi lama anda" />
+              </div>
+
+            </div>
+
+            <div class="form-group mb-2">
+              <label class=" col-form-label">Kata Sandi Baru</label>
+              <div class="input-group input-group-merge">
+                <div class="input-group-text" data-password="false">
+                  <span class="password-eye"></span>
+                </div>
+                <input id="hori-pass1" name="pass_baru" type="password" data-parsley-minlength="5" placeholder="Kata Sandi Baru" required class="form-control" />
+              </div>
+
+            </div>
+            <div class="form-group mb-2">
+              <label class=" col-form-label">Konfirmasi Kata Sandi Baru</label>
+              <div class="input-group input-group-merge">
+                <div class="input-group-text" data-password="false">
+                  <span class="password-eye"></span>
+                </div>
+                <input data-parsley-equalto="#hori-pass1" data-parsley-minlength="5" type="password" required placeholder="Konfirmasi Kata Sandi Baru" class="form-control" id="hori-pass2" />
+              </div>
+
             </div>
 
             <div class="modal-footer">

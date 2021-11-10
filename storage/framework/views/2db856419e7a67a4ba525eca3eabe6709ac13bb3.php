@@ -23,9 +23,16 @@
             <div><?php echo e(Session::get('success')); ?></div>
           </div>
           <?php endif; ?>
+
+          <?php if($pengajuan['keterangan'] != null): ?>
+          <div class="alert alert-success">
+            <div>Alasan Penolakan : <?php echo e($pengajuan->keterangan); ?></div>
+          </div>
+          <?php endif; ?>
           <?php
           $target = $form.'.store';
           ?>
+
           <form class="row" enctype="multipart/form-data" action="<?php echo e(route($target)); ?>" method="POST">
             <?php echo $__env->make('formPengajuan.'.$form, \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
             <div class="col-12 d-grid mt-3">

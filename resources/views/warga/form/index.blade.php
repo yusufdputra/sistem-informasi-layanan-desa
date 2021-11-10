@@ -23,9 +23,16 @@
             <div>{{Session::get('success')}}</div>
           </div>
           @endif
+
+          @if($pengajuan['keterangan'] != null)
+          <div class="alert alert-success">
+            <div>Alasan Penolakan : {{$pengajuan->keterangan}}</div>
+          </div>
+          @endif
           <?php
           $target = $form.'.store';
           ?>
+
           <form class="row" enctype="multipart/form-data" action="{{route($target)}}" method="POST">
             @include('formPengajuan.'.$form)
             <div class="col-12 d-grid mt-3">

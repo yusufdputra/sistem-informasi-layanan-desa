@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use App\Models\Warga;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Validator;
 
 class ProfileController extends Controller
 {
@@ -30,7 +32,7 @@ class ProfileController extends Controller
                 $profil->kecamatan
             );
             $provinsi = DaerahIndonesiaController::getProvinsi();
-            
+
             return view('profil.warga', compact('title', 'profil', 'provinsi', 'daerah'));
         }
     }
@@ -67,53 +69,108 @@ class ProfileController extends Controller
 
     public function store(Request $request)
     {
-        try {   
-            // upload kk
-            $uploadKK = FileController::cekFile($request->file('file_foto_kk'), $request->file_lama_kk, $request->has('file_lama_kk'), $this->kk);
-            // upload ktp
-            $uploadKTP = FileController::cekFile($request->file('file_foto_ktp'), $request->file_lama_ktp, $request->has('file_lama_ktp'), $this->ktp);
-            
+        try {
+            $query = ProfileController::updateUserAtForm($request);
+
+            if ($query) {
+                // upload kk
+                $uploadKK = FileController::cekFile($request->file('file_foto_kk'), $request->file_lama_kk, $request->has('file_lama_kk'), $this->kk);
+                // upload ktp
+                $uploadKTP = FileController::cekFile($request->file('file_foto_ktp'), $request->file_lama_ktp, $request->has('file_lama_ktp'), $this->ktp);
 
 
-            if ($uploadKK != false && $uploadKTP != false) {
-                $where = [
-                    'id_user' => Auth::user()->id
-                ];
 
-                $values = [
-                    'nama' => $request->nama,
-                    'tempat_lhr' => strtoupper($request->tempat_lhr),
-                    'tanggal_lhr' => $request->tanggal_lhr,
-                    'jenis_kelamin' => $request->jenis_kelamin,
-                    'alamat' => $request->alamat,
-                    'rt' => $request->rt,
-                    'rw' => $request->rw,
-                    'provinsi' => $request->provinsi,
-                    'kabupaten' => $request->kabupaten,
-                    'kecamatan' => $request->kecamatan,
-                    'kelurahan' => $request->kelurahan,
-                    'agama' => $request->agama,
-                    'status_kawin' => $request->status_kawin,
-                    'pekerjaan' => $request->pekerjaan,
-                    'kewarganegaraan' => $request->kewarganegaraan,
-                    'goldar' => $request->goldar,
-                    'ktp_path' => $uploadKK,
-                    'kk_path' => $uploadKTP,
-                    'updated_at'   => Carbon::now(),
-                ];
+                if ($uploadKK != false && $uploadKTP != false) {
+                    $where = [
+                        'id_user' => Auth::user()->id
+                    ];
 
-                $query = Warga::updateOrInsert($where, $values);
+                    $values = [
+                        'nama' => $request->nama,
+                        'tempat_lhr' => strtoupper($request->tempat_lhr),
+                        'tanggal_lhr' => $request->tanggal_lhr,
+                        'jenis_kelamin' => $request->jenis_kelamin,
+                        'alamat' => $request->alamat,
+                        'rt' => $request->rt,
+                        'rw' => $request->rw,
+                        'provinsi' => $request->provinsi,
+                        'kabupaten' => $request->kabupaten,
+                        'kecamatan' => $request->kecamatan,
+                        'kelurahan' => $request->kelurahan,
+                        'agama' => $request->agama,
+                        'status_kawin' => $request->status_kawin,
+                        'pekerjaan' => $request->pekerjaan,
+                        'kewarganegaraan' => $request->kewarganegaraan,
+                        'goldar' => $request->goldar,
+                        'ktp_path' => $uploadKK,
+                        'kk_path' => $uploadKTP,
+                        'updated_at'   => Carbon::now(),
+                    ];
 
-                if ($query) {
-                    return redirect()->back()->with('success', 'Berhasil disimpan');
-                } else {
-                    return redirect()->back()->with('alert', 'Gagal disimpan');
+                    $query = Warga::updateOrInsert($where, $values);
+
+                    if ($query) {
+                        return redirect()->back()->with('success', 'Berhasil disimpan');
+                    } else {
+                        return redirect()->back()->with('alert', 'Gagal disimpan');
+                    }
                 }
             }
-            return redirect()->back()->with('alert', 'Gagal disimpan');
+            return redirect()->back()->with('alert', 'Gagal menyimpan NIK. NIK sudah terdaftar.' );
             //code...
         } catch (\Throwable $th) {
-            return redirect()->back()->with('alert', 'Gagal disimpan ' . $th);
+            return redirect()->back()->with('alert', 'Gagal disimpan');
         }
+    }
+
+    static function updateWargaAtForm(Request $request)
+    {
+
+        Warga::where('id_user', Auth::user()->id)
+            ->update([
+                'nama' => strtoupper($request->nama),
+                'tempat_lhr' => strtoupper($request->tempat_lhr),
+                'tanggal_lhr' => $request->tanggal_lhr,
+                'pekerjaan' => $request->pekerjaan,
+                'provinsi' => $request->provinsi,
+                'kabupaten' => $request->kabupaten,
+                'kecamatan' => $request->kecamatan,
+                'kelurahan' => $request->kelurahan,
+                'updated_at'   => Carbon::now(),
+            ]);
+        return true;
+    }
+
+    static function updateUserAtForm(Request $request)
+    {
+        // update username
+        User::where('id', Auth::user()->id)
+            ->update([
+                'username' => $request->nama
+            ]);
+
+        // update nik
+        // validasi
+        $nik_old = Auth::user()->nik;
+        // jika berbeda
+        if ($nik_old != $request->nik) {
+
+            $rules = [
+                'nik' => 'required|unique:users',
+            ];
+            $pesan = [
+                'nik.unique' => "Nomor induk sudah terdaftar",
+            ];
+            $validator = Validator::make($request->all(), $rules, $pesan);
+            if ($validator->fails()) {
+                return false;
+            } else {
+                $query = User::where('id', Auth::user()->id)
+                    ->update([
+                        'nik' => $request->nik
+                    ]);
+            }
+        }
+        return true;
     }
 }

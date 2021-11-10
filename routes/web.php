@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Auth\RegisterController;
+use App\Http\Controllers\Auth\ResetPasswordController;
 use App\Http\Controllers\BeritaController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\KuisionerController;
@@ -64,7 +65,6 @@ Route::group(['middleware' => ['role:admin']], function () {
     
     
     //kelola pengajuan
-    Route::get('pengajuan/detail/{id}', [PengajuanController::class, 'detail'])->name('pengajuan/detail/');
     Route::get('/pengajuan/terima/{id}', [PengajuanController::class, 'terima'])->name('pengajuan/terima/');
     Route::post('/pengajuan.tolak', [PengajuanController::class, 'tolak'])->name('pengajuan.tolak');
     Route::post('/pengajuan.hapus', [PengajuanController::class, 'hapus'])->name('pengajuan.hapus');
@@ -143,9 +143,9 @@ Route::group(['middleware' => ['role:warga']], function () {
     Route::post('/upSignature', [SaveSignatureController::class, 'store'])->name('profile.upSignature');
 });
 
-Route::group(['middleware' => ['role:dosen|admin']], function () {
-    // riwayat magang
-    Route::get('/riwayat', [RiwayatController::class, 'index'])->name('riwayat.index');
+Route::group(['middleware' => ['role:warga|admin']], function () {
+   // detail pengajuan
+    Route::get('pengajuan/detail/{id}', [PengajuanController::class, 'detail'])->name('pengajuan/detail/');
 });
 
 Route::group(['middleware' => ['role:warga|admin|kades']], function () {
@@ -156,4 +156,7 @@ Route::group(['middleware' => ['role:warga|admin|kades']], function () {
     Route::get('/profile', [ProfileController::class, 'index'])->name('profile.index');
     Route::post('/profile/store', [ProfileController::class, 'store'])->name('profile.store');
     Route::post('/profile/upFotoProfil', [ProfileController::class, 'updateFotoProfil'])->name('profile.upFotoProfil');
+    
+    //kelola kata sandi
+    Route::post('/katasandi.reset', [ResetPasswordController::class, 'reset'])->name('katasandi.reset');
 });

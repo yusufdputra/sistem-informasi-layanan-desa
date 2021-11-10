@@ -44,14 +44,16 @@
  <!-- Toastr js -->
  <script src="{{asset('adminto/libs/toastr/build/toastr.min.js')}}"></script>
 
+  <!-- Plugin js-->
+  <script src="{{asset('adminto/libs/parsleyjs/parsley.min.js')}}"></script>
+ <!-- Validation init js-->
+ <script src="{{asset('adminto/js/pages/form-validation.init.js')}}"></script>
+
  <!-- App js -->
  <script src="{{asset('adminto/js/app.min.js')}}"></script>
 
 
- <!-- Plugin js-->
- <script src="{{asset('adminto/libs/parsleyjs/parsley.min.js')}}"></script>
- <!-- Validation init js-->
- <script src="{{asset('adminto/js/pages/form-validation.init.js')}}"></script>
+
 
 
 

@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Warga;
 
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\DaerahIndonesiaController;
+use App\Http\Controllers\NomorSuratController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\WargaController;
 use App\Models\Layanan;
@@ -22,7 +23,7 @@ use Illuminate\Support\Str;
 
 class PengajuanController extends Controller
 {
-    
+
     public function __construct()
     {
 
@@ -45,16 +46,16 @@ class PengajuanController extends Controller
                 return view('profil.warga', compact('title', 'profil', 'provinsi'), ['alert', 'Silahkan lengkapi profil terlebih dahulu']);
             }
             $pengajuan_proses = Pengajuan::with('jenis_surat')
-            ->where('id_warga', $profil->id)
-            ->where('status', '!=', 'selesai')
-            ->get();
+                ->where('id_warga', $profil->id)
+                ->where('status', '!=', 'selesai')
+                ->get();
 
             $pengajuan_selesai = Pengajuan::with('jenis_surat')
-            ->where('id_warga', $profil->id)
-            ->where('status', 'selesai')
-            ->get();
+                ->where('id_warga', $profil->id)
+                ->where('status', 'selesai')
+                ->get();
 
-            return view('warga.pengajuan.index', compact('title', 'pengajuan_proses', 'pengajuan_selesai','layanan'));
+            return view('warga.pengajuan.index', compact('title', 'pengajuan_proses', 'pengajuan_selesai', 'layanan'));
         }
         if (Auth::user()->roles[0]['name'] == 'admin') {
             $pengajuan = Pengajuan::with('jenis_surat')->where('status', 'proses')->get();
@@ -99,15 +100,21 @@ class PengajuanController extends Controller
         // cek form yang akan digunakan
         $form = PengajuanController::cekJenisForm($jenis_surat);
         // get data surat pengajuan
-        $data_surat = PengajuanController::getDataSurat($jenis_surat,$id_pengajuan);
-       
-        return view('admin.form.index', compact('title', 'layanan', 'pengajuan', 'profil', 'provinsi', 'daerah', 'form', 'data_surat'));
+        $data_surat = PengajuanController::getDataSurat($jenis_surat, $id_pengajuan);
+
+        $role = Auth::user()->roles[0]['name'];
+
+        
+        return view(''.$role.'.form.index', compact('title', 'layanan', 'pengajuan', 'profil', 'provinsi', 'daerah', 'form', 'data_surat'));
     }
 
     public function terima($id_pengajuan)
     {
+        // buat nomor surat
+        $no_surat = NomorSuratController::makeNoSurat($id_pengajuan);
         $query = Pengajuan::where('id', $id_pengajuan)->update([
             'status'        => 'selesai',
+            'no_dokumen'    => NomorSuratController::makeNoSurat($id_pengajuan),
             'updated_at'    => Carbon::now()
         ]);
         if ($query) {
