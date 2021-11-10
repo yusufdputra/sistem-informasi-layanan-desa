@@ -8,11 +8,11 @@
   <div class="col-lg-6">
     <div class="form-group mb-2">
       <label class=" col-form-label">Nomor Induk Keluarga (NIK)</label>
-      <input type="text" class="form-control" value="{{Auth::user()->nik}}" name="nama" required placeholder="Ketikkan sesuatu..." />
+      <input type="text" class="form-control" value="{{$profil->user->nik}}" name="nik" required placeholder="Ketikkan sesuatu..." />
     </div>
     <div class="form-group mb-2">
       <label class=" col-form-label">Nama Lengkap</label>
-      <input type="text" value="{{Auth::user()->username}}" class="form-control" name="nim" required placeholder="Sesuai KTP" />
+      <input type="text" value="{{$profil->nama}}" class="form-control" name="nama" required placeholder="Sesuai KTP" />
     </div>
     <div class="form-group mb-2">
       <label class=" col-form-label">Tempat Lahir</label>
@@ -35,7 +35,7 @@
 
     <div class="form-group mb-2">
       <label class=" col-form-label">Tujuan Pengajuan Surat</label>
-      <textarea type="text" class="form-control" rows="5" name="tujuan" required placeholder="Ketikkan sesuatu..."></textarea>
+      <textarea type="text" class="form-control" rows="5" name="tujuan" required placeholder="Ketikkan sesuatu...">@if(isset($data_surat)){{$data_surat->tujuan}}@endif</textarea>
     </div>
   </div>
 

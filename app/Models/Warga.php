@@ -12,4 +12,9 @@ class Warga extends Model
     
     protected $table = 'warga';
     protected $dates = ['deleted_at'];
+
+    public function user()
+    {
+        return $this->hasOne(User::class, 'id', 'id_user')->withTrashed();
+    }
 }

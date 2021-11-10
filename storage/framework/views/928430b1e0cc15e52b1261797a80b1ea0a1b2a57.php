@@ -36,6 +36,8 @@
             <thead>
               <tr>
                 <th>No.</th>
+                <th>NIK</th>
+                <th>Nama Pengaju</th>
                 <th>Jenis Surat</th>
                 <th>Tanggal Pengajuan</th>
                 <th>Status</th>
@@ -46,15 +48,13 @@
               <?php $__currentLoopData = $pengajuan; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $key=>$value): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
               <tr>
                 <td><?php echo e($key+1); ?></td>
+                <td><?php echo e($value->warga->user->nik); ?></td>
+                <td><?php echo e($value->warga->nama); ?></td>
                 <td><?php echo e($value->jenis_surat->nama); ?></td>
                 <td><?php echo e(date('d-F-Y', strtotime($value->created_at))); ?></td>
                 <td><span class="badge badge-outline-info rounded-pill p-2"><?php echo e(strtoupper($value->status)); ?></span></td>
                 <td>
                   <a href="<?php echo e(route('pengajuan/detail/', $value->id)); ?>" class="btn btn-success btn-sm"><i class="mdi mdi-eye"></i></a>
-
-                  <button type="button" data-bs-toggle="modal" data-bs-target="#hapus-modal" data-id='<?php echo e($value->id); ?>' data-nama="<?php echo e($value->nama); ?>" class="btn btn-danger btn-sm hapus"><i class="fa fa-trash"></i></button>
-
-
 
                 </td>
               </tr>
@@ -81,20 +81,6 @@
     filterData()
   }
 
-  $('.modal_edit').click(function() {
-    var id = $(this).data('id');
-    var nama = $(this).data('nama');
-    $('#edit_id').val(id)
-    $('#edit_nama').val(nama)
-
-  });
-
-  $('.hapus').click(function() {
-    var id = $(this).data('id');
-    var nama = $(this).data('nama');
-    $('#id_hapus').val(id);
-    $('#nama_hapus').html(nama);
-  });
 </script>
 <?php $__env->stopSection(); ?>
 <?php echo $__env->make('layouts.app', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\xampp\htdocs\SILADES\resources\views/admin/pengajuan/index.blade.php ENDPATH**/ ?>

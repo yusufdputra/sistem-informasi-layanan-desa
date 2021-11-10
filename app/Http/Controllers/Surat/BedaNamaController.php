@@ -53,4 +53,6 @@ class BedaNamaController extends Controller
             return redirect()->route('pengajuan.index')->with('alert', 'Gagal disimpan');
         }
     }
+
+    
 }

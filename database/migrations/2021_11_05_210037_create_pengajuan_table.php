@@ -19,6 +19,7 @@ class CreatePengajuanTable extends Migration
             $table->bigInteger('id_jenis_surat');
             $table->bigInteger('id_warga');
             $table->string('status');
+            $table->string('keterangan')->nullable();
             $table->timestamps();
             $table->timestamp('deleted_at')->nullable();
         });

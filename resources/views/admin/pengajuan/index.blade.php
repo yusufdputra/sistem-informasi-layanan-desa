@@ -36,6 +36,8 @@
             <thead>
               <tr>
                 <th>No.</th>
+                <th>NIK</th>
+                <th>Nama Pengaju</th>
                 <th>Jenis Surat</th>
                 <th>Tanggal Pengajuan</th>
                 <th>Status</th>
@@ -46,15 +48,13 @@
               @foreach ($pengajuan AS $key=>$value)
               <tr>
                 <td>{{$key+1}}</td>
+                <td>{{$value->warga->user->nik}}</td>
+                <td>{{$value->warga->nama}}</td>
                 <td>{{$value->jenis_surat->nama}}</td>
                 <td>{{date('d-F-Y', strtotime($value->created_at))}}</td>
                 <td><span class="badge badge-outline-info rounded-pill p-2">{{strtoupper($value->status)}}</span></td>
                 <td>
                   <a href="{{route('pengajuan/detail/', $value->id)}}" class="btn btn-success btn-sm"><i class="mdi mdi-eye"></i></a>
-
-                  <button type="button" data-bs-toggle="modal" data-bs-target="#hapus-modal" data-id='{{$value->id}}' data-nama="{{$value->nama}}" class="btn btn-danger btn-sm hapus"><i class="fa fa-trash"></i></button>
-
-
 
                 </td>
               </tr>
@@ -81,19 +81,5 @@
     filterData()
   }
 
-  $('.modal_edit').click(function() {
-    var id = $(this).data('id');
-    var nama = $(this).data('nama');
-    $('#edit_id').val(id)
-    $('#edit_nama').val(nama)
-
-  });
-
-  $('.hapus').click(function() {
-    var id = $(this).data('id');
-    var nama = $(this).data('nama');
-    $('#id_hapus').val(id);
-    $('#nama_hapus').html(nama);
-  });
 </script>
 @endsection

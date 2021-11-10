@@ -37,7 +37,7 @@ class ProfileController extends Controller
 
     static function getProfil()
     {
-        return Warga::where('id_user', Auth::user()->id)->first();
+        return Warga::with('user')->where('id_user', Auth::user()->id)->first();
     }
 
 

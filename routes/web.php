@@ -63,11 +63,11 @@ Route::group(['middleware' => ['role:admin']], function () {
     Route::post('/layanan/hapus', [LayananController::class, 'hapus'])->name('layanan.hapus');
     
     
-    // kelola pengajuan
+    //kelola pengajuan
     Route::get('pengajuan/detail/{id}', [PengajuanController::class, 'detail'])->name('pengajuan/detail/');
-
-    // surat beda nama
-    Route::post('/beda_nama.update', [BedaNamaController::class, 'store'])->name('beda_nama.update');
+    Route::get('/pengajuan/terima/{id}', [PengajuanController::class, 'terima'])->name('pengajuan/terima/');
+    Route::post('/pengajuan.tolak', [PengajuanController::class, 'tolak'])->name('pengajuan.tolak');
+    Route::post('/pengajuan.hapus', [PengajuanController::class, 'hapus'])->name('pengajuan.hapus');
     // kurang mampu
     Route::post('/kurang_mampu.update', [BedaNamaController::class, 'store'])->name('kurang_mampu.update');
 
