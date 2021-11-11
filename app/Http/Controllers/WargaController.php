@@ -23,6 +23,13 @@ class WargaController extends Controller
         return false;
     }
 
+    public function dataWarga()
+    {
+        $title = "Data Warga Desa Makmur";
+        $warga = Warga::where('tempat_lhr' ,'!=', null)->get();
+        return view('admin.warga.index', compact('title', 'warga'));
+    }
+
     
 
    

@@ -73,7 +73,7 @@
         </li>
 
         <li>
-          <a href="{{route('warga.index')}}">
+          <a href="{{route('warga')}}">
             <i class="mdi mdi-human-male-female"></i>
             <span> Data Warga </span>
           </a>

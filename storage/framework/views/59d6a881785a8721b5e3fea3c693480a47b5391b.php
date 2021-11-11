@@ -73,7 +73,7 @@
         </li>
 
         <li>
-          <a href="<?php echo e(route('warga.index')); ?>">
+          <a href="<?php echo e(route('warga')); ?>">
             <i class="mdi mdi-human-male-female"></i>
             <span> Data Warga </span>
           </a>
