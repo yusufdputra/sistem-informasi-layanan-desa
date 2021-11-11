@@ -92,6 +92,16 @@
         </li>
 
         <?php endif; ?>
+        <?php if(auth()->check() && auth()->user()->hasRole('kades')): ?>
+
+        <li>
+          <a href="<?php echo e(route('arsip.index')); ?>">
+            <i class="mdi mdi-book-arrow-left"></i>
+            <span> Arsip </span>
+          </a>
+        </li>
+
+        <?php endif; ?>
 
       </ul>
 

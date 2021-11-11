@@ -40,22 +40,23 @@
                 <th>Nama Pengaju</th>
                 <th>Jenis Surat</th>
                 <th>Tanggal Pengajuan</th>
+                <th>Tanggal Selesai</th>
                 <th>Status</th>
-                <th>Aksi</th>
+                <th>Cetak</th>
               </tr>
             </thead>
             <tbody>
-              @foreach ($pengajuan AS $key=>$value)
+              @foreach ($arsip AS $key=>$value)
               <tr>
                 <td>{{$key+1}}</td>
                 <td>{{$value->warga->user->nik}}</td>
                 <td>{{$value->warga->nama}}</td>
                 <td>{{$value->jenis_surat->nama}}</td>
                 <td>{{date('d-F-Y', strtotime($value->created_at))}}</td>
+                <td>{{date('d-F-Y', strtotime($value->updated_at))}}</td>
                 <td><span class="badge badge-outline-info rounded-pill p-2">{{strtoupper($value->status)}}</span></td>
                 <td>
-                  <a href="{{route('pengajuan/detail/', $value->id)}}" class="btn btn-success btn-sm"><i class="mdi mdi-eye"></i></a>
-
+                  <a href="{{route('cetak/', $value->id)}}" target="_BLANK" class="btn btn-success btn-sm "><i class="fa fa-print"></i></a>
                 </td>
               </tr>
               @endforeach

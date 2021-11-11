@@ -90,7 +90,7 @@
                 <td>{{date('d-F-Y', strtotime($value->created_at))}}</td>
                 <td>{{date('d-F-Y', strtotime($value->updated_at))}}</td>
                 <td>
-                <a href="{{route('cetak/', $value->id)}}" target="_BLANK" class="btn btn-success btn-sm "><i class="fa fa-print"></i></a>
+                  <a href="{{route('cetak/', $value->id)}}" target="_BLANK" class="btn btn-success btn-sm "><i class="fa fa-print"></i></a>
                 </td>
               </tr>
               @endforeach
@@ -169,7 +169,6 @@
 </div>
 
 <script type="text/javascript">
- 
   $('.modal_edit').click(function() {
     var id = $(this).data('id');
     var nama = $(this).data('nama');

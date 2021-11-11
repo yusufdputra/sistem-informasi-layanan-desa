@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ArsipController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\Auth\ResetPasswordController;
 use App\Http\Controllers\BeritaController;
@@ -58,13 +59,13 @@ Route::group(['middleware' => ['role:admin']], function () {
     Route::post('/staff/store', [StaffController::class, 'store'])->name('staff.store');
     Route::post('/staff/hapus', [StaffController::class, 'hapus'])->name('staff.hapus');
 
-    
+
     // kelola layanan
     Route::get('/layanan', [LayananController::class, 'index'])->name('layanan.index');
     Route::post('/layanan/store', [LayananController::class, 'store'])->name('layanan.store');
     Route::post('/layanan/hapus', [LayananController::class, 'hapus'])->name('layanan.hapus');
-    
-    
+
+
     //kelola pengajuan
     Route::get('/pengajuan/terima/{id}', [PengajuanController::class, 'terima'])->name('pengajuan/terima/');
     Route::post('/pengajuan.tolak', [PengajuanController::class, 'tolak'])->name('pengajuan.tolak');
@@ -73,8 +74,7 @@ Route::group(['middleware' => ['role:admin']], function () {
     Route::post('/kurang_mampu.update', [BedaNamaController::class, 'store'])->name('kurang_mampu.update');
 
 
-    // kelola arsip
-    Route::get('/arsip', [PeriodeController::class, 'index'])->name('arsip.index');
+
     // kelola warga
     Route::get('/warga', [PeriodeController::class, 'index'])->name('warga.index');
 
@@ -138,18 +138,17 @@ Route::group(['middleware' => ['role:warga']], function () {
     Route::post('/beda_nama', [BedaNamaController::class, 'store'])->name('beda_nama.store');
     // kurang mampu
     Route::post('/kurang_mampu', [BedaNamaController::class, 'store'])->name('kurang_mampu.store');
-
-
-   
 });
 
 Route::group(['middleware' => ['role:warga|admin']], function () {
-   // detail pengajuan
+    // detail pengajuan
     Route::get('pengajuan/detail/{id}', [PengajuanController::class, 'detail'])->name('pengajuan/detail/');
+
     
-    // cetak pengajuan
-    Route::get('cetak/{id}', [CetakController::class, 'cetak'])->name('cetak/');
-    
+});
+Route::group(['middleware' => ['role:kades|admin']], function () {
+    // kelola arsip
+    Route::get('/arsip', [ArsipController::class, 'index'])->name('arsip.index');
 });
 
 Route::group(['middleware' => ['role:warga|admin|kades']], function () {
@@ -160,9 +159,12 @@ Route::group(['middleware' => ['role:warga|admin|kades']], function () {
     Route::get('/profile', [ProfileController::class, 'index'])->name('profile.index');
     Route::post('/profile/store', [ProfileController::class, 'store'])->name('profile.store');
     Route::post('/profile/upFotoProfil', [ProfileController::class, 'updateFotoProfil'])->name('profile.upFotoProfil');
-     // upload signature
-     Route::post('/upSignature', [SaveSignatureController::class, 'store'])->name('profile.upSignature');
-    
+    // upload signature
+    Route::post('/upSignature', [SaveSignatureController::class, 'store'])->name('profile.upSignature');
+
     //kelola kata sandi
     Route::post('/katasandi.reset', [ResetPasswordController::class, 'reset'])->name('katasandi.reset');
+
+    // cetak pengajuan
+    Route::get('cetak/{id}', [CetakController::class, 'cetak'])->name('cetak/');
 });

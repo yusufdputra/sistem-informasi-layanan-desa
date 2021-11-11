@@ -92,6 +92,16 @@
         </li>
 
         @endrole
+        @role('kades')
+
+        <li>
+          <a href="{{route('arsip.index')}}">
+            <i class="mdi mdi-book-arrow-left"></i>
+            <span> Arsip </span>
+          </a>
+        </li>
+
+        @endrole
 
       </ul>
 

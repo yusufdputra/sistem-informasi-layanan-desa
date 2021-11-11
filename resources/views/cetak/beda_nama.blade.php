@@ -50,7 +50,7 @@
 
     #signature {
       margin-left: -50px !important;
-      margin-top: -10px;
+      margin-top: 20px;
       margin-bottom: -20px;
       z-index: -100;
     }

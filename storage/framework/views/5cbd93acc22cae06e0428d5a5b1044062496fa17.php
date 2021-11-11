@@ -50,7 +50,7 @@
 
     #signature {
       margin-left: -50px !important;
-      margin-top: -10px;
+      margin-top: 20px;
       margin-bottom: -20px;
       z-index: -100;
     }
@@ -155,8 +155,10 @@
 
               <img id="signature" height="120px" src="<?php echo e($kades['ttd_path']); ?>" alt="">
 
-              <?php echo e(strtoupper($kades->user->username)); ?>
+              <u>
+                <?php echo e(strtoupper($kades->user->username)); ?>
 
+              </u>
             </strong>
           </p>
 
