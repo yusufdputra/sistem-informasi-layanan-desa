@@ -13,19 +13,19 @@ class SaveSignatureController extends Controller
     public function store(Request $request)
     {
 
-        //unlink
-        // if ($request->ttd_path_lama != null) {
-        //     FileController::unlinkFile($request->ttd_path_lama);
-        // }
+        // unlink
+        if ($request->ttd_path_lama != null) {
+            FileController::unlinkFile($request->ttd_path_lama);
+        }
 
-        // $folderPath = public_path('storage/uploads/signatures/');
+        $folderPath = public_path('storage/uploads/signatures/');
         $image_parts = explode(";base64,", $request->ttd_json);
         $image_type_aux = explode("image/", $image_parts[0]);
         $image_type = $image_type_aux[1];
         $image_base64 = base64_decode($image_parts[1]);
-        // $file = $folderPath . uniqid() . '.' . $image_type;
-        // $upload =  file_put_contents($file, $image_base64);
-        // if ($upload) {
+        $file = $folderPath . uniqid() . '.' . $image_type;
+        $upload =  file_put_contents($file, $image_base64);
+        if ($upload) {
             # code...
 
             $where = [
@@ -33,7 +33,7 @@ class SaveSignatureController extends Controller
             ];
 
             $values = [
-                // 'ttd_path' => $file,
+                'ttd_path' => $file,
                 'signature_json' => $request->ttd_json,
                 'updated_at'   => Carbon::now(),
             ];
@@ -54,8 +54,8 @@ class SaveSignatureController extends Controller
             } else {
                 return redirect()->back()->with('alert', 'Gagal disimpan');
             }
-        // }else{
-        //     return redirect()->back()->with('alert', 'Gagal disimpan');
-        // }
+        }else{
+            return redirect()->back()->with('alert', 'Gagal disimpan');
+        }
     }
 }

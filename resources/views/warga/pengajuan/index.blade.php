@@ -90,7 +90,7 @@
                 <td>{{date('d-F-Y', strtotime($value->created_at))}}</td>
                 <td>{{date('d-F-Y', strtotime($value->updated_at))}}</td>
                 <td>
-                  <button type="button" data-bs-toggle="modal" data-bs-target="#edit-modal" data-id='{{$value->id}}' data-nama="{{$value->nama}}" class="btn btn-success btn-sm modal_edit"><i class="fa fa-print"></i></button>
+                <a href="{{route('cetak/', $value->id)}}" target="_BLANK" class="btn btn-success btn-sm "><i class="fa fa-print"></i></a>
                 </td>
               </tr>
               @endforeach

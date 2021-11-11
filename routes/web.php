@@ -3,6 +3,7 @@
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\Auth\ResetPasswordController;
 use App\Http\Controllers\BeritaController;
+use App\Http\Controllers\CetakController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\KuisionerController;
 use App\Http\Controllers\LayananController;
@@ -145,6 +146,10 @@ Route::group(['middleware' => ['role:warga']], function () {
 Route::group(['middleware' => ['role:warga|admin']], function () {
    // detail pengajuan
     Route::get('pengajuan/detail/{id}', [PengajuanController::class, 'detail'])->name('pengajuan/detail/');
+    
+    // cetak pengajuan
+    Route::get('cetak/{id}', [CetakController::class, 'cetak'])->name('cetak/');
+    
 });
 
 Route::group(['middleware' => ['role:warga|admin|kades']], function () {
