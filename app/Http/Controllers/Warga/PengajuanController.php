@@ -19,6 +19,7 @@ use App\Models\Warga;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
 
 class PengajuanController extends Controller
@@ -53,6 +54,7 @@ class PengajuanController extends Controller
             $pengajuan_selesai = Pengajuan::with('jenis_surat')
                 ->where('id_warga', $profil->id)
                 ->where('status', 'selesai')
+                ->orderBy('updated_at', 'DESC')
                 ->get();
 
             return view('warga.pengajuan.index', compact('title', 'pengajuan_proses', 'pengajuan_selesai', 'layanan'));
@@ -195,5 +197,28 @@ class PengajuanController extends Controller
         if (Str::contains($layanan, $jenis[5])) {
             return Domisili::where('id_pengajuan', $id_pengajuan)->first();
         }
+    }
+
+    static function store(Request $request)
+    {
+        $where_pengajuan = [
+            'id' => $request->id_pengajuan
+        ];
+
+        $values_pengajuan = [
+            'id_jenis_surat' => $request->id_jenis_surat,
+            'id_warga' => $request->id_warga,
+            'status' => 'proses',
+            'keterangan' => null,
+            'created_at'   => Carbon::now(),
+            'updated_at'   => Carbon::now(),
+        ];
+
+        Pengajuan::updateOrInsert($where_pengajuan, $values_pengajuan);
+        $id_pengajuan = DB::getPdo()->lastInsertId();
+        if ($id_pengajuan == 0) {
+            $id_pengajuan = $request->id_pengajuan;
+        }
+        return $id_pengajuan;
     }
 }

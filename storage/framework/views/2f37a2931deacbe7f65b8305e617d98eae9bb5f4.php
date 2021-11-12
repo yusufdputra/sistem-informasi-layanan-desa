@@ -105,6 +105,16 @@
               <td><?php echo e($pengajuan->warga->nama); ?></td>
             </tr>
             <tr>
+              <td>Jenis Kelamin</td>
+              <td>:</td>
+              <td>
+              <?php if($pengajuan->warga->jenis_kelamin == 'lk'): ?>
+              Laki-Laki
+              <?php else: ?>
+              Perempuan
+              <?php endif; ?>
+            </tr>
+            <tr>
               <td>Tempat/ Tgl Lahir</td>
               <td>:</td>
               <td><?php echo e($pengajuan->warga->tempat_lhr); ?> / <?php echo e(date('d-M-Y', strtotime($pengajuan->warga->tanggal_lhr))); ?></td>
@@ -125,22 +135,22 @@
               <td><?php echo e($pengajuan->warga->alamat); ?></td>
             </tr>
 
-            <div class="indent">
-              <p>
-              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Demikian surat keterangan ini dibuat, atas perhatian dan kerjasamanya kami ucapkan terimakasih.
-              </p>
-            </div>
-
-            <div class="indent">
-              <p>
-
-              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Nama tersebut diatas adalah benar warga Desa Makmur Kecamatan Pkl. Kerinci Kabupaten Pelalawan. Berdasarkan keterangan yang bersangkutan dengan ini menyatakan ada perbedaan data identitas yang disebabkan kesalahan penulisan pada administrasi pendataan yang di jelaskan pada lampiran surat ini. Surat ini di pergunakan untuk <u><?php echo e($data_surat->tujuan); ?></u>.
-              </p>
-            </div>
+           
           </table>
 
 
+          <div class="indent">
+              <p>
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Dengan ini menyatakan bahwa nama tersebut diatas adalah benar penduduk Desa Makmur Kecamatan Pkl. Kerinci Kabupaten Pelalawan, yang berpenghasilan <strong><u>Rp. <?php echo e($data_surat->penghasilan); ?></u></strong> / bulan.
+              </p>
+            </div>
 
+            <div class="indent">
+              <p>
+
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Demikian Surat Keterangan ini di buat dengan sebenarnya agar dapat dipergunakan sebagaimana mestinya oleh yang bersangkutan..
+              </p>
+            </div>
         </div>
 
 
@@ -173,4 +183,4 @@
   </div>
 </body>
 
-</html><?php /**PATH C:\xampp\htdocs\SILADES\resources\views/cetak/beda_nama.blade.php ENDPATH**/ ?>
+</html><?php /**PATH C:\xampp\htdocs\SILADES\resources\views/cetak/penghasilan.blade.php ENDPATH**/ ?>

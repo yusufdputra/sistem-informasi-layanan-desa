@@ -21,6 +21,7 @@ use App\Http\Controllers\SekolahController;
 use App\Http\Controllers\StaffController;
 use App\Http\Controllers\Surat\BedaNamaController;
 use App\Http\Controllers\Surat\KurangMampuController;
+use App\Http\Controllers\Surat\PenghasilanController;
 use App\Http\Controllers\UserManagementController;
 use App\Http\Controllers\WargaController;
 use App\Models\Layanan;
@@ -100,6 +101,8 @@ Route::group(['middleware' => ['role:warga']], function () {
     Route::post('/beda_nama', [BedaNamaController::class, 'store'])->name('beda_nama.store');
     // kurang mampu
     Route::post('/kurang_mampu', [KurangMampuController::class, 'store'])->name('kurang_mampu.store');
+    // penghasilan
+    Route::post('/penghasilan', [PenghasilanController::class, 'store'])->name('penghasilan.store');
 });
 
 Route::group(['middleware' => ['role:warga|admin']], function () {
