@@ -40,6 +40,11 @@ class ProfileController extends Controller
             $profil = ProfileController::getProfilKades();
             return view('profil.kades', compact('title', 'profil'));
         }
+        if ($role == 'admin') {
+            $profil = ProfileController::getProfilAdmin();
+            return view('profil.admin', compact('title', 'profil'));
+        }
+        
     }
 
     static function getProfilWarga()
@@ -50,6 +55,10 @@ class ProfileController extends Controller
     static function getProfilKades()
     {
         return Kades::with('user')->where('id_user', Auth::user()->id)->first();
+    }
+    static function getProfilAdmin()
+    {
+        return User::find(Auth::user()->id);
     }
 
 
