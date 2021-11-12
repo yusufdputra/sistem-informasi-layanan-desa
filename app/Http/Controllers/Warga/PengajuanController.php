@@ -58,7 +58,7 @@ class PengajuanController extends Controller
             return view('warga.pengajuan.index', compact('title', 'pengajuan_proses', 'pengajuan_selesai', 'layanan'));
         }
         if (Auth::user()->roles[0]['name'] == 'admin') {
-            $pengajuan = Pengajuan::with('jenis_surat')->where('status', 'proses')->get();
+            $pengajuan = Pengajuan::with('jenis_surat')->where('status', 'proses')->orderBy('updated_at', 'ASC')->get();
             return view('admin.pengajuan.index', compact('title', 'pengajuan', 'layanan'));
         }
     }
@@ -114,7 +114,7 @@ class PengajuanController extends Controller
         $no_surat = NomorSuratController::makeNoSurat($id_pengajuan);
         $query = Pengajuan::where('id', $id_pengajuan)->update([
             'status'        => 'selesai',
-            'no_dokumen'    => NomorSuratController::makeNoSurat($id_pengajuan),
+            'no_dokumen'    => $no_surat,
             'updated_at'    => Carbon::now()
         ]);
         if ($query) {

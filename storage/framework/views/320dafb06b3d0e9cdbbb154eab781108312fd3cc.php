@@ -44,8 +44,8 @@
  <!-- Toastr js -->
  <script src="<?php echo e(asset('adminto/libs/toastr/build/toastr.min.js')); ?>"></script>
 
-  <!-- Plugin js-->
-  <script src="<?php echo e(asset('adminto/libs/parsleyjs/parsley.min.js')); ?>"></script>
+ <!-- Plugin js-->
+ <script src="<?php echo e(asset('adminto/libs/parsleyjs/parsley.min.js')); ?>"></script>
  <!-- Validation init js-->
  <script src="<?php echo e(asset('adminto/js/pages/form-validation.init.js')); ?>"></script>
 
@@ -53,7 +53,19 @@
  <script src="<?php echo e(asset('adminto/js/app.min.js')); ?>"></script>
 
 
+ <script type="text/javascript">
+   $(document).ready(function() {
 
+     // Date Picker
+     jQuery('.basic-datepicker').datepicker({
+       autoclose: true,
+       format: 'yyyy-m-d',
+       todayHighlight: true
+     }
+     );
+
+   })
+ </script>
 
 
 

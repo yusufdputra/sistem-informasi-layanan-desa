@@ -90,7 +90,7 @@
                 <td><?php echo e(date('d-F-Y', strtotime($value->created_at))); ?></td>
                 <td><?php echo e(date('d-F-Y', strtotime($value->updated_at))); ?></td>
                 <td>
-                <a href="<?php echo e(route('cetak/', $value->id)); ?>" target="_BLANK" class="btn btn-success btn-sm "><i class="fa fa-print"></i></a>
+                  <a href="<?php echo e(route('cetak/', $value->id)); ?>" target="_BLANK" class="btn btn-success btn-sm "><i class="fa fa-print"></i></a>
                 </td>
               </tr>
               <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
@@ -169,7 +169,6 @@
 </div>
 
 <script type="text/javascript">
- 
   $('.modal_edit').click(function() {
     var id = $(this).data('id');
     var nama = $(this).data('nama');

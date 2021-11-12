@@ -16,7 +16,7 @@ class ArsipController extends Controller
     public function index()
     {
         $title = "Arsip Pengajuan Layanan Desa";
-        $arsip = Pengajuan::where('status', 'selesai')->orderBy('updated_at')->get();
+        $arsip = Pengajuan::where('status', 'selesai')->orderBy('updated_at','DESC')->get();
         $layanan = Layanan::all();
         return view('arsip.index', compact('title', 'arsip', 'layanan'));
     }

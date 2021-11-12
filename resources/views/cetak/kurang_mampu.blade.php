@@ -63,6 +63,7 @@
     table td {
       vertical-align: top;
     }
+
     .indent {
       text-align: justify;
     }
@@ -89,66 +90,104 @@
     <div id="body">
       <div>
         <div style="text-align: center;">
-          <strong style="font-size: 24px; "><u>SURAT KETERANGAN BEDA NAMA</u></strong> <br>
+          <strong style="font-size: 24px; "><u>SURAT KETERANGAN KURANG MAMPU</u></strong> <br>
           <span style="font-size: 14px; ">Nomor : {{$pengajuan->no_dokumen}}</span>
         </div>
-        <br>
-        <div style="font-size: 14px;">
-        <p>
 
-          Yang bertanda tangan di bawah ini Kepala Desa Makmur Kecamatan Pkl. Kerinci Kabupaten Pelalawan dengan ini menerangkan:
-        </p>
+        <div style="font-size: 14px;">
+         <br>
+            Yang bertanda tangan di bawah ini:
+        
           <table>
             <tr>
-              <td>Nama</td>
-              <td>:</td>
-              <td>{{$pengajuan->warga->nama}}</td>
+              <td style="width: 130px;">Nama</td>
+              <td>: {{$kades->user->username}}</td>
             </tr>
             <tr>
-              <td>Tempat/ Tgl Lahir</td>
-              <td>:</td>
-              <td>{{$pengajuan->warga->tempat_lhr}} / {{date('d-M-Y', strtotime($pengajuan->warga->tanggal_lhr))}}</td>
-            </tr>
-            <tr>
-              <td>Nomor Induk Keluarga</td>
-              <td>:</td>
-              <td>{{$pengajuan->warga->user->nik}}</td>
-            </tr>
-            <tr>
-              <td>Pekerjaan</td>
-              <td>:</td>
-              <td>{{strtoupper($pengajuan->warga->pekerjaan)}}</td>
+              <td>Jabatan</td>
+              <td>: Kepala Desa Makmur Kecamatan Pkl. Kerinci Kabupaten Pelalawan</td>
             </tr>
             <tr>
               <td>Alamat</td>
-              <td>:</td>
-              <td>{{$pengajuan->warga->alamat}}</td>
+              <td>: Desa Makmur Kecamatan Pkl. Kerinci Kabupaten Pelalawan</td>
             </tr>
-
-            <div class="indent">
-              <p>
-              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Demikian surat keterangan ini dibuat, atas perhatian dan kerjasamanya kami ucapkan terimakasih.
-              </p>
-            </div>
-
-            <div class="indent">
-              <p>
-
-              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Nama tersebut diatas adalah benar warga Desa Makmur Kecamatan Pkl. Kerinci Kabupaten Pelalawan. Berdasarkan keterangan yang bersangkutan dengan ini menyatakan ada perbedaan data identitas yang disebabkan kesalahan penulisan pada administrasi pendataan yang di jelaskan pada lampiran surat ini. Surat ini di pergunakan untuk <u>{{$data_surat->tujuan}}</u>.
-              </p>
-            </div>
           </table>
-
-
 
         </div>
 
+        <div style="font-size: 14px;">
+         
+          Dengan ini menerangkan bahwa :
+      
+          <table>
+            <tr>
+              <td style="width: 130px;">Nama</td>
+              <td>: {{$pengajuan->warga->nama}}</td>
+            </tr>
+            <tr>
+              <td>Tempat/ Tgl Lahir</td>
+              <td>: {{$pengajuan->warga->tempat_lhr}} / {{date('d-M-Y', strtotime($pengajuan->warga->tanggal_lhr))}}</td>
+            </tr>
+            <tr>
+              <td>Agama</td>
+              <td>: {{$pengajuan->warga->agama}}</td>
+            </tr>
+            <tr>
+              <td>Pekerjaan</td>
+              <td>: {{strtoupper($pengajuan->warga->pekerjaan)}}</td>
+            </tr>
+            <tr>
+              <td>Alamat</td>
+              <td>: {{$pengajuan->warga->alamat}}</td>
+            </tr>
+          </table>
 
+          <div style="font-size: 14px;">
+       
+          Adalah Anak Dari: 
+      
+          <table >
+            <tr>
+              <td style="width: 130px;">Nama</td>
+             
+              <td>: {{$data_surat->nama_ortu}}</td>
+            </tr>
+            <tr>
+              <td>Tempat/ Tgl Lahir</td>
+           
+              <td>: {{strtoupper($data_surat->tempat_lhr_ortu)}} / {{date('d-M-Y', strtotime($data_surat->tanggal_lhr_ortu))}}</td>
+            </tr>
+          
+            <tr>
+              <td>Pekerjaan</td>
+    
+              <td>: {{strtoupper($data_surat->pekerjaan_ortu)}}</td>
+            </tr>
+            <tr>
+              <td>Alamat</td>
+        
+              <td>: {{$data_surat->alamat_ortu}}</td>
+            </tr>
 
+         
+          </table>
 
+          <div class="indent">
+            
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Berdasarkan data dan pengamatan kami keluarga tersebut termasuk dalam kategori <strong><u>Keluarga Kurang Mampu</u></strong>, yang layak untuk mendapatkan  bantuan <strong><u>{{strtoupper($data_surat->tujuan)}}</u></strong>.
+             
+            </div>
 
+            <div class="indent">
+   
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Demikian surat keterangan ini dibuat dengan sebenar-benarnya, untuk dapat digunakan seperlunya oleh yang bersangkutan tersebut.
+      
+            </div>
+        </div>
+      </div>
+    </div>
 
-        <div id="formttd">
+    <div id="formttd">
           <p>
             <strong>
               Desa Makmur, {{date('d-M-Y', strtotime($pengajuan->updated_at))}}
@@ -164,10 +203,6 @@
           </p>
 
         </div>
-
-
-      </div>
-    </div>
   </div>
 </body>
 

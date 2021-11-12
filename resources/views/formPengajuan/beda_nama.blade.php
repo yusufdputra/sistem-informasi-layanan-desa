@@ -3,7 +3,7 @@
   <input type="hidden" name="id_pengajuan" @if($pengajuan !=null) value="{{$pengajuan->id}}" @endif>
   <input type="hidden" name="id_jenis_surat" value="{{$layanan->id}}">
   <input type="hidden" name="id_warga" value="{{$profil->id}}">
-  <input type="hidden" name="id_surat_beda_nama" @if(isset($surat)) value="{{$surat->id}}" @endif>
+  <input type="hidden" name="id_surat_beda_nama" @if(isset($data_surat)) value="{{$surat->id}}" @endif>
 
   <div class="col-lg-6">
     <div class="form-group mb-2">
@@ -15,7 +15,7 @@
       <input type="text" value="{{$profil->nama}}" class="form-control" name="nama" required placeholder="Sesuai KTP" />
     </div>
     <div class="form-group mb-2">
-      <label class=" col-form-label">Tempat Lahir</label>
+      <label class=" col-form-label">Tempat dan Tanggal Lahir</label>
       <div class="input-group">
         <input type="text" class="form-control" value="{{$profil->tempat_lhr}}" name="tempat_lhr" required placeholder="Ketikkan sesuatu..." />
         <input type="text" class="form-control" id="basic-datepicker" value="{{$profil->tanggal_lhr}}" name="tanggal_lhr" required placeholder="yyyy-mm-dd" />

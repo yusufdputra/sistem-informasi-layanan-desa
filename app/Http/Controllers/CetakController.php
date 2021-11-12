@@ -22,7 +22,7 @@ class CetakController extends Controller
         $kades = Kades::first();
         $pdf = PDF::loadview('cetak.'.$jenis_surat, compact('pengajuan','kades', 'data_surat'))->setPaper('a4', 'potrait');
     
-        // return $pdf->stream();
-        return $pdf->download('pengajuan_'.$jenis_surat.'.pdf');
+        return $pdf->stream();
+        // return $pdf->download('pengajuan_'.$jenis_surat.'.pdf');
     }
 }

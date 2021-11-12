@@ -193,7 +193,7 @@ class ProfileController extends Controller
         // validasi
         $nik_old = Auth::user()->nik;
         // jika berbeda
-        if ($nik_old != $request->nik) {
+        if (isset($request->nik) && $nik_old != $request->nik) {
 
             $rules = [
                 'nik' => 'required|unique:users',

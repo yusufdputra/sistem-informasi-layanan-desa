@@ -20,6 +20,7 @@ use App\Http\Controllers\SaveSignatureController;
 use App\Http\Controllers\SekolahController;
 use App\Http\Controllers\StaffController;
 use App\Http\Controllers\Surat\BedaNamaController;
+use App\Http\Controllers\Surat\KurangMampuController;
 use App\Http\Controllers\UserManagementController;
 use App\Http\Controllers\WargaController;
 use App\Models\Layanan;
@@ -98,7 +99,7 @@ Route::group(['middleware' => ['role:warga']], function () {
     // surat beda nama
     Route::post('/beda_nama', [BedaNamaController::class, 'store'])->name('beda_nama.store');
     // kurang mampu
-    Route::post('/kurang_mampu', [BedaNamaController::class, 'store'])->name('kurang_mampu.store');
+    Route::post('/kurang_mampu', [KurangMampuController::class, 'store'])->name('kurang_mampu.store');
 });
 
 Route::group(['middleware' => ['role:warga|admin']], function () {
