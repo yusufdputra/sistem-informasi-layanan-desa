@@ -41,14 +41,14 @@
               <tr>
                 <td>{{$key+1}}</td>
                 <td>{{$value->nama}}</td>
-                <td>{{$value->jabatan->nama}}</td>
+                <td>{{$value->jabatan}}</td>
                 <td> <img src="storage/{{$value->foto_path}}" alt="image" class="img-fluid avatar-xl img-thumbnail rounded-circle" /></td>
 
 
                 <td>
-                  <button type="button" data-bs-toggle="modal" data-bs-target="#edit-modal" data-id='{{$value->id}}' data-nama="{{$value->nama}}" data-jabatan="{{$value->id_jabatan}}" data-foto="{{$value->foto_path}}" class="btn btn-success btn-sm modal_edit"><i class="fa fa-edit"></i></button>
+                  <button type="button" data-bs-toggle="modal" data-bs-target="#edit-modal" data-id='{{$value->id}}' data-nama="{{$value->nama}}" data-jabatan="{{$value->jabatan}}" data-foto="{{$value->foto_path}}" class="btn btn-success btn-sm modal_edit"><i class="fa fa-edit"></i></button>
 
-                  <button type="button" data-bs-toggle="modal" data-bs-target="#hapus-modal" data-id='{{$value->id}}' data-nama="{{$value->nama}}"  class="btn btn-danger btn-sm hapus"><i class="fa fa-trash"></i></button>
+                  <button type="button" data-bs-toggle="modal" data-bs-target="#hapus-modal" data-id='{{$value->id}}' data-nama="{{$value->nama}}" class="btn btn-danger btn-sm hapus"><i class="fa fa-trash"></i></button>
 
 
 
@@ -84,12 +84,18 @@
             <div class="row mb-3">
               <label for="jabatan" class="col-4 col-xl-3 col-form-label">Jabatan</label>
               <div class="col-8 col-xl-9">
-                <select class="form-select" required name="id_jabatan" id="example-select">
-                  @foreach ($jabatan AS $key=>$value)
-                  <option value="{{$value->id}}">{{$value->nama}}</option>
-
-                  @endforeach
+                <select required class="form-control" name="jabatan">
+                  <option value="" selected disabled hidden>Silahkan Pilih</option>
+                  <option value="Kepala Desa"  >Kepala Desa</option>
+                  <option value="Sekertaris Desa" >Sekertaris Desa</option>
+                  <option value="Kasi Pemerintahan" >Kasi Pemerintahan</option>
+                  <option value="Kasi Kesejahteraan" >Kasi Kesejahteraan</option>
+                  <option value="Kaur Umum & Perencanaan">Kaur Umum & Perencanaan</option>
+                  <option value="Kaur Keuangan" >Kaur Keuangan</option>
+                  <option value="Staff Pelayanan" >Staff Pelayanan</option>
+                  <option value="Staff Keuangan" >Staff Keuangan</option>
                 </select>
+                
               </div>
             </div>
             <div class="row mb-3">
@@ -137,20 +143,26 @@
             <div class="row mb-3">
               <label for="jabatan" class="col-4 col-xl-3 col-form-label">Jabatan</label>
               <div class="col-8 col-xl-9">
-                <select class="form-select" required name="id_jabatan" id="edit_jabatan" id="example-select">
-                  @foreach ($jabatan AS $key=>$value)
-                  <option value="{{$value->id}}">{{$value->nama}}</option>
-                  @endforeach
+              <select required class="form-control" id="edit_jabatan" name="jabatan">
+                  <option value="" selected disabled hidden>Silahkan Pilih</option>
+                  <option value="Kepala Desa" >Kepala Desa</option>
+                  <option value="Sekertaris Desa" >Sekertaris Desa</option>
+                  <option value="Kasi Pemerintahan" >Kasi Pemerintahan</option>
+                  <option value="Kasi Kesejahteraan" >Kasi Kesejahteraan</option>
+                  <option value="Kaur Umum & Perencanaan" >Kaur Umum & Perencanaan</option>
+                  <option value="Kaur Keuangan" >Kaur Keuangan</option>
+                  <option value="Staff Pelayanan" >Staff Pelayanan</option>
+                  <option value="Staff Keuangan" >Staff Keuangan</option>
                 </select>
               </div>
             </div>
             <div class="row mb-3">
-                <label for="nama" class="col-4 col-xl-3  col-form-label">Foto <br>
-                  <img src="" id="edit_foto" alt="image" class="img-fluid avatar-xl rounded " />
-                </label>
+              <label for="nama" class="col-4 col-xl-3  col-form-label">Foto <br>
+                <img src="" id="edit_foto" alt="image" class="img-fluid avatar-xl rounded " />
+              </label>
               <div class="col-8 col-xl-9">
                 <input type="hidden" name="file_lama" id="file_lama">
-                <input type="file" accept="image/*"  data-plugins="dropify" name="file_foto" data-max-file-size="1M" />
+                <input type="file" accept="image/*" data-plugins="dropify" name="file_foto" data-max-file-size="1M" />
               </div>
             </div>
 

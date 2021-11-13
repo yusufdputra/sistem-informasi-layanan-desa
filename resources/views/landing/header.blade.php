@@ -35,10 +35,10 @@
       overflow: hidden;
       max-height: 3.6em;
       line-height: 1.8em;
-
     }
-
-  
+    .indent {
+      text-indent: 40px;
+    }
   </style>
 
 

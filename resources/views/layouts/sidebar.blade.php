@@ -44,9 +44,9 @@
               <li>
                 <a href="{{route('staff.index')}}">Staff Desa</a>
               </li>
-              <li>
+              <!-- <li>
                 <a href="{{route('lembaga.index')}}">Lembaga Desa</a>
-              </li>
+              </li> -->
               <li>
                 <a href="{{route('berita.index')}}">Berita</a>
               </li>

@@ -19,8 +19,7 @@ class StaffController extends Controller
     {
         $title = "Kelola Data Staff Desa";
         $staff = Staff::all();
-        $jabatan = Jabatan::all();
-        return view('admin.staff.index', compact('title', 'staff', 'jabatan'));
+        return view('admin.staff.index', compact('title', 'staff'));
     }
 
     public function store(Request $request)
@@ -35,7 +34,7 @@ class StaffController extends Controller
 
             $values = [
                 'nama' => strtoupper($request->nama),
-                'id_jabatan' => $request->id_jabatan,
+                'jabatan' => $request->jabatan,
                 'foto_path' => $upload,
                 'created_at'   => Carbon::now(),
                 'updated_at'   => Carbon::now(),

@@ -7,6 +7,7 @@ use App\Models\BarangKeluar;
 use App\Models\BarangMasuk;
 use App\Models\Berita;
 use App\Models\Layanan;
+use App\Models\Lembaga;
 use App\Models\Magang;
 use App\Models\Peminjaman;
 use App\Models\Pengajuan;
@@ -31,6 +32,7 @@ class HomeController extends Controller
         }
 
         $data['staff'] = Staff::all();
+        $data['lembaga'] = Lembaga::all();
         $data['layanan'] = Layanan::all();
         $data['berita'] = Berita::orderBy('updated_at', 'DESC')->limit(6)->get();
 
@@ -43,6 +45,7 @@ class HomeController extends Controller
     {
         $data['staff'] = Staff::all();
         $data['layanan'] = Layanan::all();
+        $data['lembaga'] = Lembaga::all();
         $data['berita'] = Berita::orderBy('updated_at', 'DESC')->limit(6)->get();
 
 
