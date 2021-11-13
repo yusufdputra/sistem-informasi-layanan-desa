@@ -4,13 +4,13 @@
 
     <!-- User box -->
     <div class="user-box text-center">
-      <!-- <img src="{{asset('adminto/images/users/user-1.jpg')}}" alt="user-img" title="Mat Helme" class="rounded-circle img-thumbnail avatar-md"> -->
+      <!-- <img src="<?php echo e(asset('adminto/images/users/user-1.jpg')); ?>" alt="user-img" title="Mat Helme" class="rounded-circle img-thumbnail avatar-md"> -->
   
       <div class="dropdown">
         <p class="text-muted mb-0 user-msg">
             <small>Selamat Datang</small>
         </p>
-        <a href="#" class="user-name dropdown-toggle h5 mt-2 mb-1 d-block" data-bs-toggle="dropdown" aria-expanded="false">{{strtoupper(Auth::user()->username)}}</a>
+        <a href="#" class="user-name dropdown-toggle h5 mt-2 mb-1 d-block" data-bs-toggle="dropdown" aria-expanded="false"><?php echo e(strtoupper(Auth::user()->username)); ?></a>
 
       </div>
 
@@ -24,13 +24,13 @@
         <li class="menu-title">Navigation</li>
 
         <li>
-          <a href="{{route('home.index')}}">
+          <a href="<?php echo e(route('home.index')); ?>">
             <i class="mdi mdi-view-dashboard"></i>
             <span> Dashboard </span>
           </a>
         </li>
 
-        @role('admin')
+        <?php if(auth()->check() && auth()->user()->hasRole('admin')): ?>
 
         <li>
           <a href="#website" data-bs-toggle="collapse">
@@ -42,16 +42,16 @@
             <ul class="nav-second-level">
 
               <li>
-                <a href="{{route('staff.index')}}">Staff Desa</a>
+                <a href="<?php echo e(route('staff.index')); ?>">Staff Desa</a>
               </li>
               <li>
-                <a href="{{route('lembaga.index')}}">Lembaga Desa</a>
+                <a href="<?php echo e(route('lembaga.index')); ?>">Lembaga Desa</a>
               </li>
               <li>
-                <a href="{{route('berita.index')}}">Berita</a>
+                <a href="<?php echo e(route('berita.index')); ?>">Berita</a>
               </li>
               <!-- <li>
-                <a href="{{route('layanan.index')}}">Layanan</a>
+                <a href="<?php echo e(route('layanan.index')); ?>">Layanan</a>
               </li> -->
             </ul>
           </div>
@@ -66,45 +66,45 @@
             <ul class="nav-second-level">
 
               <li>
-                <a href="{{route('pengajuan.index')}}">Pengajuan</a>
+                <a href="<?php echo e(route('pengajuan.index')); ?>">Pengajuan</a>
               </li>
               <li>
-                <a href="{{route('arsip.index')}}">Arsip</a>
+                <a href="<?php echo e(route('arsip.index')); ?>">Arsip</a>
               </li>
             </ul>
           </div>
         </li>
 
         <li>
-          <a href="{{route('warga')}}">
+          <a href="<?php echo e(route('warga')); ?>">
             <i class="mdi mdi-human-male-female"></i>
             <span> Data Warga </span>
           </a>
         </li>
 
 
-        @endrole
+        <?php endif; ?>
 
-        @role('warga')
+        <?php if(auth()->check() && auth()->user()->hasRole('warga')): ?>
 
         <li>
-          <a href="{{route('pengajuan.index')}}">
+          <a href="<?php echo e(route('pengajuan.index')); ?>">
             <i class="mdi mdi-book-arrow-left"></i>
             <span> Pengajuan </span>
           </a>
         </li>
 
-        @endrole
-        @role('kades')
+        <?php endif; ?>
+        <?php if(auth()->check() && auth()->user()->hasRole('kades')): ?>
 
         <li>
-          <a href="{{route('arsip.index')}}">
+          <a href="<?php echo e(route('arsip.index')); ?>">
             <i class="mdi mdi-book-arrow-left"></i>
             <span> Arsip </span>
           </a>
         </li>
 
-        @endrole
+        <?php endif; ?>
 
       </ul>
 
@@ -116,4 +116,4 @@
   </div>
   <!-- Sidebar -left -->
 
-</div>
+</div><?php /**PATH C:\xampp\htdocs\SILADES\resources\views/layouts/sidebar.blade.php ENDPATH**/ ?>

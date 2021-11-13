@@ -8,6 +8,7 @@ use App\Http\Controllers\CetakController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\KuisionerController;
 use App\Http\Controllers\LayananController;
+use App\Http\Controllers\LembagaController;
 use App\Http\Controllers\LookBookController;
 use App\Http\Controllers\MahasiswaBimbingan;
 use App\Http\Controllers\Warga\PengajuanController;
@@ -62,6 +63,10 @@ Route::group(['middleware' => ['role:admin']], function () {
     Route::get('/staff', [StaffController::class, 'index'])->name('staff.index');
     Route::post('/staff/store', [StaffController::class, 'store'])->name('staff.store');
     Route::post('/staff/hapus', [StaffController::class, 'hapus'])->name('staff.hapus');
+    // kelola lembaga
+    Route::get('/lembaga', [LembagaController::class, 'index'])->name('lembaga.index');
+    Route::post('/lembaga/store', [LembagaController::class, 'store'])->name('lembaga.store');
+    Route::post('/lembaga/hapus', [LembagaController::class, 'hapus'])->name('lembaga.hapus');
 
     // kelola layanan
     Route::get('/layanan', [LayananController::class, 'index'])->name('layanan.index');
