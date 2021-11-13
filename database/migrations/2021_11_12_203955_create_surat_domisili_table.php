@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateSuratBedaNamaTable extends Migration
+class CreateSuratDomisiliTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,7 @@ class CreateSuratBedaNamaTable extends Migration
      */
     public function up()
     {
-        Schema::create('surat_beda_nama', function (Blueprint $table) {
+        Schema::create('surat_domisili', function (Blueprint $table) {
             $table->id();
             $table->bigInteger('id_pengajuan');
             $table->text('tujuan');
@@ -29,6 +29,6 @@ class CreateSuratBedaNamaTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('surat_beda_nama');
+        Schema::dropIfExists('surat_domisili');
     }
 }

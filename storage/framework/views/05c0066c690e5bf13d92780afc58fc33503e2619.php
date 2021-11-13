@@ -9,7 +9,7 @@
         <div class="row align-items-center">
           <div class="col-lg-6 col-sm-6">
             <div class="home-title">
-              <h5 class="mb-3 text-white-50">Discover Adminto Today</h5>
+              <h5 class="mb-3 text-white-50">Selamat Datang</h5>
               <h2 class="mb-4 text-white">Make your Site Amazing & Unique with Adminto</h2>
               <p class="text-white-50 home-desc font-16 mb-5">Adminto is a fully featured premium Landing template built on top of awesome Bootstrap 4.3.1, modern web technology HTML5, CSS3 and jQuery. </p>
               <div class="watch-video mt-5">
@@ -21,7 +21,7 @@
           </div>
           <div class="col-lg-5 offset-lg-1 col-sm-6">
             <div class="home-img mo-mt-20">
-              <img src="images/home-img.png" alt="" class="img-fluid mx-auto d-block">
+              <img src="<?php echo e(asset('adminto/landing/images/svg/home.svg')); ?>" alt="" class="img-fluid mx-auto d-block">
             </div>
           </div>
         </div>

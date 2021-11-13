@@ -1,4 +1,20 @@
 <div class="form-group mb-2">
+  <label class=" col-form-label">Alamat</label>
+  <input type="text" value="{{$profil['alamat']}}" class="form-control" name="alamat" required placeholder="Sesuai KTP" />
+</div>
+
+
+<div class="form-group mb-2">
+  <label class=" col-form-label">RT / RW</label>
+  <div class="input-group">
+    <input type="text" value="{{$profil['rt']}}" class="form-control" name="rt" required placeholder="RT" />
+    <input type="text" value="{{$profil['rw']}}" class="form-control" name="rw" required placeholder="RW" />
+  </div>
+</div>
+
+
+
+<div class="form-group mb-2">
   <label class=" col-form-label">Provinsi & Kabupaten</label>
 
   <div class="input-group">

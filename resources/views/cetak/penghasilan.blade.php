@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Cetak LAPORAN</title>
+  <title>Cetak Pengajuan</title>
 
   <style>
     html,
@@ -89,14 +89,14 @@
     <div id="body">
       <div>
         <div style="text-align: center;">
-          <strong style="font-size: 24px; "><u>SURAT KETERANGAN BEDA NAMA</u></strong> <br>
+          <strong style="font-size: 24px; "><u>SURAT KETERANGAN PENGHASILAN</u></strong> <br>
           <span style="font-size: 14px; ">Nomor : {{$pengajuan->no_dokumen}}</span>
         </div>
         <br>
         <div style="font-size: 14px;">
         <p>
 
-          Yang bertanda tangan di bawah ini Kepala Desa Makmur Kecamatan Pkl. Kerinci Kabupaten Pelalawan dengan ini menerangkan:
+          Yang bertanda tangan di bawah ini Kepala Desa Makmur Kecamatan Pkl. Kerinci Kabupaten Pelalawan dengan ini menerangkan bahwa:
         </p>
           <table>
             <tr>
@@ -132,7 +132,7 @@
             <tr>
               <td>Alamat</td>
               <td>:</td>
-              <td>{{$pengajuan->warga->alamat}}</td>
+              <td>{{$pengajuan->warga->alamat}}, {{$alamat}}</td>
             </tr>
 
            

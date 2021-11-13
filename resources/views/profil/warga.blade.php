@@ -80,117 +80,107 @@
                   </div>
 
                   <div class="form-group mb-2">
-                    <label class=" col-form-label">Jenis Kelamin</label>
-                    <select required class="form-control" name="jenis_kelamin">
-                      <option value="" selected disabled hidden>Silahkan Pilih</option>
-                      <option value="lk" <?= $profil['jenis_kelamin'] == 'lk' ? 'selected' : ''; ?>>Laki-Laki</option>
-                      <option value="pr" <?= $profil['jenis_kelamin'] == 'pr' ? 'selected' : ''; ?>>Perempuan</option>
-                    </select>
-                  </div>
-
-                  <div class="form-group mb-2">
-                    <label class=" col-form-label">Status kawin</label>
-                    <select required class="form-control" name="status_kawin">
-                      <option value="" selected disabled hidden>Silahkan Pilih</option>
-                      <option value="Belum Kawin" <?= $profil['status_kawin'] == 'Belum Kawin' ? 'selected' : ''; ?>>Belum Kawin</option>
-                      <option value="Kawin" <?= $profil['status_kawin'] == 'Kawin' ? 'selected' : ''; ?>>Kawin</option>
-                      <option value="Cerai Hidup" <?= $profil['status_kawin'] == 'Cerai Hidup' ? 'selected' : ''; ?>>Cerai Hidup</option>
-                      <option value="Cerai Mati" <?= $profil['status_kawin'] == 'Cerai Mati' ? 'selected' : ''; ?>>Cerai Mati</option>
-                    </select>
-                  </div>
-
-                  <div class="form-group mb-2">
-                    <label class=" col-form-label">Pekerjaan</label>
-                    <input type="text" value="{{$profil['pekerjaan']}}" class="form-control" name="pekerjaan" required placeholder="Sesuai KTP" />
-                  </div>
-
-                  <div class="form-group mb-2">
-                    <label class=" col-form-label">Kewarganegaraan</label>
-                    <select required class="form-control" name="kewarganegaraan">
-                      <option value="" selected disabled hidden>Silahkan Pilih</option>
-                      <option value="WNI" <?= $profil['kewarganegaraan'] == 'WNI' ? 'selected' : ''; ?>>WNI</option>
-                      <option value="WNA" <?= $profil['kewarganegaraan'] == 'WNA' ? 'selected' : ''; ?>>WNA</option>
-                    </select>
-                  </div>
-                </div>
-                <div class="col-lg-6">
-
-                  <div class="form-group mb-2">
-                    <label class=" col-form-label">Golongan Darah</label>
-                    <select required class="form-control" name="goldar">
-                      <option value="" selected disabled hidden>Silahkan Pilih</option>
-                      <option value="O" <?= $profil['goldar'] == 'O' ? 'selected' : ''; ?>>O</option>
-                      <!-- <option value="O+" <?= $profil['goldar'] == 'O+' ? 'selected' : ''; ?>>O+</option> -->
-                      <option value="A" <?= $profil['goldar'] == 'A' ? 'selected' : ''; ?>>A</option>
-                      <!-- <option value="A+" <?= $profil['goldar'] == 'A+' ? 'selected' : ''; ?>>A+</option> -->
-                      <option value="B" <?= $profil['goldar'] == 'B' ? 'selected' : ''; ?>>B</option>
-                      <!-- <option value="B+" <?= $profil['goldar'] == 'B+' ? 'selected' : ''; ?>>B+</option> -->
-                      <!-- <option value="AB-" <?= $profil['goldar'] == 'AB-' ? 'selected' : ''; ?>>AB-</option> -->
-                      <option value="AB" <?= $profil['goldar'] == 'AB' ? 'selected' : ''; ?>>AB</option>
-                      <option value="Lainnya" <?= $profil['goldar'] == 'Lainnya' ? 'selected' : ''; ?>>Lainnya</option>
-                    </select>
-                  </div>
-
-                  <div class="form-group mb-2">
-                    <label class=" col-form-label">Alamat</label>
-                    <input type="text" value="{{$profil['alamat']}}" class="form-control" name="alamat" required placeholder="Sesuai KTP" />
-                  </div>
-                  <div class="form-group mb-2">
-                    <label class=" col-form-label">RT / RW</label>
-                    <div class="input-group">
-                      <input type="text" value="{{$profil['rt']}}" class="form-control" name="rt" required placeholder="RT" />
-                      <input type="text" value="{{$profil['rw']}}" class="form-control" name="rw" required placeholder="RW" />
+                      <label class=" col-form-label">Jenis Kelamin</label>
+                      <select required class="form-control" name="jenis_kelamin">
+                        <option value="" selected disabled hidden>Silahkan Pilih</option>
+                        <option value="lk" <?= $profil['jenis_kelamin'] == 'lk' ? 'selected' : ''; ?>>Laki-Laki</option>
+                        <option value="pr" <?= $profil['jenis_kelamin'] == 'pr' ? 'selected' : ''; ?>>Perempuan</option>
+                      </select>
                     </div>
 
-                  </div>
+                    <div class="form-group mb-2">
+                      <label class=" col-form-label">Status kawin</label>
+                      <select required class="form-control" name="status_kawin">
+                        <option value="" selected disabled hidden>Silahkan Pilih</option>
+                        <option value="Belum Kawin" <?= $profil['status_kawin'] == 'Belum Kawin' ? 'selected' : ''; ?>>Belum Kawin</option>
+                        <option value="Kawin" <?= $profil['status_kawin'] == 'Kawin' ? 'selected' : ''; ?>>Kawin</option>
+                        <option value="Cerai Hidup" <?= $profil['status_kawin'] == 'Cerai Hidup' ? 'selected' : ''; ?>>Cerai Hidup</option>
+                        <option value="Cerai Mati" <?= $profil['status_kawin'] == 'Cerai Mati' ? 'selected' : ''; ?>>Cerai Mati</option>
+                      </select>
+                    </div>
+
+                    <div class="form-group mb-2">
+                      <label class=" col-form-label">Pekerjaan</label>
+                      <input type="text" value="{{$profil['pekerjaan']}}" class="form-control" name="pekerjaan" required placeholder="Sesuai KTP" />
+                    </div>
+
 
                   @include('helper.getDataDaerah')
 
                 </div>
-              </div>
 
-              <div class="col-lg-12 row">
                 <div class="col-lg-6">
-                  <div class="form-group mb-2">
-                    <label class=" col-form-label">Foto KTP</label>
-                    <input type="hidden" value="{{$profil['ktp_path']}}" name="file_lama_ktp">
-                    <input type="file" accept="image/*" data-plugins="dropify" @if($profil['ktp_path']!=null) data-default-file="storage/{{$profil['ktp_path']}}" @else required @endif name="file_foto_ktp" data-max-file-size="1M" />
-                  </div>
+                  <div class="">
+                    
 
-                  <div class="form-group mb-2">
-                    <label class=" col-form-label">Foto Kartu Keluarga</label>
-                    <input type="hidden" value="{{$profil['kk_path']}}" name="file_lama_kk">
-                    <input type="file" accept="image/*" @if($profil['kk_path']!=null) data-default-file="storage/{{$profil['kk_path']}}" @else required @endif data-plugins="dropify" name="file_foto_kk" data-max-file-size="1M" />
-                  </div>
-                </div>
-
-                @csrf
-                <div class="col-lg-6">
-                  <div class="form-group row mb-2">
-                    <label class=" col-form-label">Foto Tanda Tangan</label>
-                    <div class="col-lg-12">
-
-                      <div id="sig_lama"></div>
+                    <div class="form-group mb-2">
+                      <label class=" col-form-label">Kewarganegaraan</label>
+                      <select required class="form-control" name="kewarganegaraan">
+                        <option value="" selected disabled hidden>Silahkan Pilih</option>
+                        <option value="WNI" <?= $profil['kewarganegaraan'] == 'WNI' ? 'selected' : ''; ?>>WNI</option>
+                        <option value="WNA" <?= $profil['kewarganegaraan'] == 'WNA' ? 'selected' : ''; ?>>WNA</option>
+                      </select>
                     </div>
-                    <p style="clear: both;">
-                      <button type="button" class="btn btn-outline-success btn-sm mt-2 rounded-pill waves-effect waves-light" data-bs-toggle="modal" data-bs-target="#ttd-modal">Ubah</button>
-                      <textarea id="signature64_lama" cols="30" style="display: none;" rows="10">{{$profil['signature_json']}}</textarea>
-                    </p>
+
+                    <div class="form-group mb-2">
+                      <label class=" col-form-label">Golongan Darah</label>
+                      <select required class="form-control" name="goldar">
+                        <option value="" selected disabled hidden>Silahkan Pilih</option>
+                        <option value="O" <?= $profil['goldar'] == 'O' ? 'selected' : ''; ?>>O</option>
+                        <!-- <option value="O+" <?= $profil['goldar'] == 'O+' ? 'selected' : ''; ?>>O+</option> -->
+                        <option value="A" <?= $profil['goldar'] == 'A' ? 'selected' : ''; ?>>A</option>
+                        <!-- <option value="A+" <?= $profil['goldar'] == 'A+' ? 'selected' : ''; ?>>A+</option> -->
+                        <option value="B" <?= $profil['goldar'] == 'B' ? 'selected' : ''; ?>>B</option>
+                        <!-- <option value="B+" <?= $profil['goldar'] == 'B+' ? 'selected' : ''; ?>>B+</option> -->
+                        <!-- <option value="AB-" <?= $profil['goldar'] == 'AB-' ? 'selected' : ''; ?>>AB-</option> -->
+                        <option value="AB" <?= $profil['goldar'] == 'AB' ? 'selected' : ''; ?>>AB</option>
+                        <option value="Lainnya" <?= $profil['goldar'] == 'Lainnya' ? 'selected' : ''; ?>>Lainnya</option>
+                      </select>
+                    </div>
+                    <div class="form-group mb-2">
+                      <label class=" col-form-label">Foto KTP</label>
+                      <input type="hidden" value="{{$profil['ktp_path']}}" name="file_lama_ktp">
+                      <input type="file" accept="image/*" data-plugins="dropify" @if($profil['ktp_path']!=null) data-default-file="storage/{{$profil['ktp_path']}}" @else required @endif name="file_foto_ktp" data-max-file-size="1M" />
+                    </div>
+
+                    <div class="form-group mb-2">
+                      <label class=" col-form-label">Foto Kartu Keluarga</label>
+                      <input type="hidden" value="{{$profil['kk_path']}}" name="file_lama_kk">
+                      <input type="file" accept="image/*" @if($profil['kk_path']!=null) data-default-file="storage/{{$profil['kk_path']}}" @else required @endif data-plugins="dropify" name="file_foto_kk" data-max-file-size="1M" />
+                    </div>
                   </div>
+
+                </div>
+              </div>
+
+
+              @csrf
+              <div class="col-lg-6" style="display: none;">
+                <div class="form-group row mb-2">
+                  <label class=" col-form-label">Foto Tanda Tangan</label>
+                  <div class="col-lg-12">
+
+                    <div id="sig_lama"></div>
+                  </div>
+                  <p style="clear: both;">
+                    <button type="button" class="btn btn-outline-success btn-sm mt-2 rounded-pill waves-effect waves-light" data-bs-toggle="modal" data-bs-target="#ttd-modal">Ubah</button>
+                    <textarea id="signature64_lama" cols="30" style="display: none;" rows="10">{{$profil['signature_json']}}</textarea>
+                  </p>
                 </div>
               </div>
             </div>
-
-            <div class="col-12 d-grid mt-3">
-              <button type="submit" class="btn btn-primary  waves-effect waves-light">Simpan</button>
-            </div>
-
-
-          </form>
         </div>
+
+        <div class="col-12 d-grid mt-3">
+          <button type="submit" class="btn btn-primary  waves-effect waves-light">Simpan</button>
+        </div>
+
+
+        </form>
       </div>
     </div>
   </div>
+</div>
 </div>
 
 <div id="ttd-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="standard-modalLabel" aria-hidden="true">

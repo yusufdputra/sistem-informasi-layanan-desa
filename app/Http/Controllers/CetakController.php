@@ -20,7 +20,11 @@ class CetakController extends Controller
         $jenis_surat = PengajuanController::cekJenisForm($pengajuan->jenis_surat->nama);
         $data_surat = PengajuanController::getDataSurat($pengajuan->jenis_surat->nama, $id_pengajuan);
         $kades = Kades::first();
-        $pdf = PDF::loadview('cetak.'.$jenis_surat, compact('pengajuan','kades', 'data_surat'))->setPaper('a4', 'potrait');
+
+        // get alamat warga
+        $alamat = DaerahIndonesiaController::getAlamatWarga($pengajuan->warga->provinsi, $pengajuan->warga->kabupaten, $pengajuan->warga->kecamatan, $pengajuan->warga->kelurahan);
+
+        $pdf = PDF::loadview('cetak.'.$jenis_surat, compact('pengajuan','kades', 'data_surat','alamat'))->setPaper('a4', 'potrait');
     
         return $pdf->stream();
         // return $pdf->download('pengajuan_'.$jenis_surat.'.pdf');

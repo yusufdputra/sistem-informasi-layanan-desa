@@ -34,21 +34,17 @@
     <input type="text" value="{{strtoupper($profil['pekerjaan'])}}" class="form-control" name="pekerjaan" required placeholder="Sesuai KTP" />
   </div>
 
- 
+
 </div>
 <div class="col-lg-6">
-
+  
 
   <!-- alamat -->
   @include('helper.getDataDaerah')
+
   <div class="form-group mb-2">
-    <label class=" col-form-label">Penghasilan</label>
-    <div class="input-group mb-2">
-      <div class="input-group-text">Rp.</div>
-      <input type="" min="0" @if(isset($data_surat)) value="{{$data_surat->penghasilan}}" @endif class="form-control" name="penghasilan" required placeholder="Rp. " />
-    </div>
-
+    <label class=" col-form-label">Tujuan Pengajuan Surat</label>
+    <textarea type="text" class="form-control" rows="5" name="tujuan" required placeholder="Ketikkan sesuatu...">@if(isset($data_surat)){{$data_surat->tujuan}}@endif</textarea>
   </div>
-
 
 </div>

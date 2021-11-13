@@ -34,21 +34,17 @@
     <input type="text" value="<?php echo e(strtoupper($profil['pekerjaan'])); ?>" class="form-control" name="pekerjaan" required placeholder="Sesuai KTP" />
   </div>
 
- 
+
 </div>
 <div class="col-lg-6">
-
+  
 
   <!-- alamat -->
   <?php echo $__env->make('helper.getDataDaerah', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
-  <div class="form-group mb-2">
-    <label class=" col-form-label">Penghasilan</label>
-    <div class="input-group mb-2">
-      <div class="input-group-text">Rp.</div>
-      <input type="" min="0" <?php if(isset($data_surat)): ?> value="<?php echo e($data_surat->penghasilan); ?>" <?php endif; ?> class="form-control" name="penghasilan" required placeholder="Rp. " />
-    </div>
 
+  <div class="form-group mb-2">
+    <label class=" col-form-label">Tujuan Pengajuan Surat</label>
+    <textarea type="text" class="form-control" rows="5" name="tujuan" required placeholder="Ketikkan sesuatu..."><?php if(isset($data_surat)): ?><?php echo e($data_surat->tujuan); ?><?php endif; ?></textarea>
   </div>
 
-
-</div><?php /**PATH C:\xampp\htdocs\SILADES\resources\views/formPengajuan/penghasilan.blade.php ENDPATH**/ ?>
+</div><?php /**PATH C:\xampp\htdocs\SILADES\resources\views/formPengajuan/domisili.blade.php ENDPATH**/ ?>

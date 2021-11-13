@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Surat;
 
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\Warga\PengajuanController;
 use App\Models\Pengajuan;
 use App\Models\Surat\BedaNama;
 use App\Models\Warga;
@@ -24,24 +25,7 @@ class BedaNamaController extends Controller
         $query = ProfileController::updateUserAtForm($request);
 
         if ($query) {
-            $where_pengajuan = [
-                'id' => $request->id_pengajuan
-            ];
-
-            $values_pengajuan = [
-                'id_jenis_surat' => $request->id_jenis_surat,
-                'id_warga' => $request->id_warga,
-                'status' => 'proses',
-                'keterangan' => null,
-                'created_at'   => Carbon::now(),
-                'updated_at'   => Carbon::now(),
-            ];
-
-            Pengajuan::updateOrInsert($where_pengajuan, $values_pengajuan);
-            $id_pengajuan = DB::getPdo()->lastInsertId();
-            if ($id_pengajuan == 0) {
-                $id_pengajuan = $request->id_pengajuan;
-            }
+            $id_pengajuan = PengajuanController::store($request);
 
             // simpan ke db surat
             $where_surat = [

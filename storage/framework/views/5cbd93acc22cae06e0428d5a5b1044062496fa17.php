@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Cetak LAPORAN</title>
+  <title>Cetak Pengajuan</title>
 
   <style>
     html,
@@ -96,7 +96,7 @@
         <div style="font-size: 14px;">
         <p>
 
-          Yang bertanda tangan di bawah ini Kepala Desa Makmur Kecamatan Pkl. Kerinci Kabupaten Pelalawan dengan ini menerangkan:
+          Yang bertanda tangan di bawah ini Kepala Desa Makmur Kecamatan Pkl. Kerinci Kabupaten Pelalawan dengan ini menerangkan bahwa:
         </p>
           <table>
             <tr>
@@ -122,10 +122,13 @@
             <tr>
               <td>Alamat</td>
               <td>:</td>
-              <td><?php echo e($pengajuan->warga->alamat); ?></td>
+              <td><?php echo e($pengajuan->warga->alamat); ?>, <?php echo e($alamat); ?></td>
             </tr>
 
-            <div class="indent">
+            
+          </table>
+
+          <div class="indent">
               <p>
               &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Demikian surat keterangan ini dibuat, atas perhatian dan kerjasamanya kami ucapkan terimakasih.
               </p>
@@ -134,12 +137,9 @@
             <div class="indent">
               <p>
 
-              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Nama tersebut diatas adalah benar warga Desa Makmur Kecamatan Pkl. Kerinci Kabupaten Pelalawan. Berdasarkan keterangan yang bersangkutan dengan ini menyatakan ada perbedaan data identitas yang disebabkan kesalahan penulisan pada administrasi pendataan yang di jelaskan pada lampiran surat ini. Surat ini di pergunakan untuk <u><?php echo e($data_surat->tujuan); ?></u>.
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Nama tersebut diatas adalah benar warga Desa Makmur Kecamatan Pkl. Kerinci Kabupaten Pelalawan. Berdasarkan keterangan yang bersangkutan dengan ini menyatakan ada perbedaan data identitas yang disebabkan kesalahan penulisan pada administrasi pendataan yang di jelaskan pada lampiran surat ini. Surat ini di pergunakan untuk <strong><u><?php echo e($data_surat->tujuan); ?></u></strong>.
               </p>
             </div>
-          </table>
-
-
 
         </div>
 

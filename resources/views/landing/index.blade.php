@@ -9,9 +9,9 @@
         <div class="row align-items-center">
           <div class="col-lg-6 col-sm-6">
             <div class="home-title">
-              <h5 class="mb-3 text-white-50">Discover Adminto Today</h5>
-              <h2 class="mb-4 text-white">Make your Site Amazing & Unique with Adminto</h2>
-              <p class="text-white-50 home-desc font-16 mb-5">Adminto is a fully featured premium Landing template built on top of awesome Bootstrap 4.3.1, modern web technology HTML5, CSS3 and jQuery. </p>
+              <h5 class="mb-3 text-white-50">Selamat Datang</h5>
+              <h2 class="mb-4 text-white">Sistem Informasi Layanan Desa Makmur</h2>
+              <p class="text-white-50 home-desc font-16 mb-5">Melayani pengajuan surat menyurat yang ada di Desa Makmur Kecamatan Pkl. Kerinci Kabupaten Pelalawan. </p>
               <div class="watch-video mt-5">
                 <a href="#" class="btn btn-custom me-4">Get Started <i class="mdi mdi-chevron-right ms-1"></i></a>
                 <a href="http://vimeo.com/99025203" class="video-play-icon text-white"><i class="mdi mdi-play play-icon-circle me-2"></i> <span>Watch The Video</span></a>
@@ -21,7 +21,7 @@
           </div>
           <div class="col-lg-5 offset-lg-1 col-sm-6">
             <div class="home-img mo-mt-20">
-              <img src="images/home-img.png" alt="" class="img-fluid mx-auto d-block">
+              <img src="{{asset('adminto/landing/images/svg/home.svg')}}" alt="" class="img-fluid mx-auto d-block">
             </div>
           </div>
         </div>

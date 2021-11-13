@@ -21,7 +21,7 @@ class CreateSuratKurangMampuTable extends Migration
             $table->date('tanggal_lhr_ortu');
             $table->string('pekerjaan_ortu');
             $table->text('alamat_ortu');
-            $table->string('tujuan');
+            $table->text('tujuan');
             $table->timestamps();
             $table->timestamp('deleted_at')->nullable();
         });

@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Cetak LAPORAN</title>
+  <title>Cetak Pengajuan</title>
 
   <style>
     html,
@@ -138,7 +138,7 @@
             </tr>
             <tr>
               <td>Alamat</td>
-              <td>: {{$pengajuan->warga->alamat}}</td>
+              <td>: {{$pengajuan->warga->alamat}}, {{$alamat}}</td>
             </tr>
           </table>
 

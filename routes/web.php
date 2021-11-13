@@ -20,6 +20,7 @@ use App\Http\Controllers\SaveSignatureController;
 use App\Http\Controllers\SekolahController;
 use App\Http\Controllers\StaffController;
 use App\Http\Controllers\Surat\BedaNamaController;
+use App\Http\Controllers\Surat\DomisiliController;
 use App\Http\Controllers\Surat\KurangMampuController;
 use App\Http\Controllers\Surat\PenghasilanController;
 use App\Http\Controllers\UserManagementController;
@@ -103,6 +104,8 @@ Route::group(['middleware' => ['role:warga']], function () {
     Route::post('/kurang_mampu', [KurangMampuController::class, 'store'])->name('kurang_mampu.store');
     // penghasilan
     Route::post('/penghasilan', [PenghasilanController::class, 'store'])->name('penghasilan.store');
+    // domisili
+    Route::post('/domisili', [DomisiliController::class, 'store'])->name('domisili.store');
 });
 
 Route::group(['middleware' => ['role:warga|admin']], function () {

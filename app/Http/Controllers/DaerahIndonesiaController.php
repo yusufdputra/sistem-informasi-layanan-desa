@@ -52,4 +52,43 @@ class DaerahIndonesiaController extends Controller
             return [];
         }
     }
+
+    static function getAlamatWarga($id_prov, $id_kab, $id_kec, $id_kel)
+    {
+        $nama_prov = '';
+        $nama_kab = '';
+        $nama_kec = '';
+        $nama_kel = '';
+        $provinsi = DaerahIndonesiaController::getProvinsi();
+        foreach ($provinsi as $key => $value) {
+            if (($id_prov == $value->id)) {
+                $nama_prov = ($value->name);
+                break;
+            }
+        }
+        $kabupaten = DaerahIndonesiaController::getKabupaten($id_prov);
+        foreach ($kabupaten as $key => $value) {
+            if (($id_kab == $value->id)) {
+                $nama_kab = ($value->name);
+                break;
+            }
+        }
+        $kecamatan = DaerahIndonesiaController::getKecamatan($id_kab);
+        foreach ($kecamatan as $key => $value) {
+            if (($id_kec == $value->id)) {
+                $nama_kec = ($value->name);
+                break;
+            }
+        }
+        $kelurahan = DaerahIndonesiaController::getKelurahan($id_kec);
+        foreach ($kelurahan as $key => $value) {
+            if (($id_kel == $value->id)) {
+                $nama_kel = ($value->name);
+                break;
+            }
+        }
+
+        return ('Kel./Desa '.($nama_kel).', Kec. '.$nama_kec.', Kab. '.$nama_kab.', Provinsi '.$nama_prov);
+        
+    }
 }

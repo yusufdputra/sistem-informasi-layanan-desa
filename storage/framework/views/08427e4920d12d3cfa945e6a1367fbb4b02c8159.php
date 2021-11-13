@@ -89,7 +89,7 @@
     <div id="body">
       <div>
         <div style="text-align: center;">
-          <strong style="font-size: 24px; "><u>SURAT KETERANGAN PENGHASILAN</u></strong> <br>
+          <strong style="font-size: 24px; "><u>SURAT KETERANGAN DOMISILI</u></strong> <br>
           <span style="font-size: 14px; ">Nomor : <?php echo e($pengajuan->no_dokumen); ?></span>
         </div>
         <br>
@@ -105,6 +105,11 @@
               <td><?php echo e($pengajuan->warga->nama); ?></td>
             </tr>
             <tr>
+              <td>Tempat/ Tgl Lahir</td>
+              <td>:</td>
+              <td><?php echo e($pengajuan->warga->tempat_lhr); ?> / <?php echo e(date('d-M-Y', strtotime($pengajuan->warga->tanggal_lhr))); ?></td>
+            </tr>
+            <tr>
               <td>Jenis Kelamin</td>
               <td>:</td>
               <td>
@@ -113,11 +118,6 @@
               <?php else: ?>
               Perempuan
               <?php endif; ?>
-            </tr>
-            <tr>
-              <td>Tempat/ Tgl Lahir</td>
-              <td>:</td>
-              <td><?php echo e($pengajuan->warga->tempat_lhr); ?> / <?php echo e(date('d-M-Y', strtotime($pengajuan->warga->tanggal_lhr))); ?></td>
             </tr>
             <tr>
               <td>Nomor Induk Keluarga</td>
@@ -135,23 +135,28 @@
               <td><?php echo e($pengajuan->warga->alamat); ?>, <?php echo e($alamat); ?></td>
             </tr>
 
-           
-          </table>
-
-
-          <div class="indent">
+            <div class="indent">
               <p>
-              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Dengan ini menyatakan bahwa nama tersebut diatas adalah benar penduduk Desa Makmur Kecamatan Pkl. Kerinci Kabupaten Pelalawan, yang berpenghasilan <strong><u>Rp. <?php echo e($data_surat->penghasilan); ?></u></strong> / bulan.
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Demikian surat keterangan ini dibuat, atas perhatian dan kerjasamanya kami ucapkan terimakasih.
               </p>
             </div>
 
             <div class="indent">
               <p>
 
-              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Demikian Surat Keterangan ini di buat dengan sebenarnya agar dapat dipergunakan sebagaimana mestinya oleh yang bersangkutan..
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Nama tersebut diatas adalah benar warga Desa Makmur Kecamatan Pkl. Kerinci Kabupaten Pelalawan. Berdasarkan keterangan yang bersangkutan dengan ini menyatakan ada perbedaan data identitas yang disebabkan kesalahan penulisan pada administrasi pendataan yang di jelaskan pada lampiran surat ini. Surat ini di pergunakan untuk <u><?php echo e($data_surat->tujuan); ?></u>.
               </p>
             </div>
+          </table>
+
+
+
         </div>
+
+
+
+
+
 
         <div id="formttd">
           <p>
@@ -178,4 +183,4 @@
   </div>
 </body>
 
-</html><?php /**PATH C:\xampp\htdocs\SILADES\resources\views/cetak/penghasilan.blade.php ENDPATH**/ ?>
+</html><?php /**PATH C:\xampp\htdocs\SILADES\resources\views/cetak/domisili.blade.php ENDPATH**/ ?>

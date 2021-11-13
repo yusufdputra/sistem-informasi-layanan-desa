@@ -138,7 +138,7 @@
             </tr>
             <tr>
               <td>Alamat</td>
-              <td>: <?php echo e($pengajuan->warga->alamat); ?></td>
+              <td>: <?php echo e($pengajuan->warga->alamat); ?>, <?php echo e($alamat); ?></td>
             </tr>
           </table>
 

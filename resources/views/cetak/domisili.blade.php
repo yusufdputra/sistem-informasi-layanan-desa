@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Cetak LAPORAN</title>
+  <title>Cetak Pengajuan</title>
 
   <style>
     html,
@@ -63,6 +63,7 @@
     table td {
       vertical-align: top;
     }
+
     .indent {
       text-align: justify;
     }
@@ -75,7 +76,7 @@
   <div id="container">
     <div id="header">
       <div style="float: left;">
-        <img height="120px" src="<?php echo e(public_path('adminto/images/logo.png')); ?>" alt="">
+        <img height="120px" src="{{public_path('adminto/images/logo.png')}}" alt="">
       </div>
       <div style="text-align: center; ">
         <span style="font-size: 24px; font-weight: bold; ">PEMERINTAH KABUPATEN PELALAWAN</span> <br>
@@ -89,83 +90,86 @@
     <div id="body">
       <div>
         <div style="text-align: center;">
-          <strong style="font-size: 24px; "><u>SURAT KETERANGAN PENGHASILAN</u></strong> <br>
-          <span style="font-size: 14px; ">Nomor : <?php echo e($pengajuan->no_dokumen); ?></span>
+          <strong style="font-size: 24px; "><u>SURAT KETERANGAN DOMISILI</u></strong> <br>
+          <span style="font-size: 14px; ">Nomor : {{$pengajuan->no_dokumen}}</span>
         </div>
         <br>
         <div style="font-size: 14px;">
-        <p>
+          <p>
 
-          Yang bertanda tangan di bawah ini Kepala Desa Makmur Kecamatan Pkl. Kerinci Kabupaten Pelalawan dengan ini menerangkan bahwa:
-        </p>
+            Yang bertanda tangan di bawah ini Kepala Desa Makmur Kecamatan Pkl. Kerinci Kabupaten Pelalawan dengan ini menerangkan bahwa:
+          </p>
           <table>
             <tr>
               <td>Nama</td>
               <td>:</td>
-              <td><?php echo e($pengajuan->warga->nama); ?></td>
+              <td>{{$pengajuan->warga->nama}}</td>
+            </tr>
+            <tr>
+              <td>Tempat/ Tgl Lahir</td>
+              <td>:</td>
+              <td>{{$pengajuan->warga->tempat_lhr}} / {{date('d-M-Y', strtotime($pengajuan->warga->tanggal_lhr))}}</td>
             </tr>
             <tr>
               <td>Jenis Kelamin</td>
               <td>:</td>
               <td>
-              <?php if($pengajuan->warga->jenis_kelamin == 'lk'): ?>
-              Laki-Laki
-              <?php else: ?>
-              Perempuan
-              <?php endif; ?>
-            </tr>
-            <tr>
-              <td>Tempat/ Tgl Lahir</td>
-              <td>:</td>
-              <td><?php echo e($pengajuan->warga->tempat_lhr); ?> / <?php echo e(date('d-M-Y', strtotime($pengajuan->warga->tanggal_lhr))); ?></td>
+                @if($pengajuan->warga->jenis_kelamin == 'lk')
+                Laki-Laki
+                @else
+                Perempuan
+                @endif
             </tr>
             <tr>
               <td>Nomor Induk Keluarga</td>
               <td>:</td>
-              <td><?php echo e($pengajuan->warga->user->nik); ?></td>
+              <td>{{$pengajuan->warga->user->nik}}</td>
             </tr>
             <tr>
               <td>Pekerjaan</td>
               <td>:</td>
-              <td><?php echo e(strtoupper($pengajuan->warga->pekerjaan)); ?></td>
+              <td>{{strtoupper($pengajuan->warga->pekerjaan)}}</td>
             </tr>
             <tr>
               <td>Alamat</td>
               <td>:</td>
-              <td><?php echo e($pengajuan->warga->alamat); ?>, <?php echo e($alamat); ?></td>
+              <td>{{$pengajuan->warga->alamat}}, {{$alamat}}</td>
             </tr>
 
-           
-          </table>
 
+          </table>
+          <div class="indent">
+            <p>
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Dengan ini menyatakan bernar bahwa yang bersangkutan berdomisili di Desa Makmur Kecamatan Pkl. Kerinci Kabupaten Pelalawan Surat keterangan ini di buat untuk <strong><u>{{$data_surat->tujuan}}</u></strong>.
+            </p>
+          </div>
 
           <div class="indent">
-              <p>
-              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Dengan ini menyatakan bahwa nama tersebut diatas adalah benar penduduk Desa Makmur Kecamatan Pkl. Kerinci Kabupaten Pelalawan, yang berpenghasilan <strong><u>Rp. <?php echo e($data_surat->penghasilan); ?></u></strong> / bulan.
-              </p>
-            </div>
+            <p>
 
-            <div class="indent">
-              <p>
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Demikian surat keterangan ini dibuat dengan sebenar-benarnya, untuk dapat digunakan seperlunya oleh yang bersangkutan tersebut.
+            </p>
+          </div>
 
-              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Demikian Surat Keterangan ini di buat dengan sebenarnya agar dapat dipergunakan sebagaimana mestinya oleh yang bersangkutan..
-              </p>
-            </div>
+
         </div>
+
+
+
+
+
 
         <div id="formttd">
           <p>
             <strong>
-              Desa Makmur, <?php echo e(date('d-M-Y', strtotime($pengajuan->updated_at))); ?>
-
+              Desa Makmur, {{date('d-M-Y', strtotime($pengajuan->updated_at))}}
               <br>
               Kepala Desa,
 
-              <img id="signature" height="120px" src="<?php echo e($kades['ttd_path']); ?>" alt="">
+              <img id="signature" height="120px" src="{{$kades['ttd_path']}}" alt="">
 
               <u>
-                <?php echo e(strtoupper($kades->user->username)); ?>
-
+                {{strtoupper($kades->user->username)}}
               </u>
             </strong>
           </p>
@@ -178,4 +182,4 @@
   </div>
 </body>
 
-</html><?php /**PATH C:\xampp\htdocs\SILADES\resources\views/cetak/penghasilan.blade.php ENDPATH**/ ?>
+</html>

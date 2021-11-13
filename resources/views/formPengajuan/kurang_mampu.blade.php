@@ -31,7 +31,7 @@
   </div>
   <div class="form-group mb-2">
     <label class=" col-form-label">Pekerjaan</label>
-    <input type="text" value="{{$profil['pekerjaan']}}" class="form-control" name="pekerjaan" required placeholder="Sesuai KTP" />
+    <input type="text" value="{{strtoupper($profil['pekerjaan'])}}" class="form-control" name="pekerjaan" required placeholder="Sesuai KTP" />
   </div>
 
   <!-- alamat -->
@@ -40,13 +40,13 @@
 <div class="col-lg-6">
   <div class="form-group mb-2">
     <label class=" col-form-label">Nama Lengkap Ayah/Ibu</label>
-    <input type="text"  @if(isset($data_surat)) value="{{$data_surat->nama_ortu}}" @endif  class="form-control" name="nama_ortu" required placeholder="Sesuai KTP" />
+    <input type="text" @if(isset($data_surat)) value="{{$data_surat->nama_ortu}}" @endif class="form-control" name="nama_ortu" required placeholder="Sesuai KTP" />
   </div>
   <div class="form-group mb-2">
     <label class=" col-form-label">Pekerjaan Ayah/Ibu</label>
-    <input type="text"  @if(isset($data_surat)) value="{{$data_surat->pekerjaan_ortu}}" @endif  class="form-control" name="pekerjaan_ortu" required placeholder="Sesuai KTP" />
+    <input type="text" @if(isset($data_surat)) value="{{$data_surat->pekerjaan_ortu}}" @endif class="form-control" name="pekerjaan_ortu" required placeholder="Sesuai KTP" />
   </div>
- 
+
 
   <div class="form-group mb-2">
     <label class=" col-form-label">Tempat dan Tanggal Lahir</label>

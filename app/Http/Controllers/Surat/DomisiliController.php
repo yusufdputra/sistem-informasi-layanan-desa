@@ -5,13 +5,11 @@ namespace App\Http\Controllers\Surat;
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\Warga\PengajuanController;
-use App\Models\Pengajuan;
-use App\Models\Surat\KurangMampu;
+use App\Models\Surat\Domisili;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
 
-class KurangMampuController extends Controller
+class DomisiliController extends Controller
 {
     public function __construct()
     {
@@ -32,16 +30,11 @@ class KurangMampuController extends Controller
 
             $values_surat = [
                 'id_pengajuan' => $id_pengajuan,
-                'nama_ortu' => $request->nama_ortu,
-                'tempat_lhr_ortu' => $request->tempat_lhr_ortu,
-                'tanggal_lhr_ortu' => $request->tanggal_lhr_ortu,
-                'pekerjaan_ortu' => $request->pekerjaan_ortu,
-                'alamat_ortu' => $request->alamat_ortu,
-                'tujuan' => $request->tujuan,
+                'tujuan' => strtoupper($request->tujuan),
                 'created_at'   => Carbon::now(),
                 'updated_at'   => Carbon::now(),
             ];
-            KurangMampu::updateOrInsert($where_surat, $values_surat);
+            Domisili::updateOrInsert($where_surat, $values_surat);
 
             // update data warga berdasarkan inputan form
             ProfileController::updateWargaAtForm($request);
