@@ -7,7 +7,7 @@
             <div class="col-md-8 col-lg-6 col-xl-4">
                 <div class="text-center">
                     <a href="<?php echo e(('/')); ?>">
-                        <img src="<?php echo e(asset('adminto/images/logo-dark.png')); ?>" alt="" height="22" class="mx-auto">
+                        <img src="<?php echo e(asset('adminto/images/logo-dark.png')); ?>" alt="" class="mx-auto">
                     </a>
                     <p class="text-muted mt-2 mb-4">Sistem Informasi Layanan Desa</p>
 
@@ -77,7 +77,7 @@ unset($__errorArgs, $__bag); ?>
 
                         <div class="row mt-3">
                             <div class="col-12 text-center">
-                                <p> <a href="pages-recoverpw.html" class="text-muted ms-1"><i class="fa fa-lock me-1"></i>Lupa Kata Sandi?</a></p>
+                                <!-- <p> <a href="pages-recoverpw.html" class="text-muted ms-1"><i class="fa fa-lock me-1"></i>Lupa Kata Sandi?</a></p> -->
                                 <p class="text-muted">Tidak punya akun? <a href="<?php echo e(('register')); ?>" class="text-dark ms-1"><b>Daftar</b></a></p>
                             </div> <!-- end col -->
                         </div>

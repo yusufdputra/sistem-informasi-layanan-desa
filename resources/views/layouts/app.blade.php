@@ -24,7 +24,7 @@
                 <div class="col-md-6">
                     <script>
                         document.write(new Date().getFullYear())
-                    </script> &copy; Desa Makmur
+                    </script> &copy; Desa Makmur Kecamatan Pkl. Kerinci Kabupaten Pelalawan
                 </div>
             </div>
         </div>

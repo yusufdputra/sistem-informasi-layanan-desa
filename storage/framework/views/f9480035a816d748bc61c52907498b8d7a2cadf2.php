@@ -26,6 +26,21 @@
   <!-- Custom  sCss -->
   <link rel="stylesheet" type="text/css" href="<?php echo e(asset('adminto/landing/css/style.css')); ?>" />
 
+  <style>
+    .max-lines {
+      display: block;
+      /* or inline-block */
+      text-overflow: ellipsis;
+      word-wrap: break-word;
+      overflow: hidden;
+      max-height: 3.6em;
+      line-height: 1.8em;
+
+    }
+
+  
+  </style>
+
 
 
 </head>
@@ -62,7 +77,7 @@
             <a href="#layanan" class="nav-link">Layanan</a>
           </li>
           <li class="nav-item">
-            <a href="<?php echo e(('login')); ?>" class="nav-link">Login</a>
+            <a href="<?php echo e(route('login')); ?>" class="nav-link">Login</a>
           </li>
         </ul>
       </div>

@@ -31,7 +31,6 @@ class BeritaController extends Controller
     public function store(Request $request)
     {
         // upload file
-        dd($request->file_foto);
         $upload = FileController::cekFile($request->file('file_foto'),$request->file_lama,$request->has('file_lama'), $this->target);
 
         if ($upload != false) {
@@ -50,7 +49,7 @@ class BeritaController extends Controller
             $query = Berita::updateOrInsert($where, $values);
 
             if ($query) {
-                return redirect()->back()->with('success', 'Berhasil disimpan');
+                return redirect()->route('berita.index')->with('success', 'Berhasil disimpan');
             } else {
                 return redirect()->back()->with('alert', 'Gagal disimpan');
             }
