@@ -226,7 +226,7 @@
       <div class="col-xl-4 col-sm-6">
         <div class="services-box p-4 bg-white mt-4">
           <h5 class="text-center"><?php echo e($value->judul); ?></h5>
-          <h6 class="text-muted">Post : <?php echo e(date('d-F-Y', strtotime($value->updated_at))); ?></h6>
+          <h6 class="text-muted">Post : <?php echo e(\Carbon\Carbon::parse($value->updated_at)->diffForHumans()); ?></h6>
           <div class="overflow-hidden">
             <a class="text-custom " data-bs-toggle="offcanvas" href="#canvasBerita<?php echo e($value->id); ?>" role="button" aria-controls="canvasBerita<?php echo e($value->id); ?>">Read more...</a>
           </div>
@@ -253,7 +253,7 @@
   <div class="offcanvas-body">
     <div class="">
       <h5 class="text-center"><?php echo e($value->judul); ?></h5>
-      <h6 class="text-muted">Post : <?php echo e(date('d-F-Y', strtotime($value->updated_at))); ?></h6>
+      <h6 class="text-muted">Post : <?php echo e(\Carbon\Carbon::parse($value->updated_at)->diffForHumans()); ?> </h6>
       <div class="services-img col-12 ">
         <img src="storage/<?php echo e($value->foto_path); ?>" class="img-fluid rounded" alt="">
       </div>

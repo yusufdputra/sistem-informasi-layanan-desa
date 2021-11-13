@@ -9,6 +9,7 @@ use App\Models\Berita;
 use App\Models\Layanan;
 use App\Models\Magang;
 use App\Models\Peminjaman;
+use App\Models\Pengajuan;
 use App\Models\Periode;
 use App\Models\Staff;
 use Carbon\Carbon;
@@ -20,15 +21,21 @@ class HomeController extends Controller
 
     public function index()
     {
-        $title = "Dashboard";
+        $title = "Halaman Utama";
         if (Auth::check()) {
 
-            return view('home', compact('title'));
+            $pengajuan['selesai'] = Pengajuan::where('status', 'selesai')->count();
+            $pengajuan['proses'] = Pengajuan::where('status', 'proses')->count();
+
+            return view('home', compact('title', 'pengajuan'));
         }
 
-       
-        // $staff = Staff::all();
-        return view('landing.index', compact('staff'));
+        $data['staff'] = Staff::all();
+        $data['layanan'] = Layanan::all();
+        $data['berita'] = Berita::orderBy('updated_at', 'DESC')->limit(6)->get();
+
+
+        return view('landing.index', compact('data'));
     }
 
 
@@ -38,7 +45,7 @@ class HomeController extends Controller
         $data['layanan'] = Layanan::all();
         $data['berita'] = Berita::orderBy('updated_at', 'DESC')->limit(6)->get();
 
-  
+
         return view('landing.index', compact('data'));
     }
 }
