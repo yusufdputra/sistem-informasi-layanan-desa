@@ -23,6 +23,7 @@ use App\Http\Controllers\Surat\BedaNamaController;
 use App\Http\Controllers\Surat\DomisiliController;
 use App\Http\Controllers\Surat\KurangMampuController;
 use App\Http\Controllers\Surat\PenghasilanController;
+use App\Http\Controllers\Surat\UsahaController;
 use App\Http\Controllers\UserManagementController;
 use App\Http\Controllers\WargaController;
 use App\Models\Layanan;
@@ -106,6 +107,8 @@ Route::group(['middleware' => ['role:warga']], function () {
     Route::post('/penghasilan', [PenghasilanController::class, 'store'])->name('penghasilan.store');
     // domisili
     Route::post('/domisili', [DomisiliController::class, 'store'])->name('domisili.store');
+    // usaha
+    Route::post('/usaha', [UsahaController::class, 'store'])->name('usaha.store');
 });
 
 Route::group(['middleware' => ['role:warga|admin']], function () {

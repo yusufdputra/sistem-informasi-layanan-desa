@@ -174,7 +174,7 @@ class ProfileController extends Controller
                 'alamat' => $request->alamat,
                 'rt' => $request->rt,
                 'rw' => $request->rw,
-                'pekerjaan' => $request->pekerjaan,
+                'pekerjaan' => strtoupper($request->pekerjaan),
                 'provinsi' => $request->provinsi,
                 'kabupaten' => $request->kabupaten,
                 'kecamatan' => $request->kecamatan,

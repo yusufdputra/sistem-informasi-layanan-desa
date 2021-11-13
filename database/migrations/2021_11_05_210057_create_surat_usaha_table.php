@@ -17,8 +17,7 @@ class CreateSuratUsahaTable extends Migration
             $table->id();
             $table->bigInteger('id_pengajuan');
             $table->string('nama_usaha');
-            $table->string('alamat_usaha');
-            $table->string('surat_pengantar_path');
+            $table->text('alamat_usaha');
             $table->timestamps();
             $table->timestamp('deleted_at')->nullable();
         });

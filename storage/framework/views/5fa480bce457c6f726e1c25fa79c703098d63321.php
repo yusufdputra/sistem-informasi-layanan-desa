@@ -3,7 +3,7 @@
   <input type="hidden" name="id_pengajuan" <?php if($pengajuan !=null): ?> value="<?php echo e($pengajuan->id); ?>" <?php endif; ?>>
   <input type="hidden" name="id_jenis_surat" value="<?php echo e($layanan->id); ?>">
   <input type="hidden" name="id_warga" value="<?php echo e($profil->id); ?>">
-  <input type="hidden" name="id_surat_beda_nama" <?php if(isset($data_surat)): ?> value="<?php echo e($surat->id); ?>" <?php endif; ?>>
+  <input type="hidden" name="id_surat_beda_nama" <?php if(isset($data_surat)): ?> value="<?php echo e($data_surat->id); ?>" <?php endif; ?>>
 
   <div class="col-lg-6">
     <div class="form-group mb-2">

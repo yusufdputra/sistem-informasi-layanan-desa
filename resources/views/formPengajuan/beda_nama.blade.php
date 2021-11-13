@@ -3,7 +3,7 @@
   <input type="hidden" name="id_pengajuan" @if($pengajuan !=null) value="{{$pengajuan->id}}" @endif>
   <input type="hidden" name="id_jenis_surat" value="{{$layanan->id}}">
   <input type="hidden" name="id_warga" value="{{$profil->id}}">
-  <input type="hidden" name="id_surat_beda_nama" @if(isset($data_surat)) value="{{$surat->id}}" @endif>
+  <input type="hidden" name="id_surat_beda_nama" @if(isset($data_surat)) value="{{$data_surat->id}}" @endif>
 
   <div class="col-lg-6">
     <div class="form-group mb-2">
