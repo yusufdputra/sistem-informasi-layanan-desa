@@ -34,7 +34,7 @@ class UserSeeder extends Seeder
         $admin->assignRole('kades');
 
         // jabatan
-        Jabatan::createMany([
+        Jabatan::insert([
             [
                 'nama'          => 'Pemberdayaan Kesejahteraan Keluarga (PKK)',
                 'created_at'    => Carbon::now()
@@ -68,7 +68,7 @@ class UserSeeder extends Seeder
 
         // jenis surat
         // jabatan
-        Layanan::createMany([
+        Layanan::insert([
             [
                 'nama'          => 'SURAT KETERANGAN KURANG MAMPU',
                 'created_at'    => Carbon::now(),

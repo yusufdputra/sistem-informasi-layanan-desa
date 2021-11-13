@@ -148,6 +148,7 @@
 
               <h5 class="mb-3">Staff Desa Makmur</h5>
               <div class="row">
+                @if(isset($staff))
                 @foreach ($data['staff'] AS $key=>$value)
                 <div class="col-lg-4 col-sm-6">
                   <div class="demo-box text-center p-3 mt-4">
@@ -171,6 +172,7 @@
                 </div>
 
                 @endforeach
+                @endif
               </div>
 
 
