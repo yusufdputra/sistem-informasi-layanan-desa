@@ -10,7 +10,7 @@ class DaerahIndonesiaController extends Controller
     static function getDaerahUser($idProvinsi, $idKabupaten, $idkecamatan)
     {
         $kabupaten = DaerahIndonesiaController::getKabupaten($idProvinsi);
-        dd($kabupaten);
+        dd($idProvinsi);
         $kecamatan = DaerahIndonesiaController::getKecamatan($idKabupaten);
         $kelurahan = DaerahIndonesiaController::getKelurahan($idkecamatan);
       
@@ -32,7 +32,7 @@ class DaerahIndonesiaController extends Controller
             $json = file_get_contents('http://www.emsifa.com/api-wilayah-indonesia/api/regencies/' . $id_prov . '.json');
             return json_decode($json);
         } catch (\Throwable $th) {
-            return [];
+            return $th;
         }
     }
     static function getKecamatan($id_kab)
