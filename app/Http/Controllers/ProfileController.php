@@ -32,7 +32,6 @@ class ProfileController extends Controller
                 $profil->kabupaten,
                 $profil->kecamatan
             );
-            dd('profil : '.$profil);
             $provinsi = DaerahIndonesiaController::getProvinsi();
 
             return view('profil.warga', compact('title', 'profil', 'provinsi', 'daerah'));
