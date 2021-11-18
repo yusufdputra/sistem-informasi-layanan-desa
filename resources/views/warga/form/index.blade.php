@@ -8,7 +8,9 @@
         <div class="card-box">
 
           <div class="align-items-center ">
+            
             <a href="{{route('pengajuan.index')}}" class="btn btn-danger m-l-10 waves-light  mb-2">Kembali</a>
+        
 
           </div>
 

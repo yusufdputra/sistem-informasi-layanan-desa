@@ -44,9 +44,9 @@
               <li>
                 <a href="<?php echo e(route('staff.index')); ?>">Staff Desa</a>
               </li>
-              <li>
+              <!-- <li>
                 <a href="<?php echo e(route('lembaga.index')); ?>">Lembaga Desa</a>
-              </li>
+              </li> -->
               <li>
                 <a href="<?php echo e(route('berita.index')); ?>">Berita</a>
               </li>

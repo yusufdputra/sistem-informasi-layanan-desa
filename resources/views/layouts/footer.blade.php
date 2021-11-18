@@ -31,7 +31,10 @@
 
  <script src="{{asset('adminto/libs/quill/quill.min.js')}}"></script>
 
-
+ <!-- Magnific Popup-->
+ <script src="{{asset('adminto/libs/magnific-popup/jquery.magnific-popup.min.js')}}"></script>
+ <!-- Gallery Init-->
+ <script src="{{asset('adminto/js/pages/gallery.init.js')}}"></script>
  <!-- Plugins js -->
  <script src="{{asset('adminto/libs/dropzone/min/dropzone.min.js')}}"></script>
  <script src="{{asset('adminto/libs/dropify/js/dropify.min.js')}}"></script>
@@ -61,8 +64,7 @@
        autoclose: true,
        format: 'yyyy-m-d',
        todayHighlight: true
-     }
-     );
+     });
 
    })
  </script>

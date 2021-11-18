@@ -43,6 +43,8 @@
   <link href="<?php echo e(asset('adminto/css/config/default/bootstrap-dark.min.css')); ?>" rel="stylesheet" type="text/css" id="bs-dark-stylesheet" disabled="disabled" />
   <link href="<?php echo e(asset('adminto/css/config/default/app-dark.min.css')); ?>" rel="stylesheet" type="text/css" id="app-dark-stylesheet" disabled="disabled" />
 
+   <!-- Lightbox css -->
+   <link href="<?php echo e(asset('adminto/libs/magnific-popup/magnific-popup.css')); ?>" rel="stylesheet" type="text/css" />
   <!-- icons -->
   <link href="<?php echo e(asset('adminto/css/icons.min.css')); ?>" rel="stylesheet" type="text/css" />
   <script src="https://cdn.ckeditor.com/ckeditor5/30.0.0/classic/ckeditor.js"></script>

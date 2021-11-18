@@ -1,4 +1,5 @@
 @csrf
+
 <input type="hidden" name="id_pengajuan" @if($pengajuan !=null) value="{{$pengajuan->id}}" @endif>
 <input type="hidden" name="id_jenis_surat" value="{{$layanan->id}}">
 <input type="hidden" name="id_warga" value="{{$profil->id}}">
@@ -55,4 +56,51 @@
     <textarea type="text" class="form-control" rows="5" name="alamat_usaha" required placeholder="Ketikkan sesuatu...">@if(isset($data_surat)){{$data_surat->alamat_usaha}}@endif</textarea>
   </div>
 
+</div>
+
+<div class="col-lg-12 row portfolioContainer">
+  @role('admin')
+  <div class="col-lg-6 natural personal">
+    <div class="gal-detail thumb">
+
+    <label class=" col-form-label">Foto KTP </label>
+      <a href="../../storage/{{($profil['ktp_path'])}}"  class="image-popup" title="Foto KTP">
+        <img src="../../storage/{{($profil['ktp_path'])}}"  class="thumb-img img-fluid" alt="Foto KTP">
+      </a>
+
+    </div>
+  </div>
+  <div class="col-lg-6 natural personal">
+    <div class="gal-detail thumb">
+
+    <label class=" col-form-label">Foto Kartu Keluarga </label>
+      <a href="../../storage/{{($profil['kk_path'])}}" class="image-popup" title="Foto Kartu Keluarga">
+        <img src="../../storage/{{($profil['kk_path'])}}" class="thumb-img img-fluid" alt="Foto Kartu Keluarga">
+      </a>
+
+    </div>
+  </div>
+  <div class="col-lg-6 natural personal">
+    <div class="gal-detail thumb">
+
+    <label class=" col-form-label">Foto Pengantar Dari RT </label>
+      <a href="../../storage/{{($data_surat->pengantar_path)}}" class="image-popup" title="Foto Pengantar Dari RT">
+        <img src="../../storage/{{($data_surat->pengantar_path)}}" class="thumb-img img-fluid" alt="Foto Pengantar Dari RT">
+      </a>
+
+    </div>
+  </div>
+
+  @endrole
+
+
+
+  @role('warga')
+  <div class="form-group mb-2">
+    <label class=" col-form-label">Foto Pengantar Dari RT </label>
+    <input type="hidden" @if (isset($data_surat)) value="{{$data_surat['pengantar_path']}}" @endif name="file_lama">
+    <input type="file" accept="image/*" data-plugins="dropify" @if (isset($data_surat)) data-default-file="../../storage/{{($data_surat->pengantar_path)}}" @else required @endif name="file_pengantar" data-max-file-size="1M" data-height="300" />
+  </div>
+
+  @endrole
 </div>
