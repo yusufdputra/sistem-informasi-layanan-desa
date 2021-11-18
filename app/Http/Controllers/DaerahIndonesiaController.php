@@ -19,7 +19,6 @@ class DaerahIndonesiaController extends Controller
     {
         try {
             $json = file_get_contents('https://emsifa.github.io/api-wilayah-indonesia/api/provinces.json');
-            dd($json);
             return json_decode($json);
         } catch (\Throwable $th) {
             return [];
