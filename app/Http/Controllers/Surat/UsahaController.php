@@ -9,10 +9,11 @@ use App\Http\Controllers\Warga\PengajuanController;
 use App\Models\Surat\Usaha;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class UsahaController extends Controller
 {
-    public $target = "Pengajuan/Usaha";
+    public $target;
     public function __construct()
     {
         $this->middleware('auth');
@@ -20,6 +21,7 @@ class UsahaController extends Controller
 
     public function store(Request $request)
     {
+        $this->target  = "Pengajuan/Usaha/".Auth::user()->nik;
         $query = ProfileController::updateUserAtForm($request);
 
         if ($query) {

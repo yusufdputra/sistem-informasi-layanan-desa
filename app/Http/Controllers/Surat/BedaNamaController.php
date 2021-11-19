@@ -16,7 +16,7 @@ use Illuminate\Support\Facades\DB;
 
 class BedaNamaController extends Controller
 {
-    public $target = "Pengajuan/Beda Nama";
+    public $target;
     public function __construct()
     {
         $this->middleware('auth');
@@ -24,6 +24,7 @@ class BedaNamaController extends Controller
 
     public function store(Request $request)
     {
+        $this->target = "Pengajuan/Beda Nama/".Auth::user()->nik;
         $query = ProfileController::updateUserAtForm($request);
 
         if ($query) {

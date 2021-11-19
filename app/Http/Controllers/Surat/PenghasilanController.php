@@ -10,11 +10,12 @@ use App\Models\Pengajuan;
 use App\Models\Surat\Penghasilan;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
 class PenghasilanController extends Controller
 {
-    public $target = "Pengajuan/Penghasilan";
+    public $target;
     public function __construct()
     {
         $this->middleware('auth');
@@ -22,6 +23,7 @@ class PenghasilanController extends Controller
 
     public function store(Request $request)
     {
+        $this->target  = "Pengajuan/Penghasilan/".Auth::user()->nik;
         $query = ProfileController::updateUserAtForm($request);
 
         if ($query) {
