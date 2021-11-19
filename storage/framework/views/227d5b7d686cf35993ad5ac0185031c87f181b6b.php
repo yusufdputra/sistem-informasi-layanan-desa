@@ -1,6 +1,6 @@
-@extends('layouts.app')
 
-@section('content')
+
+<?php $__env->startSection('content'); ?>
 <div class="row">
   <div class="col-12">
     <div class="card">
@@ -9,20 +9,20 @@
 
         
 
-          @if(\Session::has('alert'))
+          <?php if(\Session::has('alert')): ?>
           <div class="alert alert-danger">
-            <div>{{Session::get('alert')}}</div>
+            <div><?php echo e(Session::get('alert')); ?></div>
           </div>
-          @endif
+          <?php endif; ?>
 
-          @if(\Session::has('success'))
+          <?php if(\Session::has('success')): ?>
           <div class="alert alert-success">
-            <div>{{Session::get('success')}}</div>
+            <div><?php echo e(Session::get('success')); ?></div>
           </div>
-          @endif
+          <?php endif; ?>
 
-          <form class="form-horizontal m-t-20 parsley-examples" enctype="multipart/form-data" action="{{route('katasandi.reset')}}" method="POST">
-            @csrf
+          <form class="form-horizontal m-t-20 parsley-examples" enctype="multipart/form-data" action="<?php echo e(route('katasandi.reset')); ?>" method="POST">
+            <?php echo csrf_field(); ?>
 
             <h4 class="modal-title" id="standard-modalLabel">Atur Ulang Kata Sandi</h4>
 
@@ -59,6 +59,7 @@
             </div>
 
             <div class="modal-footer">
+              <button type="button" class="btn btn-light" data-bs-dismiss="modal">Close</button>
               <button type="submit" class="btn btn-primary waves-effect waves-light">update</button>
             </div>
 
@@ -73,4 +74,5 @@
 
 
 
-@endsection
+<?php $__env->stopSection(); ?>
+<?php echo $__env->make('layouts.app', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\xampp\htdocs\SILADES\resources\views/profil/admin.blade.php ENDPATH**/ ?>

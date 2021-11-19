@@ -28,6 +28,8 @@
                 <th>NIK</th>
                 <th>Nama Lengkap</th>
                 <th>Alamat</th>
+                <th>Foto KTP</th>
+                <th>Foto KK</th>
                 <th>Detail</th>
               </tr>
             </thead>
@@ -37,7 +39,13 @@
                 <td>{{$key+1}}</td>
                 <td>{{$value->user->nik}}</td>
                 <td>{{strtoupper($value->nama)}}</td>
-                <td>{{$value->alamat}}</td>
+                <td>{{$value->alamat}}, {{$alamat_warga[$key]}}</td>
+                <td>
+                  <button type="button" data-bs-toggle="modal" data-title="KTP" data-bs-target="#foto-modal" data-foto="{{$value->ktp_path}}" class="btn btn-success btn-sm modal_foto"><i class="fa fa-eye"></i></button>
+                </td>
+                <td>
+                  <button type="button" data-bs-toggle="modal" data-title="Kartu Keluarga" data-bs-target="#foto-modal" data-foto="{{$value->kk_path}}" class="btn btn-success btn-sm modal_foto"><i class="fa fa-eye"></i></button>
+                </td>
                 <td>
                   <div class="card-header" id="heading{{$key}}">
                     <h5 class="m-0">
@@ -73,7 +81,7 @@
                           <td>:</td>
                           <td>{{($value->agama)}}</td>
                         </tr>
-                       
+
                         <tr>
                           <td>Pekerjaan</td>
                           <td>:</td>
@@ -94,11 +102,7 @@
                           <td>:</td>
                           <td>{{$value->kewarganegaraan}}</td>
                         </tr>
-                        <tr>
-                          <td>Alamat</td>
-                          <td>:</td>
-                          <td>{{$value->alamat}}</td>
-                        </tr>
+
                       </table>
                     </div>
                   </div>
@@ -112,5 +116,45 @@
     </div>
   </div>
 </div>
+
+<div id="foto-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="fullWidthModalLabel" aria-hidden="true">
+  <div class="modal-dialog ">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title" id="fullWidthModalLabel">Foto <span id="title"></span></h4>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <form class="form-horizontal m-t-20" enctype="multipart/form-data" action="{{route('staff.store')}}" method="POST">
+        @csrf
+        <div class="modal-body">
+          <div class="text-left">
+            <div class="row mb-3">
+              <div class="col-12">
+                <img src="" id="lihat_foto" alt="image" class="img-fluid" />
+              </div>
+            </div>
+
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-light" data-bs-dismiss="modal">Close</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+
+<script type="text/javascript">
+  $('.modal_foto').click(function() {
+    var foto = $(this).data('foto');
+    var title = $(this).data('title');
+    $('#lihat_foto').attr('src', 'storage/' + foto)
+    $('#title').html(title);
+
+
+
+  });
+</script>
 
 @endsection

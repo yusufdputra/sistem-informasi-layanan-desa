@@ -27,7 +27,11 @@ class WargaController extends Controller
     {
         $title = "Data Warga Desa Makmur";
         $warga = Warga::where('tempat_lhr' ,'!=', null)->get();
-        return view('admin.warga.index', compact('title', 'warga'));
+        $alamat_warga = [];
+        foreach ($warga as $key => $value) {
+            $alamat_warga[$key] = DaerahIndonesiaController::getAlamatWarga($value->provinsi, $value->kabupaten,$value->kecamatan, $value->kelurahan);
+        }
+        return view('admin.warga.index', compact('title', 'warga','alamat_warga'));
     }   
     
 }

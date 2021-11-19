@@ -74,7 +74,7 @@
 </div>
 
 <div class="col-lg-12 row portfolioContainer">
-  <?php if(auth()->check() && auth()->user()->hasRole('admin')): ?>
+  <?php if(auth()->check() && auth()->user()->hasRole('admin|kades')): ?>
   <div class="col-lg-6 natural personal">
     <div class="gal-detail thumb">
 
@@ -165,7 +165,7 @@
 
 
   <?php if(auth()->check() && auth()->user()->hasRole('warga')): ?>
-  
+
   <div class="col-lg-6">
     <div class="form-group mb-2">
       <label class=" col-form-label">Foto Pengantar Dari RT </label>
