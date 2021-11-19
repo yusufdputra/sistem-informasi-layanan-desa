@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateJabatanTable extends Migration
+class AddEmailToUsersTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,8 @@ class CreateJabatanTable extends Migration
      */
     public function up()
     {
-        Schema::create('jabatan', function (Blueprint $table) {
-            $table->id();
-            $table->string('nama');
-            $table->timestamps();
-            $table->timestamp('deleted_at')->nullable();
+        Schema::table('users', function (Blueprint $table) {
+            $table->string('email')->unique();
         });
     }
 
@@ -28,6 +25,8 @@ class CreateJabatanTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('jabatan');
+        Schema::table('users', function (Blueprint $table) {
+            $table->string('email')->unique();
+        });
     }
 }

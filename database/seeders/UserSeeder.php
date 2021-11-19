@@ -2,7 +2,6 @@
 
 namespace Database\Seeders;
 
-use App\Models\Jabatan;
 use App\Models\Layanan;
 use App\Models\User;
 use Carbon\Carbon;
@@ -20,6 +19,7 @@ class UserSeeder extends Seeder
         $admin = User::create([
             'nik' => 'admin',
             'username' => 'admin',
+            'email' => 'yusuf.dputra0@gmail.com',
             'password' => bcrypt('admin1234')
         ]);
 
@@ -28,43 +28,44 @@ class UserSeeder extends Seeder
         $admin = User::create([
             'nik' => 'kades',
             'username' => 'kades',
+            'email' => 'yusuf.dputra1@gmail.com',
             'password' => bcrypt('kades1234')
         ]);
 
         $admin->assignRole('kades');
 
         // jabatan
-        Jabatan::insert([
-            [
-                'nama'          => 'Pemberdayaan Kesejahteraan Keluarga (PKK)',
-                'created_at'    => Carbon::now()
-            ],
-            [
-                'nama'          => 'Karang Taruna',
-                'created_at'    => Carbon::now()
-            ],
-            [
-                'nama'          => 'Perwiridan',
-                'created_at'    => Carbon::now()
-            ],
-            [
-                'nama'          => 'Kelompok Tani',
-                'created_at'    => Carbon::now()
-            ],
-            [
-                'nama'          => 'Keagamaan',
-                'created_at'    => Carbon::now()
-            ],
-            [
-                'nama'          => 'Ormas LSM',
-                'created_at'    => Carbon::now()
-            ],
-            [
-                'nama'          => 'LINMAS',
-                'created_at'    => Carbon::now()
-            ],
+        // Jabatan::insert([
+        //     [
+        //         'nama'          => 'Pemberdayaan Kesejahteraan Keluarga (PKK)',
+        //         'created_at'    => Carbon::now()
+        //     ],
+        //     [
+        //         'nama'          => 'Karang Taruna',
+        //         'created_at'    => Carbon::now()
+        //     ],
+        //     [
+        //         'nama'          => 'Perwiridan',
+        //         'created_at'    => Carbon::now()
+        //     ],
+        //     [
+        //         'nama'          => 'Kelompok Tani',
+        //         'created_at'    => Carbon::now()
+        //     ],
+        //     [
+        //         'nama'          => 'Keagamaan',
+        //         'created_at'    => Carbon::now()
+        //     ],
+        //     [
+        //         'nama'          => 'Ormas LSM',
+        //         'created_at'    => Carbon::now()
+        //     ],
+        //     [
+        //         'nama'          => 'LINMAS',
+        //         'created_at'    => Carbon::now()
+        //     ],
 
-        ]);
+        // ]);
 
         // jenis surat
         // jabatan

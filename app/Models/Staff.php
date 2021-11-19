@@ -13,8 +13,5 @@ class Staff extends Model
     protected $table = 'staff';
     protected $dates = ['deleted_at'];
 
-    public function jabatan()
-    {
-        return $this->hasOne(Jabatan::class, 'id', 'id_jabatan')->withTrashed();
-    }
+    
 }

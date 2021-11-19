@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ArsipController;
+use App\Http\Controllers\Auth\ForgotPasswordController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\Auth\ResetPasswordController;
 use App\Http\Controllers\BeritaController;
@@ -50,8 +51,15 @@ Auth::routes();
 
 Route::post('/register/', [RegisterController::class, 'create'])->name('register.create');
 
-// admin
+// kelola lupa kata sandi
 
+Route::get('/password', [ForgotPasswordController::class, 'index'])->name('password.index');
+Route::post('/password/kirim', [ForgotPasswordController::class, 'kirim'])->name('password.kirim');
+Route::get('/password/forgot/{token}', [ForgotPasswordController::class, 'forgot'])->name('password.forgot');
+Route::post('/password/ubah', [ForgotPasswordController::class, 'ubah'])->name('password.ubah');
+
+
+// admin
 Route::group(['middleware' => ['role:admin']], function () {
     // kelola berita
     Route::get('/berita', [BeritaController::class, 'index'])->name('berita.index');

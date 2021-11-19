@@ -8,7 +8,7 @@
           <a href="index.html">
             <img src="{{asset('adminto/images/logo-dark.png')}}" alt="" height="22" class="mx-auto">
           </a>
-          <p class="text-muted mt-2 mb-4">Responsive Admin Dashboard</p>
+          <p class="text-muted mt-2 mb-4">Sistem Informasi Layanan Desa Makmur</p>
         </div>
         <div class="card">
 
@@ -38,6 +38,16 @@
                 <input type="number" class="form-control @error('nik') is-invalid @enderror" name="nik" value="{{ old('nik') }}" placeholder="Sesuai KTP" required autocomplete="off">
 
                 @error('nik')
+                <span class="invalid-feedback" role="alert">
+                  <strong>{{ $message }}</strong>
+                </span>
+                @enderror
+              </div>
+              <div class="mb-3">
+                <label for="email" class="form-label">Email</label>
+                <input type="text" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" placeholder="Email Aktif" required autocomplete="off">
+
+                @error('email')
                 <span class="invalid-feedback" role="alert">
                   <strong>{{ $message }}</strong>
                 </span>

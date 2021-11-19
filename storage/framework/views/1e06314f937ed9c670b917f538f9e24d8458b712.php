@@ -9,10 +9,22 @@
                     <a href="<?php echo e(('/')); ?>">
                         <img src="<?php echo e(asset('adminto/images/logo-dark.png')); ?>" alt="" class="mx-auto">
                     </a>
-                    <p class="text-muted mt-2 mb-4">Sistem Informasi Layanan Desa</p>
+                    <p class="text-muted mt-2 mb-4">Sistem Informasi Layanan Desa Makmur</p>
 
                 </div>
                 <div class="card">
+
+                    <?php if(\Session::has('alert')): ?>
+                    <div class="alert alert-danger">
+                        <div><?php echo e(Session::get('alert')); ?></div>
+                    </div>
+                    <?php endif; ?>
+
+                    <?php if(\Session::has('success')): ?>
+                    <div class="alert alert-success">
+                        <div><?php echo e(Session::get('success')); ?></div>
+                    </div>
+                    <?php endif; ?>
                     <div class="card-body p-4">
 
                         <div class="text-center mb-4">
@@ -77,7 +89,7 @@ unset($__errorArgs, $__bag); ?>
 
                         <div class="row mt-3">
                             <div class="col-12 text-center">
-                                <!-- <p> <a href="pages-recoverpw.html" class="text-muted ms-1"><i class="fa fa-lock me-1"></i>Lupa Kata Sandi?</a></p> -->
+                                <p> <a href="<?php echo e(route('password.index')); ?>" class="text-muted ms-1"><i class="fa fa-lock me-1"></i>Lupa Kata Sandi?</a></p>
                                 <p class="text-muted">Tidak punya akun? <a href="<?php echo e(('register')); ?>" class="text-dark ms-1"><b>Daftar</b></a></p>
                             </div> <!-- end col -->
                         </div>

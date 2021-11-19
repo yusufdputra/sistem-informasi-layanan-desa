@@ -32,10 +32,12 @@ class RegisterController extends Controller
         // validasi
         $rules = [
             'nik' => 'required|unique:users',
+            'email' => 'required|unique:users',
             'password' => 'required|min:5'
         ];
         $pesan = [
             'nik.unique' => "Nomor induk sudah terdaftar",
+            'email.unique' => "Email sudah terdaftar",
             'password.min' => "Minimal 5 karakter",
         ];
         $validator = Validator::make($request->all(), $rules, $pesan);
@@ -46,6 +48,7 @@ class RegisterController extends Controller
         // simpan ke user
         $user = new User();
         $user->nik = $request->nik;
+        $user->email = $request->email;
         $user->username = strtoupper( $request->nama);
         $user->password = bcrypt($request->password);
         $user->save();

@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Jabatan;
 use App\Models\Staff;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
