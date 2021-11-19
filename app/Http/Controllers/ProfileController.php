@@ -191,18 +191,19 @@ class ProfileController extends Controller
             ->update([
                 'username' => $request->nama
             ]);
-
         // update nik
         // validasi
         $nik_old = Auth::user()->nik;
         // jika berbeda
-        if (isset($request->nik) && $nik_old != $request->nik) {
+        if ((isset($request->nik) && $nik_old != $request->nik)) {
 
             $rules = [
                 'nik' => 'required|unique:users',
+                'email' => 'required|unique:users',
             ];
             $pesan = [
                 'nik.unique' => "Nomor induk sudah terdaftar",
+                'email.unique' => "Email sudah terdaftar",
             ];
             $validator = Validator::make($request->all(), $rules, $pesan);
             if ($validator->fails()) {
@@ -210,7 +211,8 @@ class ProfileController extends Controller
             } else {
                 $query = User::where('id', Auth::user()->id)
                     ->update([
-                        'nik' => $request->nik
+                        'nik' => $request->nik,
+                        'email' => $request->email
                     ]);
             }
         }

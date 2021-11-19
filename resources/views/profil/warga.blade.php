@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="row">
+<div class="row ">
   <div class="col-12">
     <div class="card">
       <div class="card-body">
@@ -49,9 +49,23 @@
                     <input type="text" class="form-control" value="{{Auth::user()->nik}}" name="nik" required placeholder="Ketikkan sesuatu..." />
                   </div>
                   <div class="form-group mb-2">
+                    <label class=" col-form-label">Email</label>
+                    <input type="text" class="form-control" value="{{Auth::user()->email}}" name="emailS" required placeholder="Ketikkan sesuatu..." />
+                  </div>
+                  <div class="form-group mb-2">
                     <label class=" col-form-label">Nama Lengkap</label>
                     <input type="text" value="{{Auth::user()->username}}" class="form-control" name="nama" required placeholder="Sesuai KTP" />
                   </div>
+
+                </div>
+
+                <div class="clearfix"></div>
+              </div>
+
+              <div class="col-lg-12 row">
+
+                <div class="col-lg-6">
+
                   <div class="form-group mb-2">
                     <label class=" col-form-label">Agama</label>
                     <select required class="form-control" name="agama">
@@ -64,13 +78,7 @@
                       <option value="KHONGHUCU" <?= $profil['agama'] == 'KHONGHUCU' ? 'selected' : ''; ?>>KHONGHUCU</option>
                     </select>
                   </div>
-                </div>
 
-                <div class="clearfix"></div>
-              </div>
-
-              <div class="col-lg-12 row">
-                <div class="col-lg-6">
                   <div class="form-group mb-2">
                     <label class=" col-form-label">Tempat & Tanggal Lahir</label>
                     <div class="input-group">
@@ -80,29 +88,29 @@
                   </div>
 
                   <div class="form-group mb-2">
-                      <label class=" col-form-label">Jenis Kelamin</label>
-                      <select required class="form-control" name="jenis_kelamin">
-                        <option value="" selected disabled hidden>Silahkan Pilih</option>
-                        <option value="lk" <?= $profil['jenis_kelamin'] == 'lk' ? 'selected' : ''; ?>>Laki-Laki</option>
-                        <option value="pr" <?= $profil['jenis_kelamin'] == 'pr' ? 'selected' : ''; ?>>Perempuan</option>
-                      </select>
-                    </div>
+                    <label class=" col-form-label">Jenis Kelamin</label>
+                    <select required class="form-control" name="jenis_kelamin">
+                      <option value="" selected disabled hidden>Silahkan Pilih</option>
+                      <option value="lk" <?= $profil['jenis_kelamin'] == 'lk' ? 'selected' : ''; ?>>Laki-Laki</option>
+                      <option value="pr" <?= $profil['jenis_kelamin'] == 'pr' ? 'selected' : ''; ?>>Perempuan</option>
+                    </select>
+                  </div>
 
-                    <div class="form-group mb-2">
-                      <label class=" col-form-label">Status kawin</label>
-                      <select required class="form-control" name="status_kawin">
-                        <option value="" selected disabled hidden>Silahkan Pilih</option>
-                        <option value="Belum Kawin" <?= $profil['status_kawin'] == 'Belum Kawin' ? 'selected' : ''; ?>>Belum Kawin</option>
-                        <option value="Kawin" <?= $profil['status_kawin'] == 'Kawin' ? 'selected' : ''; ?>>Kawin</option>
-                        <option value="Cerai Hidup" <?= $profil['status_kawin'] == 'Cerai Hidup' ? 'selected' : ''; ?>>Cerai Hidup</option>
-                        <option value="Cerai Mati" <?= $profil['status_kawin'] == 'Cerai Mati' ? 'selected' : ''; ?>>Cerai Mati</option>
-                      </select>
-                    </div>
+                  <div class="form-group mb-2">
+                    <label class=" col-form-label">Status kawin</label>
+                    <select required class="form-control" name="status_kawin">
+                      <option value="" selected disabled hidden>Silahkan Pilih</option>
+                      <option value="Belum Kawin" <?= $profil['status_kawin'] == 'Belum Kawin' ? 'selected' : ''; ?>>Belum Kawin</option>
+                      <option value="Kawin" <?= $profil['status_kawin'] == 'Kawin' ? 'selected' : ''; ?>>Kawin</option>
+                      <option value="Cerai Hidup" <?= $profil['status_kawin'] == 'Cerai Hidup' ? 'selected' : ''; ?>>Cerai Hidup</option>
+                      <option value="Cerai Mati" <?= $profil['status_kawin'] == 'Cerai Mati' ? 'selected' : ''; ?>>Cerai Mati</option>
+                    </select>
+                  </div>
 
-                    <div class="form-group mb-2">
-                      <label class=" col-form-label">Pekerjaan</label>
-                      <input type="text" value="{{$profil['pekerjaan']}}" class="form-control" name="pekerjaan" required placeholder="Sesuai KTP" />
-                    </div>
+                  <div class="form-group mb-2">
+                    <label class=" col-form-label">Pekerjaan</label>
+                    <input type="text" value="{{$profil['pekerjaan']}}" class="form-control" name="pekerjaan" required placeholder="Sesuai KTP" />
+                  </div>
 
 
                   @include('helper.getDataDaerah')
@@ -111,7 +119,7 @@
 
                 <div class="col-lg-6">
                   <div class="">
-                    
+
 
                     <div class="form-group mb-2">
                       <label class=" col-form-label">Kewarganegaraan</label>

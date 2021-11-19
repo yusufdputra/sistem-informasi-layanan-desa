@@ -15,7 +15,7 @@
 
 
 <div class="form-group mb-2">
-  <label class=" col-form-label">Provinsi & Kabupaten</label>
+  <label class=" col-form-label">Provinsi & Kabupaten <div id="loader1" class="visually-hidden"> <span class="  spinner-border text-warning spinner-border-sm me-1" role="status" aria-hidden="true"></span></div></label>
 
   <div class="input-group">
     <select required class="form-control" id="provinsi" name="provinsi">
@@ -38,7 +38,7 @@
 </div>
 
 <div class="form-group mb-2">
-  <label class=" col-form-label">Kecamatan & Kelurahan</label>
+  <label class=" col-form-label">Kecamatan & Kelurahan <div id="loader2" class="visually-hidden"> <span id="loader2" class="spinner-border text-warning spinner-border-sm me-1" role="status" aria-hidden="true"></span></div></label>
   <div class="input-group">
     <input type="hidden" id="val_kecamatan" value="{{$profil->kecamatan}}">
     <select required class="form-control" id="kecamatan" name="kecamatan">
@@ -48,6 +48,7 @@
       <option value="{{$value->id}}" <?= $profil['kecamatan'] == $value->id ? 'selected' : ''; ?>>{{$value->name}}</option>
       @endforeach
       @endif
+
     </select>
     <input type="hidden" id="val_kelurahan" value="{{$profil->kelurahan}}">
     <select required class="form-control" id="kelurahan" name="kelurahan">
@@ -67,6 +68,7 @@
     $('#kabupaten').html('')
     $('#kecamatan').html('')
     $('#kelurahan').html('')
+    $('#loader1').attr('class', '')
     fetch('http://www.emsifa.com/api-wilayah-indonesia/api/regencies/' + this.value + '.json')
       .then(response => response.json())
       .then(regencies =>
@@ -75,12 +77,14 @@
           $('#kabupaten').append(opt_kabupaten)
         })
       )
+    $('#loader1').attr('class', 'visually-hidden')
 
   })
   // get data kecamatan
   document.getElementById('kabupaten').addEventListener('change', function() {
     $('#kecamatan').html('')
     $('#kelurahan').html('')
+    $('#loader2').attr('class', '')
     fetch('http://www.emsifa.com/api-wilayah-indonesia/api/districts/' + this.value + '.json')
       .then(response => response.json())
       .then(regencies =>
@@ -89,11 +93,12 @@
           $('#kecamatan').append(opt_kecamatan)
         })
       )
-
+      $('#loader2').attr('class', 'visually-hidden')
   })
   // get data kelurahan
   document.getElementById('kecamatan').addEventListener('change', function() {
     $('#kelurahan').html('')
+    $('#loader2').attr('class', '')
     fetch('http://www.emsifa.com/api-wilayah-indonesia/api/villages/' + this.value + '.json')
       .then(response => response.json())
       .then(regencies =>
@@ -102,6 +107,6 @@
           $('#kelurahan').append(opt_kelurahan)
         })
       )
-
+      $('#loader2').attr('class', 'visually-hidden')
   })
 </script>
