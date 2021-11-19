@@ -10,7 +10,6 @@ class DaerahIndonesiaController extends Controller
     static function getDaerahUser($idProvinsi, $idKabupaten, $idkecamatan)
     {
         $kabupaten = DaerahIndonesiaController::getKabupaten($idProvinsi);
-        dd($kabupaten);
         $kecamatan = DaerahIndonesiaController::getKecamatan($idKabupaten);
         $kelurahan = DaerahIndonesiaController::getKelurahan($idkecamatan);
       
