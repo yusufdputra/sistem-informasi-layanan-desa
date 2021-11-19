@@ -32,7 +32,7 @@ class FileController
                 FileController::unlinkFile($file_lama);
             }
             // upload file baru
-            $file_name = time() . '_' . $file->getClientOriginalName();
+            $file_name = uniqid(rand(), true).'_'.time() . '_' . $file->getClientOriginalName();
             $file_path = $file->storeAs('uploads/' . $target, $file_name, 'public');
             return $file_path;
         } catch (\Throwable $th) {
