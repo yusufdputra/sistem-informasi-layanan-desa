@@ -90,8 +90,6 @@ Route::group(['middleware' => ['role:admin']], function () {
     Route::post('/user/hapus', [UserManagementController::class, 'hapus'])->name('user.hapus');
     Route::post('/user/resetpw', [UserManagementController::class, 'resetpw'])->name('user.resetpw');
     Route::post('/user/status', [UserManagementController::class, 'status'])->name('user.status');
-
-    
 });
 
 
@@ -116,12 +114,6 @@ Route::group(['middleware' => ['role:warga']], function () {
     Route::post('/usaha', [UsahaController::class, 'store'])->name('usaha.store');
 });
 
-Route::group(['middleware' => ['role:warga|admin']], function () {
-    // detail pengajuan
-    Route::get('pengajuan/detail/{id}', [PengajuanController::class, 'detail'])->name('pengajuan/detail/');
-
-    
-});
 Route::group(['middleware' => ['role:kades|admin']], function () {
     // kelola arsip
     Route::get('/arsip', [ArsipController::class, 'index'])->name('arsip.index');
@@ -143,4 +135,7 @@ Route::group(['middleware' => ['role:warga|admin|kades']], function () {
 
     // cetak pengajuan
     Route::get('cetak/{id}', [CetakController::class, 'cetak'])->name('cetak/');
+
+    // detail pengajuan
+    Route::get('pengajuan/detail/{id}', [PengajuanController::class, 'detail'])->name('pengajuan/detail/');
 });

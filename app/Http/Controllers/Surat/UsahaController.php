@@ -21,34 +21,37 @@ class UsahaController extends Controller
 
     public function store(Request $request)
     {
-        $this->target  = "Pengajuan/Usaha/".Auth::user()->nik;
+        $this->target  = "Pengajuan/Usaha/" . Auth::user()->nik;
         $query = ProfileController::updateUserAtForm($request);
 
         if ($query) {
             $id_pengajuan = PengajuanController::store($request);
+            try {
+                // upload file pengantar dari rt
+                $upload = FileController::cekFile($request->file('file_pengantar'), $request->file_lama, $request->has('file_lama'), $this->target);
 
-            // upload file pengantar dari rt
-            $upload = FileController::cekFile($request->file('file_pengantar'), $request->file_lama, $request->has('file_lama'), $this->target);
+                // simpan ke db surat
+                $where_surat = [
+                    'id_pengajuan' => $request->id_pengajuan
+                ];
 
-            // simpan ke db surat
-            $where_surat = [
-                'id_pengajuan' => $request->id_pengajuan
-            ];
+                $values_surat = [
+                    'id_pengajuan' => $id_pengajuan,
+                    'nama_usaha' => strtoupper($request->nama_usaha),
+                    'alamat_usaha' => ($request->alamat_usaha),
+                    'pengantar_path' => $upload,
+                    'created_at'   => Carbon::now(),
+                    'updated_at'   => Carbon::now(),
+                ];
+                Usaha::updateOrInsert($where_surat, $values_surat);
 
-            $values_surat = [
-                'id_pengajuan' => $id_pengajuan,
-                'nama_usaha' => strtoupper($request->nama_usaha),
-                'alamat_usaha' => ($request->alamat_usaha),
-                'pengantar_path' => $upload,
-                'created_at'   => Carbon::now(),
-                'updated_at'   => Carbon::now(),
-            ];
-            Usaha::updateOrInsert($where_surat, $values_surat);
+                // update data warga berdasarkan inputan form
+                ProfileController::updateWargaAtForm($request);
 
-            // update data warga berdasarkan inputan form
-            ProfileController::updateWargaAtForm($request);
-
-            return redirect()->route('pengajuan.index')->with('success', 'Berhasil disimpan');
+                return redirect()->route('pengajuan.index')->with('success', 'Berhasil disimpan');
+            } catch (\Throwable $th) {
+                return redirect()->route('pengajuan.index')->with('alert', 'Gagal disimpan. Terjadi kesalahan saat simpan foto');
+            }
         } else {
             return redirect()->route('pengajuan.index')->with('alert', 'Gagal disimpan. NIK sudah terdaftar.');
         }

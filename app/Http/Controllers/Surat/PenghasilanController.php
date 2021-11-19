@@ -23,16 +23,15 @@ class PenghasilanController extends Controller
 
     public function store(Request $request)
     {
-        $this->target  = "Pengajuan/Penghasilan/".Auth::user()->nik;
+        $this->target  = "Pengajuan/Penghasilan/" . Auth::user()->nik;
         $query = ProfileController::updateUserAtForm($request);
 
         if ($query) {
 
             $id_pengajuan = PengajuanController::store($request);
-
-            // upload file pengantar dari rt
-            $upload_pengantar = FileController::cekFile($request->file('file_pengantar'), $request->file_lama, $request->has('file_lama'), $this->target);
-            if ($upload_pengantar) {
+            try {
+                // upload file pengantar dari rt
+                $upload_pengantar = FileController::cekFile($request->file('file_pengantar'), $request->file_lama, $request->has('file_lama'), $this->target);
                 // simpan ke db surat
                 $where_surat = [
                     'id_pengajuan' => $request->id_pengajuan
@@ -52,8 +51,11 @@ class PenghasilanController extends Controller
                 ProfileController::updateWargaAtForm($request);
 
                 return redirect()->route('pengajuan.index')->with('success', 'Berhasil disimpan');
+            } catch (\Throwable $th) {
+                return redirect()->route('pengajuan.index')->with('alert', 'Gagal disimpan. Terjadi kesalahan saat simpan foto');
             }
-            return redirect()->route('pengajuan.index')->with('alert', 'Gagal disimpan. Terjadi kesalahan saat simpan foto');
+
+
         } else {
             return redirect()->route('pengajuan.index')->with('alert', 'Gagal disimpan. NIK sudah terdaftar.');
         }

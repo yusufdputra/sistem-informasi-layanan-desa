@@ -59,13 +59,13 @@
 </div>
 
 <div class="col-lg-12 row portfolioContainer">
-  @role('admin')
+  @role('admin|kades')
   <div class="col-lg-6 natural personal">
     <div class="gal-detail thumb">
 
-    <label class=" col-form-label">Foto KTP </label>
-      <a href="../../storage/{{($profil['ktp_path'])}}"  class="image-popup" title="Foto KTP">
-        <img src="../../storage/{{($profil['ktp_path'])}}"  class="thumb-img img-fluid" alt="Foto KTP">
+      <label class=" col-form-label">Foto KTP </label>
+      <a href="../../storage/{{($profil['ktp_path'])}}" class="image-popup" title="Foto KTP">
+        <img src="../../storage/{{($profil['ktp_path'])}}" class="thumb-img img-fluid" alt="Foto KTP">
       </a>
 
     </div>
@@ -73,7 +73,7 @@
   <div class="col-lg-6 natural personal">
     <div class="gal-detail thumb">
 
-    <label class=" col-form-label">Foto Kartu Keluarga </label>
+      <label class=" col-form-label">Foto Kartu Keluarga </label>
       <a href="../../storage/{{($profil['kk_path'])}}" class="image-popup" title="Foto Kartu Keluarga">
         <img src="../../storage/{{($profil['kk_path'])}}" class="thumb-img img-fluid" alt="Foto Kartu Keluarga">
       </a>
@@ -83,7 +83,7 @@
   <div class="col-lg-6 natural personal">
     <div class="gal-detail thumb">
 
-    <label class=" col-form-label">Foto Pengantar Dari RT </label>
+      <label class=" col-form-label">Foto Pengantar Dari RT </label>
       <a href="../../storage/{{($data_surat->pengantar_path)}}" class="image-popup" title="Foto Pengantar Dari RT">
         <img src="../../storage/{{($data_surat->pengantar_path)}}" class="thumb-img img-fluid" alt="Foto Pengantar Dari RT">
       </a>

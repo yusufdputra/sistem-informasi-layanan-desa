@@ -54,7 +54,7 @@
 </div>
 
 <div class="col-lg-12 row portfolioContainer">
-  @role('admin')
+  @role('admin|kades')
   <div class="col-lg-6 natural personal">
     <div class="gal-detail thumb">
 

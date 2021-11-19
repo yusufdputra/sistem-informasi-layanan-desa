@@ -24,19 +24,19 @@ class BedaNamaController extends Controller
 
     public function store(Request $request)
     {
-        $this->target = "Pengajuan/Beda Nama/".Auth::user()->nik;
+        $this->target = "Pengajuan/Beda Nama/" . Auth::user()->nik;
         $query = ProfileController::updateUserAtForm($request);
 
         if ($query) {
             $id_pengajuan = PengajuanController::store($request);
 
-            // upload file pengantar dari rt
-            $upload_pengantar = FileController::cekFile($request->file('file_pengantar'), $request->file_lama, $request->has('file_lama'), $this->target);
+            try {
+                // upload file pengantar dari rt
+                $upload_pengantar = FileController::cekFile($request->file('file_pengantar'), $request->file_lama, $request->has('file_lama'), $this->target);
 
-            // upload file dokumen beda nama
-            $upload_dok_beda = FileController::cekFile($request->file('file_dokumen_beda'), $request->file_lama_beda, $request->has('file_lama_beda'), $this->target);
+                // upload file dokumen beda nama
+                $upload_dok_beda = FileController::cekFile($request->file('file_dokumen_beda'), $request->file_lama_beda, $request->has('file_lama_beda'), $this->target);
 
-            if ($upload_pengantar && $upload_dok_beda) {
                 // simpan ke db surat
                 $where_surat = [
                     'id_pengajuan' => $request->id_pengajuan
@@ -56,7 +56,7 @@ class BedaNamaController extends Controller
                 ProfileController::updateWargaAtForm($request);
 
                 return redirect()->route('pengajuan.index')->with('success', 'Berhasil disimpan');
-            } else {
+            } catch (\Throwable $th) {
                 return redirect()->route('pengajuan.index')->with('alert', 'Gagal disimpan. Terjadi kesalahan saat simpan foto');
             }
         } else {
