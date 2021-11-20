@@ -158,7 +158,9 @@
               <img id="signature" height="120px" src="{{$kades['ttd_path']}}" alt="">
 
               <u>
+                @if(isset($kades->user))
                 {{strtoupper($kades->user->username)}}
+                @endif
               </u>
             </strong>
           </p>
