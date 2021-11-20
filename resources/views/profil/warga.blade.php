@@ -46,11 +46,21 @@
                 <div class="flex-grow-1 overflow-hidden">
                   <div class="form-group mb-2">
                     <label class=" col-form-label">Nomor Induk Keluarga (NIK)</label>
-                    <input type="text" class="form-control" value="{{Auth::user()->nik}}" name="nik" required placeholder="Ketikkan sesuatu..." />
+                    <input type="text"  class="form-control @error('nik') is-invalid @enderror" id="nik" value="{{Auth::user()->nik}}" name="nik" required placeholder="Ketikkan sesuatu..." />
+                    @error('nik')
+                    <span class="invalid-feedback" role="alert">
+                      <strong>{{ $message }}</strong>
+                    </span>
+                    @enderror
                   </div>
                   <div class="form-group mb-2">
                     <label class=" col-form-label">Email</label>
-                    <input type="text" class="form-control" value="{{Auth::user()->email}}" name="emailS" required placeholder="Ketikkan sesuatu..." />
+                    <input type="text" class="form-control @error('email') is-invalid @enderror" id="email" value="{{Auth::user()->email}}" name="email" required placeholder="Ketikkan sesuatu..." />
+                    @error('email')
+                    <span class="invalid-feedback" role="alert">
+                      <strong>{{ $message }}</strong>
+                    </span>
+                    @enderror
                   </div>
                   <div class="form-group mb-2">
                     <label class=" col-form-label">Nama Lengkap</label>

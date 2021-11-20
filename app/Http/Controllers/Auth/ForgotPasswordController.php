@@ -42,9 +42,9 @@ class ForgotPasswordController extends Controller
             ];
 
             Mail::to($request->email)->send(new SendMail($detail));
-            return redirect()->back()->with('success', 'Berhasil, Silahkan Periksa Email Anda.');
+            return redirect()->route('login')->with('success', 'Berhasil, Silahkan Periksa Email Anda.');
         } catch (\Throwable $th) {
-            return redirect()->back()->with('alert', 'Tidak dapat mengirim email.'.$th);
+            return redirect()->back()->with('alert', 'Tidak dapat mengirim email.');
         }
     }
 
@@ -70,7 +70,7 @@ class ForgotPasswordController extends Controller
         // hapus token
         $query = PasswordReset::where('email', $token->email)->delete();
         if ($query) {
-            return redirect()->back()->with('success', 'Berhasil mengubah kata sandi');
+            return redirect()->route('login')->with('success', 'Berhasil mengubah kata sandi');
         } else {
             return redirect()->back()->with('alert', 'Gagal mengubah kata sandi');
         }

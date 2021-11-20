@@ -44,7 +44,6 @@ class ProfileController extends Controller
             $profil = ProfileController::getProfilAdmin();
             return view('profil.admin', compact('title', 'profil'));
         }
-        
     }
 
     static function getProfilWarga()
@@ -140,7 +139,7 @@ class ProfileController extends Controller
                         }
                     }
                 }
-                return redirect()->back()->with('alert', 'Gagal menyimpan NIK. NIK sudah terdaftar.');
+                return redirect()->back()->with('alert', 'Gagal menyimpan. NIK / Email sudah terdaftar.');
                 //code...
             } catch (\Throwable $th) {
                 return redirect()->back()->with('alert', 'Gagal disimpan');
@@ -194,26 +193,27 @@ class ProfileController extends Controller
         // update nik
         // validasi
         $nik_old = Auth::user()->nik;
+        $email_old = Auth::user()->email;
         // jika berbeda
-        if ((isset($request->nik) && $nik_old != $request->nik)) {
+        if ($nik_old != $request->nik || $email_old != $request->email)  {
 
-            $rules = [
-                'nik' => 'required|unique:users',
-                'email' => 'required|unique:users',
-            ];
-            $pesan = [
-                'nik.unique' => "Nomor induk sudah terdaftar",
-                'email.unique' => "Email sudah terdaftar",
-            ];
-            $validator = Validator::make($request->all(), $rules, $pesan);
-            if ($validator->fails()) {
-                return false;
-            } else {
-                $query = User::where('id', Auth::user()->id)
-                    ->update([
-                        'nik' => $request->nik,
-                        'email' => $request->email
-                    ]);
+        $rules = [
+            'nik' => 'required|unique:users',
+            'email' => 'required|unique:users',
+        ];
+        $pesan = [
+            'nik.unique' => "Nomor induk sudah terdaftar",
+            'email.unique' => "Email sudah terdaftar",
+        ];
+        $validator = Validator::make($request->all(), $rules, $pesan);
+        if ($validator->fails()) {
+            return redirect()->back()->withErrors($validator)->withInput($request->all())->with('success', 'NIK/Email Gagal disimpan');
+        } else {
+            $query = User::where('id', Auth::user()->id)
+                ->update([
+                    'nik' => $request->nik,
+                    'email' => $request->email
+                ]);
             }
         }
         return true;

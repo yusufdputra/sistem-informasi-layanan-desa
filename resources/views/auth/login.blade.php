@@ -14,22 +14,24 @@
                 </div>
                 <div class="card">
 
-                    @if(\Session::has('alert'))
-                    <div class="alert alert-danger">
-                        <div>{{Session::get('alert')}}</div>
-                    </div>
-                    @endif
 
-                    @if(\Session::has('success'))
-                    <div class="alert alert-success">
-                        <div>{{Session::get('success')}}</div>
-                    </div>
-                    @endif
                     <div class="card-body p-4">
 
                         <div class="text-center mb-4">
                             <h4 class="text-uppercase mt-0">Masuk</h4>
                         </div>
+
+                        @if(\Session::has('alert'))
+                        <div class="alert alert-danger">
+                            <div>{{Session::get('alert')}}</div>
+                        </div>
+                        @endif
+
+                        @if(\Session::has('success'))
+                        <div class="alert alert-success">
+                            <div>{{Session::get('success')}}</div>
+                        </div>
+                        @endif
 
                         <form method="POST" action="{{route('login')}}">
                             @csrf

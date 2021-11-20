@@ -34,12 +34,31 @@
             </div>
             @endif
 
-            <form method="POST" action="{{ route('password.ubah') }}">
+            <form class="parsley-examples" method="POST" action="{{ route('password.ubah') }}">
               @csrf
               <div class="mb-3">
                 <input type="hidden" value="{{$token}}" name="token">
-                <label for="email" class="form-label">Email</label>
-                <input id="password" placeholder="Kata Sandi" type="password" class="form-control @error('password') is-invalid @enderror" name="password" data-toggle="password" required autocomplete="current-password">
+                <div class="form-group mb-2 col-12">
+                  <label class=" col-form-label">Kata Sandi Baru</label>
+                  <!-- <div class="input-group input-group-merge">
+                    <div class="input-group-text" data-password="false">
+                      <span class="password-eye"></span>
+                    </div> -->
+                  <input id="hori-pass1" name="password" type="password" data-parsley-minlength="5" placeholder="Kata Sandi Baru" required class="form-control" />
+                  <!-- </div> -->
+
+                </div>
+                <div class="form-group mb-2 col-12">
+                  <label class=" col-form-label">Konfirmasi Kata Sandi Baru</label>
+                  <!-- <div class="input-group input-group-merge">
+                    <div class="input-group-text" data-password="false">
+                      <span class="password-eye"></span>
+                    </div> -->
+                  <input data-parsley-equalto="#hori-pass1" data-parsley-minlength="5" type="password" required placeholder="Konfirmasi Kata Sandi Baru" class="form-control" id="hori-pass2" />
+                  <!-- </div> -->
+
+                </div>
+                <!-- <input id="password" placeholder="Kata Sandi" type="password" class="form-control @error('password') is-invalid @enderror" name="password" data-toggle="password" required autocomplete="current-password"> -->
 
                 @error('password')
                 <span class="invalid-feedback" role="alert">
@@ -54,7 +73,7 @@
               </div>
             </form>
 
-           
+
 
           </div> <!-- end card-body -->
         </div>
