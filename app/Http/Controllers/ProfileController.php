@@ -19,6 +19,8 @@ class ProfileController extends Controller
     public function __construct()
     {
         $this->middleware('auth');
+        
+        setlocale(LC_ALL, 'IND');
     }
 
     public function index()

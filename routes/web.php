@@ -7,19 +7,11 @@ use App\Http\Controllers\Auth\ResetPasswordController;
 use App\Http\Controllers\BeritaController;
 use App\Http\Controllers\CetakController;
 use App\Http\Controllers\HomeController;
-use App\Http\Controllers\KuisionerController;
 use App\Http\Controllers\LayananController;
 use App\Http\Controllers\LembagaController;
-use App\Http\Controllers\LookBookController;
-use App\Http\Controllers\MahasiswaBimbingan;
 use App\Http\Controllers\Warga\PengajuanController;
-use App\Http\Controllers\PengajuanMagangController;
-use App\Http\Controllers\PeriodeController;
-use App\Http\Controllers\ProdiController;
 use App\Http\Controllers\ProfileController;
-use App\Http\Controllers\RiwayatController;
 use App\Http\Controllers\SaveSignatureController;
-use App\Http\Controllers\SekolahController;
 use App\Http\Controllers\StaffController;
 use App\Http\Controllers\Surat\BedaNamaController;
 use App\Http\Controllers\Surat\DomisiliController;
@@ -28,8 +20,6 @@ use App\Http\Controllers\Surat\PenghasilanController;
 use App\Http\Controllers\Surat\UsahaController;
 use App\Http\Controllers\UserManagementController;
 use App\Http\Controllers\WargaController;
-use App\Models\Layanan;
-use App\Models\Lookbook;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -125,6 +115,10 @@ Route::group(['middleware' => ['role:warga']], function () {
 Route::group(['middleware' => ['role:kades|admin']], function () {
     // kelola arsip
     Route::get('/arsip', [ArsipController::class, 'index'])->name('arsip.index');
+
+    
+    // cetak pengajuan
+    Route::get('cetak/{id}', [CetakController::class, 'cetak'])->name('cetak/');
 });
 
 Route::group(['middleware' => ['role:warga|admin|kades']], function () {
@@ -141,8 +135,6 @@ Route::group(['middleware' => ['role:warga|admin|kades']], function () {
     //kelola kata sandi
     Route::post('/katasandi.reset', [ResetPasswordController::class, 'reset'])->name('katasandi.reset');
 
-    // cetak pengajuan
-    Route::get('cetak/{id}', [CetakController::class, 'cetak'])->name('cetak/');
 
     // detail pengajuan
     Route::get('pengajuan/detail/{id}', [PengajuanController::class, 'detail'])->name('pengajuan/detail/');

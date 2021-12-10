@@ -15,6 +15,8 @@ class ArsipController extends Controller
 
     public function index()
     {
+        
+        setlocale(LC_ALL, 'IND');
         $title = "Arsip Pengajuan Layanan Desa";
         $arsip = Pengajuan::where('status', 'selesai')->orderBy('updated_at','DESC')->get();
         $layanan = Layanan::all();

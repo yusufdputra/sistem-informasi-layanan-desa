@@ -11,6 +11,8 @@ class WargaController extends Controller
     public function __construct()
     {
         $this->middleware('auth');
+        
+        setlocale(LC_ALL, 'IND');
     }
 
     static function cekProfil()

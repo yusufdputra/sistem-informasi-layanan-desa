@@ -42,7 +42,8 @@
               <tr>
                 <td>{{$key+1}}</td>
                 <td>{{$value->jenis_surat->nama}}</td>
-                <td>{{date('d-F-Y', strtotime($value->created_at))}}</td>
+                
+                <td>{{\Carbon\Carbon::parse($value->created_at)->formatLocalized('%A %d %B %Y')}}</td>
                 <td>
                   @if($value->status == 'proses')
                   <span class="badge badge-outline-info rounded-pill p-2">{{strtoupper($value->status)}}</span>
@@ -79,7 +80,7 @@
                 <th>Jenis Surat</th>
                 <th>Tanggal Pengajuan</th>
                 <th>Tanggal Selesai</th>
-                <th>Cetak</th>
+                <th>Status</th>
               </tr>
             </thead>
             <tbody>
@@ -87,10 +88,15 @@
               <tr>
                 <td>{{$key+1}}</td>
                 <td>{{$value->jenis_surat->nama}}</td>
-                <td>{{date('d-F-Y', strtotime($value->created_at))}}</td>
-                <td>{{date('d-F-Y', strtotime($value->updated_at))}}</td>
+                <td>{{\Carbon\Carbon::parse($value->created_at)->formatLocalized('%A %d %B %Y')}}</td>
+                <td>{{\Carbon\Carbon::parse($value->updated_at)->formatLocalized('%A %d %B %Y')}}</td>
                 <td>
-                  <a href="{{route('cetak/', $value->id)}}" target="_BLANK" class="btn btn-success btn-sm "><i class="fa fa-print"></i></a>
+                  @if($value->status == 'selesai')
+                  <span class="badge badge-outline-success rounded-pill p-2">{{strtoupper($value->status)}}</span>
+                  @elseif($value->status == 'tolak')
+                  <span class="badge badge-outline-danger rounded-pill p-2">DITOLAK</span>
+                  @endif
+
                 </td>
               </tr>
               @endforeach

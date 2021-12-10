@@ -29,6 +29,7 @@ class PengajuanController extends Controller
     {
 
         $this->middleware('auth');
+        setlocale(LC_ALL, 'IND');
     }
 
     public function index()

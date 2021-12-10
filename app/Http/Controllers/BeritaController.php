@@ -12,10 +12,13 @@ class BeritaController extends Controller
     public function __construct()
     {
         $this->middleware('auth');
+        
+        setlocale(LC_ALL, 'IND');
     }
 
     public function index()
     {
+        
         $title = "Kelola Berita Desa";
         $berita = Berita::all();
         return view('admin.berita.index', compact('title', 'berita'));

@@ -53,8 +53,9 @@
                 <td>{{$value->warga->user->nik}}</td>
                 <td>{{$value->warga->nama}}</td>
                 <td>{{$value->jenis_surat->nama}}</td>
-                <td>{{date('d-F-Y', strtotime($value->created_at))}}</td>
-                <td>{{date('d-F-Y', strtotime($value->updated_at))}}</td>
+                
+                <td>{{\Carbon\Carbon::parse($value->created_at)->formatLocalized('%A %d %B %Y')}}</td>
+                <td>{{\Carbon\Carbon::parse($value->updated_at)->formatLocalized('%A %d %B %Y')}}</td>
                 <td><a href="{{route('pengajuan/detail/', $value->id)}}" class="btn btn-primary btn-sm "><i class="fa fa-eye"></i></a></td>
                 <td><span class="badge badge-outline-info rounded-pill p-2">{{strtoupper($value->status)}}</span></td>
                 <td>

@@ -21,6 +21,7 @@ class HomeController extends Controller
 
     public function index()
     {
+        setlocale(LC_ALL, 'IND');
         $title = "Halaman Utama";
         if (Auth::check()) {
 
@@ -41,6 +42,8 @@ class HomeController extends Controller
 
     public function auth()
     {
+        
+        setlocale(LC_ALL, 'IND');
         $data['staff'] = Staff::all();
         $data['layanan'] = Layanan::all();
         $data['berita'] = Berita::orderBy('updated_at', 'DESC')->limit(6)->get();

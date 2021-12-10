@@ -44,7 +44,7 @@
       position: absolute;
       bottom: 0px;
       right: 0px;
-      width: 200px;
+      width: 230px;
       height: 100px;
     }
 
@@ -108,7 +108,7 @@
             <tr>
               <td>Tempat/ Tgl Lahir</td>
               <td>:</td>
-              <td>{{$pengajuan->warga->tempat_lhr}} / {{date('d-M-Y', strtotime($pengajuan->warga->tanggal_lhr))}}</td>
+              <td>{{$pengajuan->warga->tempat_lhr}} / {{\Carbon\Carbon::parse($pengajuan->warga->tanggal_lhr)->formatLocalized('%d %B %Y')}}</td>
             </tr>
          
             <tr>
@@ -153,7 +153,7 @@
         <div id="formttd">
           <p>
             <strong>
-              Desa Makmur, {{date('d-M-Y', strtotime($pengajuan->updated_at))}}
+              Desa Makmur, {{\Carbon\Carbon::parse($pengajuan->updated_at)->formatLocalized('%d %B %Y')}}
               <br>
               Kepala Desa,
 
